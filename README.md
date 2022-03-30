@@ -7,4 +7,4 @@ We will add a cool screenshot later.
 
 what is up everyone!
 
-THis is going to be a merge conflict with Shloka's git push file.
+Both conflicts were overwritten with this sentence.
