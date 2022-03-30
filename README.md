@@ -6,3 +6,5 @@ Please read this file before opening.
 We will add a cool screenshot later.
 
 what is up everyone!
+
+testing a merge conflict
