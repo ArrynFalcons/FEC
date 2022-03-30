@@ -7,4 +7,4 @@ We will add a cool screenshot later.
 
 what is up everyone!
 
-testing a merge conflict
+Both conflicts were overwritten with this sentence.
