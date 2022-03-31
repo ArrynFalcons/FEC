@@ -2192,6 +2192,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
+  axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products').then(function (res) {
+    return console.log(res);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
