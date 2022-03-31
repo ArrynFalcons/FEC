@@ -1,29 +1,29 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Overview from './Overview.jsx';
 import Questions from './Questions.jsx';
 import RelatedItems from './RelatedItems.jsx';
 import Reviews from './Reviews.jsx';
-import axios from 'axios';
 
-const App = (props) => {
-
+function App() {
   return (
     <div className="container">
       <div className="overview">
-        <Overview/>
+        <Overview />
       </div>
       <div className="related-items">
-        <RelatedItems/>
+        <RelatedItems />
       </div>
       <div className="q-and-a">
-        <Questions/>
+        <Questions />
       </div>
       <div className="ratings-and-reviews">
-        <Reviews/>
+        <Reviews />
       </div>
     </div>
   );
-
-};
+}
 
 export default App;

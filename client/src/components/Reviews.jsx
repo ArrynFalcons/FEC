@@ -1,9 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 
-const Reviews = (props) => (
-
-  <div>Reviews</div>
-
-);
+function Reviews(props) {
+  return <div>Reviews</div>;
+}
 
 export default Reviews;
