@@ -4,7 +4,7 @@
   "description": "Front End Capstone Authored by Shloka Reddy, Thinh Ngo Phan, John Chon, and Joel Hench. Welcome to our project! Please read this file before opening. We will add a cool screenshot later.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack --mode development --watch"
   },
@@ -35,6 +35,11 @@
     "circleci": "^0.3.3",
     "cypress": "^9.5.3",
     "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
