@@ -1,9 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 
-const Overview = (props) => (
-
-  <div>Overview</div>
-
-);
+function Overview(props) {
+  return <div>Overview</div>;
+}
 
 export default Overview;
