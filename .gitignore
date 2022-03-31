@@ -59,3 +59,6 @@ jspm_packages/
 
 # bundle
 dist/bundle.js
+
+# config.js
+config.js
