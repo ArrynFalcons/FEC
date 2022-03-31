@@ -8,8 +8,6 @@ import RelatedItems from './RelatedItems.jsx';
 import Reviews from './Reviews.jsx';
 
 function App() {
-  axios.get('/products')
-    .then(res => console.log(res));
   return (
     <div className="container">
       <div className="overview">
