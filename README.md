@@ -5,6 +5,6 @@ Welcome to our project!
 Please read this file before opening.
 We will add a cool screenshot later.
 
-what is up everyone!
+what is up
 
 Both conflicts were overwritten with this sentence.
