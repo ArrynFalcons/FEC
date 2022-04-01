@@ -10,7 +10,6 @@ app.use(express.json());
 
 // All Get Routes
 app.use('/', (req, res) => {
-  console.log(req.query);
   const params = '' || req.originalUrl;
   const options = {
     method: 'get',
