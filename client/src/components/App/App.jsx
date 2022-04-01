@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Overview from './Overview.jsx';
-import Questions from './Questions.jsx';
-import RelatedItems from './RelatedItems.jsx';
-import Reviews from './Reviews.jsx';
+import Overview from '../Overview/Overview.jsx';
+import Questions from '../Questions/Questions.jsx';
+import RelatedItems from '../RelatedItems/RelatedItems.jsx';
+import Reviews from '../Reviews/Reviews.jsx';
 
 // import getRouteData from '../../../server/index.js'
 // // const { getRouteData } = require('../../../server/index.js');
