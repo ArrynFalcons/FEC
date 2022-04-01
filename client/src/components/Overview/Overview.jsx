@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 function Overview(props) {
-  return <div>Overview</div>;
+  return <div title="overview">Overview</div>;
 }
 
 export default Overview;
