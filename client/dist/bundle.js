@@ -2189,21 +2189,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import getRouteData from '../../../server/index.js'
-// // const { getRouteData } = require('../../../server/index.js');
+
 
 function App() {
-  // const getRouteData = (route, page, count, sort, product-id) => {
-  //   let params = {
-  //     page,
-  //     count,
-  //     product_id,
-  //   };
-  // }
-  // axios.get('/products', {
-  //   params: {page: 3, count: 15, product_id: 65641},
-  // })
-  //   .then(data => console.log(data.data));
+  var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
+    var params = {
+      page: page,
+      count: count,
+      sort: sort,
+      product_id: Id
+    };
+
+    if (route === 'products') {
+      return Id ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/products/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products', {
+        params: params
+      });
+    }
+
+    if (route === 'qa/questions') {
+      return endParam ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/qa/questions/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/qa/questions', {
+        params: params
+      });
+    }
+
+    return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/reviews/".concat(endParam), {
+      params: params
+    });
+  };
+
+  getRouteData('reviews', 1, 10, '', '65651', '').then(function (data) {
+    console.log(data);
+  })["catch"](function (err) {
+    console.log(err);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

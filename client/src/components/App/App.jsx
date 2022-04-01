@@ -7,21 +7,32 @@ import Questions from '../Questions/Questions.jsx';
 import RelatedItems from '../RelatedItems/RelatedItems.jsx';
 import Reviews from '../Reviews/Reviews.jsx';
 
-// import getRouteData from '../../../server/index.js'
-// // const { getRouteData } = require('../../../server/index.js');
-
 function App() {
-  // const getRouteData = (route, page, count, sort, product-id) => {
-  //   let params = {
-  //     page,
-  //     count,
-  //     product_id,
-  //   };
-  // }
-  // axios.get('/products', {
-  //   params: {page: 3, count: 15, product_id: 65641},
-  // })
-  //   .then(data => console.log(data.data));
+  const getRouteData = (route, page, count, sort, Id, endParam) => {
+    const params = {
+      page,
+      count,
+      sort,
+      product_id: Id,
+    };
+    if (route === 'products') {
+      return (Id ? axios.get(`/products/${Id}/${endParam}`)
+        : axios.get('/products', { params }));
+    }
+    if (route === 'qa/questions') {
+      return (endParam ? axios.get(`/qa/questions/${Id}/${endParam}`)
+        : axios.get('/qa/questions', { params }));
+    }
+    return axios.get(`/reviews/${endParam}`, { params });
+  };
+
+  getRouteData('reviews', 1, 10, '', '65651', '')
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   return (
     <div className="container">
