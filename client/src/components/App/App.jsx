@@ -26,13 +26,14 @@ function App() {
     return axios.get(`/reviews/${endParam}`, { params });
   };
 
-  getRouteData('reviews', 1, 10, '', '65651', '')
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // example of how to use helper function
+  // getRouteData('products', 1, 10, '', '65651', '')
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
   return (
     <div className="container">
