@@ -10,6 +10,7 @@ app.use(express.json());
 
 // All Get Routes
 app.use('/', (req, res) => {
+  console.log(req.query);
   const params = '' || req.originalUrl;
   const options = {
     method: 'get',
@@ -26,10 +27,6 @@ app.use('/', (req, res) => {
       res.status(404).send(err);
     });
 });
-
-// const allGetRoutes = (page, count, sort, product_id) => {
-
-// };
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
