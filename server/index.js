@@ -27,10 +27,6 @@ app.use('/', (req, res) => {
     });
 });
 
-// const allGetRoutes = (page, count, sort, product_id) => {
-
-// };
-
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`App listening on port ${port}`);
