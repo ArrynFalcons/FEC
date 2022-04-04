@@ -28,3 +28,20 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+.relatedProducts {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  gap: 10px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-color: turquoise;
+  padding: 5px;
+  height: 300px;
+  width: 200px;
+}
