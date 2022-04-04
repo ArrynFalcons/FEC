@@ -2163,10 +2163,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./client/src/components/App.jsx":
-/*!***************************************!*\
-  !*** ./client/src/components/App.jsx ***!
-  \***************************************/
+/***/ "./client/src/components/App/App.jsx":
+/*!*******************************************!*\
+  !*** ./client/src/components/App/App.jsx ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2177,10 +2177,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Overview_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Overview.jsx */ "./client/src/components/Overview.jsx");
-/* harmony import */ var _Questions_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Questions.jsx */ "./client/src/components/Questions.jsx");
-/* harmony import */ var _RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RelatedItems.jsx */ "./client/src/components/RelatedItems.jsx");
-/* harmony import */ var _Reviews_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Reviews.jsx */ "./client/src/components/Reviews.jsx");
+/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Overview/Overview.jsx */ "./client/src/components/Overview/Overview.jsx");
+/* harmony import */ var _Questions_Questions_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Questions/Questions.jsx */ "./client/src/components/Questions/Questions.jsx");
+/* harmony import */ var _RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../RelatedItems/RelatedItems.jsx */ "./client/src/components/RelatedItems/RelatedItems.jsx");
+/* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Reviews/Reviews.jsx */ "./client/src/components/Reviews/Reviews.jsx");
 /* eslint-disable import/extensions */
 
 /* eslint-disable no-unused-vars */
@@ -2192,27 +2192,58 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
+  var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
+    var params = {
+      page: page,
+      count: count,
+      sort: sort,
+      product_id: Id
+    };
+
+    if (route === 'products') {
+      return Id ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/products/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products', {
+        params: params
+      });
+    }
+
+    if (route === 'qa/questions') {
+      return endParam ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/qa/questions/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/qa/questions', {
+        params: params
+      });
+    }
+
+    return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/reviews/".concat(endParam), {
+      params: params
+    });
+  }; // example of how to use helper function
+
+
+  getRouteData('products', 1, 10, '', '65651', '').then(function (data) {
+    console.log(data);
+  })["catch"](function (err) {
+    console.log(err);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overview"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "related-items"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "q-and-a"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Questions_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Questions_Questions_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "ratings-and-reviews"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
 /***/ }),
 
-/***/ "./client/src/components/Overview.jsx":
-/*!********************************************!*\
-  !*** ./client/src/components/Overview.jsx ***!
-  \********************************************/
+/***/ "./client/src/components/Overview/Overview.jsx":
+/*!*****************************************************!*\
+  !*** ./client/src/components/Overview/Overview.jsx ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2225,17 +2256,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Overview(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Overview");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    title: "overview"
+  }, "Overview");
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);
 
 /***/ }),
 
-/***/ "./client/src/components/Questions.jsx":
-/*!*********************************************!*\
-  !*** ./client/src/components/Questions.jsx ***!
-  \*********************************************/
+/***/ "./client/src/components/Questions/Questions.jsx":
+/*!*******************************************************!*\
+  !*** ./client/src/components/Questions/Questions.jsx ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2255,10 +2288,10 @@ function Questions(props) {
 
 /***/ }),
 
-/***/ "./client/src/components/RelatedItems.jsx":
-/*!************************************************!*\
-  !*** ./client/src/components/RelatedItems.jsx ***!
-  \************************************************/
+/***/ "./client/src/components/RelatedItems/RelatedItems.jsx":
+/*!*************************************************************!*\
+  !*** ./client/src/components/RelatedItems/RelatedItems.jsx ***!
+  \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2278,10 +2311,10 @@ function RelatedItems(props) {
 
 /***/ }),
 
-/***/ "./client/src/components/Reviews.jsx":
-/*!*******************************************!*\
-  !*** ./client/src/components/Reviews.jsx ***!
-  \*******************************************/
+/***/ "./client/src/components/Reviews/Reviews.jsx":
+/*!***************************************************!*\
+  !*** ./client/src/components/Reviews/Reviews.jsx ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32199,12 +32232,12 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _components_App_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App.jsx */ "./client/src/components/App.jsx");
+/* harmony import */ var _components_App_App_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App/App.jsx */ "./client/src/components/App/App.jsx");
 /* eslint-disable import/extensions */
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_App_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('root'));
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_App_App_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('root'));
 })();
 
 /******/ })()
