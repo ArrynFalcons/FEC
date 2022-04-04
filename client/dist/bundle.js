@@ -2409,7 +2409,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-/** @license React v17.0.0
+/** @license React v17.0.2
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -8148,7 +8148,15 @@ function higherPriorityLane(a, b) {
   return a !== NoLane && a < b ? a : b;
 }
 function createLaneMap(initial) {
-  return new Array(TotalLanes).fill(initial);
+  // Intentionally pushing one by one.
+  // https://v8.dev/blog/elements-kinds#avoid-creating-holes
+  var laneMap = [];
+
+  for (var i = 0; i < TotalLanes; i++) {
+    laneMap.push(initial);
+  }
+
+  return laneMap;
 }
 function markRootUpdated(root, updateLane, eventTime) {
   root.pendingLanes |= updateLane; // TODO: Theoretically, any update to any lane can unblock any other lane. But
@@ -13749,7 +13757,7 @@ function flushSyncCallbackQueueImpl() {
 }
 
 // TODO: this is special because it gets imported during build.
-var ReactVersion = '17.0.0';
+var ReactVersion = '17.0.2';
 
 var NoMode = 0;
 var StrictMode = 1; // TODO: Remove BlockingMode and ConcurrentMode by reading from the root
@@ -28713,7 +28721,7 @@ if (false) {} else {
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-/** @license React v17.0.0
+/** @license React v17.0.2
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -28731,7 +28739,7 @@ if (true) {
 var _assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 
 // TODO: this is special because it gets imported during build.
-var ReactVersion = '17.0.0';
+var ReactVersion = '17.0.2';
 
 // ATTENTION
 // When adding new symbols to this file,
