@@ -9,24 +9,17 @@ function ReviewList(props) {
   const [count, setCount] = useState(0);
   const { grd } = props;
   const pagination = (page) => {
-    grd('reviews', page, 5, '', '65651', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews', page, 5, '', '65635', '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
-        console.log('Data ', data.data.results)
-        setReviews(data.data.results)
-        console.log('State "reviews" updated to: ', reviews)
+        console.log('Data ', data.data.results);
+        setReviews(data.data.results);
       })
       .catch((err) => {
-        console.log('Error retrieving reviews: ', err)
+        console.log('Error retrieving reviews: ', err);
       });
   }
   useEffect(() => {
-    grd('reviews', 1, 5, '', '65651', '') // (route, page, count, sort, Id, endParam)
-      .then((data) => {
-        setReviews(data.data.results)
-      })
-      .catch((err) => {
-        console.log('Error retrieving reviews: ', err)
-      });
+    pagination(1);
   }, []);
 
   return (
@@ -58,18 +51,20 @@ function ReviewList(props) {
               {/* <style dangerouslySetInnerHTML={{_html: `.reviewbody {color:blue}`}}/> */}
               <div className="inline-block">
                 {review.photos.map((photo)=>
-                  <img src={`${photo.url}`} value={photo.url} style={{display: 'inline-block'}} className="zoom" onMouseOver={e=>console.log(e.target.currentSrc)} onMouseOut={e=>console.log(e.target.currentSrc)} alt="reviewimages" height="200" width="200"/>
+                  <img src={`${photo.url}`} value={photo.url} style={{display: 'inline-block'}} className="zoom"
+                  onMouseOver={e=>console.log(e.target.currentSrc)}
+                  // onMouseOut={e=>console.log(e.target.currentSrc)}
+                  alt="reviewimages" height="200" width="200"/>
                 )}
               </div>
               <div style={{color: 'blue'}}>
-                Recommend? {review.recommend ? 'Yes' : 'No'}
+                Recommend?
+                {review.recommend ? 'Yes' : 'No'}
               </div>
               <div>
-                {review.helpfulness} people found this review helpful.
+                {review.helpfulness}
+                people found this review helpful.
               </div>
-              <br/>
-              <input type="text" placeholder="Leave a comment" />
-              <button onClick={() => {alert('DISABLED')}}>Comment</button>
             </div>
           </li>
         ),

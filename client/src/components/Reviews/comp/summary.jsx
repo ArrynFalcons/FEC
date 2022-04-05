@@ -13,69 +13,67 @@ function Summary(props) {
   const { grd } = props;
 
   useEffect(() => {
-    grd('reviews/meta', '', '1000', '', '65651', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews/meta', '', '1000', '', '65635', '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
-        console.log('Metadata retrieved: ', data.data.results)
-        var [sum, total, one, two, three, four, five] = [0, 0, 0, 0, 0, 0, 0];
-        data.data.results.forEach(function(obj) {
+        let [sum, total, one, two, three, four, five] = [0, 0, 0, 0, 0, 0, 0];
+        console.log('Metadata retrieved: ', data.data.results);
+        data.data.results.forEach((obj) => {
           switch (obj.rating) {
-            case 5: five++;
-            break;
-            case 4: four++;
-            break;
-            case 3: three++;
-            break;
-            case 2: two++;
-            break;
-            case 1: one++;
+            case 5: five += 1;
+              break;
+            case 4: four += 1;
+              break;
+            case 3: three += 1;
+              break;
+            case 2: two += 1;
+              break;
+            case 1: one += 1;
+              break;
+            default: console.log('Default triggered');
           }
-          total++;
-          sum += obj.rating
-        })
-        console.log('avg', sum/34)
-        setAvg(sum/total)
-        setTotal(total)
-        set5count(five)
-        set4count(four)
-        set3count(three)
-        set2count(two)
-        set1count(one)
-        console.log(one)
+          total += 1;
+          sum += obj.rating;
+        });
+        setAvg(sum / total);
+        setTotal(total);
+        set5count(five);
+        set4count(four);
+        set3count(three);
+        set2count(two);
+        set1count(one);
       })
       .catch((err) => {
-        console.log('Error retrieving reviews: ', err)
+        console.log('Error retrieving reviews: ', err);
       });
   }, []);
   return (
     <div className="summary">
       Summary
       <div>
-        Average Rating: {Math.round(10 * avg)/10}/5
+        Average Rating:
+        {' '}
+        {Math.round(10 * avg) / 10}
+        /5
       </div>
-      <div>5: </div>
+      <div>5 Stars: </div>
       <div className="background-bar">
-        <div id='foreground5' className="foreground-bar" style={{height: '30px', width:`${100 * count5/total}%`, 'backgroundColor': 'blue'}}>
-        </div>
+        <div id="foreground5" className="foreground-bar" style={{ height: '30px', width: `${100 * count5 / total}%`, backgroundColor: 'blue' }} />
       </div>
-      <div>4: </div>
+      <div>4 Stars: </div>
       <div className="background-bar">
-        <div id='foreground4' className="foreground-bar" style={{height: '30px', width:`${100 * count4/total}%`, 'backgroundColor': 'blue'}}>
-        </div>
+        <div id="foreground4" className="foreground-bar" style={{ height: '30px', width: `${100 * count4 / total}%`, backgroundColor: 'blue' }} />
       </div>
-      <div>3: </div>
+      <div>3 Stars: </div>
       <div className="background-bar">
-        <div id='foreground3' className="foreground-bar" style={{height: '30px', width:`${100 * count3/total}%`, 'background-color': 'blue'}}>
-        </div>
+        <div id="foreground3" className="foreground-bar" style={{ height: '30px', width: `${100 * count3 / total}%`, backgroundColor: 'blue' }} />
       </div>
-      <div>2: </div>
+      <div>2 Stars: </div>
       <div className="background-bar">
-        <div id='foreground2' className="foreground-bar" style={{height: '30px', width:`${100 * count2/total}%`, 'background-color': 'blue'}}>
-        </div>
+        <div id="foreground2" className="foreground-bar" style={{ height: '30px', width: `${100 * count2 / total}%`, backgroundColor: 'blue' }} />
       </div>
       <div>1: </div>
       <div className="background-bar">
-        <div id='foreground1' className="foreground-bar" style={{height: '30px', width:`${100 * count1/total}%`, 'background-color': 'blue'}}>
-        </div>
+        <div id="foreground1" className="foreground-bar" style={{ height: '30px', width: `${100 * count1 / total}%`, backgroundColor: 'blue' }} />
       </div>
     </div>
   );

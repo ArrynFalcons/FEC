@@ -2400,17 +2400,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 /* eslint-disable no-unused-vars */
 
 
 
 function NewReview(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "new-review"
-  }, "FILLMEIN Conditional rendering of NewReview", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      reviewstate = _useState2[0],
+      setreviewstate = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      reviewtext = _useState4[0],
+      setreviewtext = _useState4[1];
+
+  var openReviewBox = function openReviewBox() {
+    setreviewstate(true);
+  };
+
+  return reviewstate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
-    placeholder: "Leave a New Review"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Submit Review"));
+    placeholder: "Name"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Please rate out of 5 stars:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png",
+    width: "100",
+    alt: "placeholderstars"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Do you recommend this product?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit"
+  }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit"
+  }, "No")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    rows: "5",
+    cols: "80",
+    onChange: function onChange() {},
+    placeholder: "Write your review here"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    rows: "2",
+    cols: "80",
+    placeholder: "Add three comma separated URLs to include images"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit"
+  }, "Submit")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "new-review"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      openReviewBox();
+    }
+  }, "Leave a New Review"));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewReview);
@@ -2465,23 +2515,17 @@ function ReviewList(props) {
   var grd = props.grd;
 
   var pagination = function pagination(page) {
-    grd('reviews', page, 5, '', '65651', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews', page, 5, '', '65635', '') // (route, page, count, sort, Id, endParam)
     .then(function (data) {
       console.log('Data ', data.data.results);
       setReviews(data.data.results);
-      console.log('State "reviews" updated to: ', reviews);
     })["catch"](function (err) {
       console.log('Error retrieving reviews: ', err);
     });
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    grd('reviews', 1, 5, '', '65651', '') // (route, page, count, sort, Id, endParam)
-    .then(function (data) {
-      setReviews(data.data.results);
-    })["catch"](function (err) {
-      console.log('Error retrieving reviews: ', err);
-    });
+    pagination(1);
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "review-list"
@@ -2525,10 +2569,8 @@ function ReviewList(props) {
         className: "zoom",
         onMouseOver: function onMouseOver(e) {
           return console.log(e.target.currentSrc);
-        },
-        onMouseOut: function onMouseOut(e) {
-          return console.log(e.target.currentSrc);
-        },
+        } // onMouseOut={e=>console.log(e.target.currentSrc)}
+        ,
         alt: "reviewimages",
         height: "200",
         width: "200"
@@ -2537,14 +2579,7 @@ function ReviewList(props) {
       style: {
         color: 'blue'
       }
-    }, "Recommend? ", review.recommend ? 'Yes' : 'No'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, review.helpfulness, " people found this review helpful."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      type: "text",
-      placeholder: "Leave a comment"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: function onClick() {
-        alert('DISABLED');
-      }
-    }, "Comment")));
+    }, "Recommend?", review.recommend ? 'Yes' : 'No'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, review.helpfulness, "people found this review helpful.")));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: function onClick() {
       pagination(1);
@@ -2648,9 +2683,8 @@ function Summary(props) {
 
   var grd = props.grd;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    grd('reviews/meta', '', '1000', '', '65651', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews/meta', '', '1000', '', '65635', '') // (route, page, count, sort, Id, endParam)
     .then(function (data) {
-      console.log('Metadata retrieved: ', data.data.results);
       var sum = 0,
           total = 0,
           one = 0,
@@ -2658,32 +2692,36 @@ function Summary(props) {
           three = 0,
           four = 0,
           five = 0;
+      console.log('Metadata retrieved: ', data.data.results);
       data.data.results.forEach(function (obj) {
         switch (obj.rating) {
           case 5:
-            five++;
+            five += 1;
             break;
 
           case 4:
-            four++;
+            four += 1;
             break;
 
           case 3:
-            three++;
+            three += 1;
             break;
 
           case 2:
-            two++;
+            two += 1;
             break;
 
           case 1:
-            one++;
+            one += 1;
+            break;
+
+          default:
+            console.log('Default triggered');
         }
 
-        total++;
+        total += 1;
         sum += obj.rating;
       });
-      console.log('avg', sum / 34);
       setAvg(sum / total);
       setTotal(total);
       set5count(five);
@@ -2691,14 +2729,13 @@ function Summary(props) {
       set3count(three);
       set2count(two);
       set1count(one);
-      console.log(one);
     })["catch"](function (err) {
       console.log('Error retrieving reviews: ', err);
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "summary"
-  }, "Summary", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Average Rating: ", Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Summary", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Average Rating:", ' ', Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "foreground5",
@@ -2706,9 +2743,9 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count5 / total, "%"),
-      'backgroundColor': 'blue'
+      backgroundColor: 'blue'
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "4: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "4 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "foreground4",
@@ -2716,9 +2753,9 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count4 / total, "%"),
-      'backgroundColor': 'blue'
+      backgroundColor: 'blue'
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "3: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "3 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "foreground3",
@@ -2726,9 +2763,9 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count3 / total, "%"),
-      'background-color': 'blue'
+      backgroundColor: 'blue'
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "2: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "2 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "foreground2",
@@ -2736,7 +2773,7 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count2 / total, "%"),
-      'background-color': 'blue'
+      backgroundColor: 'blue'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
@@ -2746,7 +2783,7 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count1 / total, "%"),
-      'background-color': 'blue'
+      backgroundColor: 'blue'
     }
   })));
 }
