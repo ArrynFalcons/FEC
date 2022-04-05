@@ -2310,9 +2310,7 @@ function ProductsCard(_ref) {
   var product = _ref.product;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "productCard"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(FontAwesomeIcon, {
-    icon: "fa-solid fa-star-sharp"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price)));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductsCard);
@@ -2344,6 +2342,10 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+/* eslint-disable import/extensions */
+
+/* eslint-disable react/prop-types */
+
 /* eslint-disable no-unused-vars */
 
  // const getRouteData = (route, page, count, sort, Id, endParam)
@@ -2355,6 +2357,11 @@ function RelatedItems(_ref) {
       _useState2 = _slicedToArray(_useState, 2),
       products = _useState2[0],
       setProducts = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(65651),
+      _useState4 = _slicedToArray(_useState3, 2),
+      featured = _useState4[0],
+      setFeatured = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('products', 1, 10, '', 65651, 'related').then(function (data) {
@@ -2371,7 +2378,9 @@ function RelatedItems(_ref) {
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProductsList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    products: products
+    products: products,
+    featured: featured,
+    getRouteData: getRouteData
   });
 }
 
@@ -2404,6 +2413,11 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+/* eslint-disable import/extensions */
+
+/* eslint-disable react/prop-types */
+
+/* eslint-disable no-unused-vars */
 
 
 
@@ -2427,7 +2441,9 @@ function reducer(state, action) {
 }
 
 function RelatedProductsList(_ref) {
-  var products = _ref.products;
+  var products = _ref.products,
+      featured = _ref.featured,
+      getRouteData = _ref.getRouteData;
 
   var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(reducer, {
     start: 0,
@@ -2435,7 +2451,15 @@ function RelatedProductsList(_ref) {
   }),
       _useReducer2 = _slicedToArray(_useReducer, 2),
       state = _useReducer2[0],
-      dispatch = _useReducer2[1];
+      dispatch = _useReducer2[1]; // useEffect(() => {
+  //   getRouteData('products', 1, 10, '', featured, '')
+  //     .then((data) => {
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "RELATED PRODUCTS", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "relatedProducts"
@@ -2449,7 +2473,8 @@ function RelatedProductsList(_ref) {
   }, '<'), products.slice(state.start, state.next).map(function (product) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductsCard_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       product: product,
-      key: product.id
+      key: product.id,
+      featured: featured
     });
   }), state.next === products.length ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",

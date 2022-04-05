@@ -1,4 +1,7 @@
-import React, { useState, useReducer } from 'react';
+/* eslint-disable import/extensions */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React, { useState, useReducer, useEffect } from 'react';
 import ProductsCard from './ProductsCard.jsx';
 
 function reducer(state, action) {
@@ -11,8 +14,18 @@ function reducer(state, action) {
       throw new Error();
   }
 }
-function RelatedProductsList({ products }) {
+function RelatedProductsList({ products, featured, getRouteData }) {
   const [state, dispatch] = useReducer(reducer, { start: 0, next: 3 });
+
+  // useEffect(() => {
+  //   getRouteData('products', 1, 10, '', featured, '')
+  //     .then((data) => {
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   return (
     <div>
       RELATED PRODUCTS
@@ -21,7 +34,7 @@ function RelatedProductsList({ products }) {
           <button type="submit" onClick={() => { dispatch({ type: 'previous' }); }}>{'<'}</button>)}
 
         {products.slice(state.start, state.next).map((product) =>
-          <ProductsCard product={product} key={product.id} />)}
+          <ProductsCard product={product} key={product.id} featured={featured} />)}
 
         {state.next === products.length ? null : (
           <button type="submit" onClick={() => { dispatch({ type: 'next' }); }}>{'>'}</button>)}

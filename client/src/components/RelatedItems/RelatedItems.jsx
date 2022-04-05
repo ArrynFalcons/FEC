@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import RelatedProductsList from './RelatedProductsList.jsx';
@@ -5,6 +7,7 @@ import RelatedProductsList from './RelatedProductsList.jsx';
 // const getRouteData = (route, page, count, sort, Id, endParam)
 function RelatedItems({ getRouteData }) {
   const [products, setProducts] = useState([]);
+  const [featured, setFeatured] = useState(65651);
 
   useEffect(() => {
     getRouteData('products', 1, 10, '', 65651, 'related')
@@ -18,7 +21,13 @@ function RelatedItems({ getRouteData }) {
       });
   }, []);
 
-  return (<RelatedProductsList products={products} />);
+  return (
+    <RelatedProductsList
+      products={products}
+      featured={featured}
+      getRouteData={getRouteData}
+    />
+  );
 }
 
 export default RelatedItems;
