@@ -4,8 +4,10 @@ import axios from 'axios';
 
 function NewReview(props) {
   return (
-  <div>NewReview
-  </div>
+    <div className="new-review">FILLMEIN Conditional rendering of NewReview
+      <input type="text" placeholder="Leave a New Review"></input>
+      <button>Submit Review</button>
+    </div>
   );
 }
 

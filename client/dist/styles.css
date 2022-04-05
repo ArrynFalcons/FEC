@@ -28,3 +28,40 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+/*line 30 is the last common line*/
+/* Joels edits below */
+.zoom {
+  display: inline-block;
+  transition: transform .5s; /* Animation */
+  margin: 0 auto;
+}
+.zoom:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.ratings-container {
+  display:grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 20% 80%;
+}
+.summary {
+  grid-row:1/2;
+  grid-column:1/2;
+}
+.review-list {
+  grid-row:1/2;
+  grid-column:2/3;
+}
+.new-review {
+  grid-row:2/3;
+  grid-column:2/3;
+}
+.background-bar {
+  height: 30px;
+  width:100%;
+  background-color: #F0F8FF
+}
+/* #foreground5 #foreground4 #foreground3 #foreground2 #foreground1 {
+  height: 30px;
+  width: 20%;
+  background-color: blue
+} */

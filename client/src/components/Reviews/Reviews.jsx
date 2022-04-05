@@ -34,7 +34,7 @@ function Reviews(props) {
   //   });
 
   return (
-  <div>Ratings and Reviews
+  <div className="ratings-container">
     <Summary grd={getRouteData}/>
     <ReviewList grd={getRouteData}/>
     <NewReview grd={getRouteData}/>

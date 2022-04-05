@@ -8,8 +8,8 @@ function ReviewList(props) {
   const [reviews, setReviews] = useState([]);
   const [count, setCount] = useState(0);
   const { grd } = props;
-  useEffect(() => {
-    grd('reviews', 1, 10, '', '65651', '') // (route, page, count, sort, Id, endParam)
+  const pagination = (page) => {
+    grd('reviews', page, 5, '', '65651', '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
         console.log('Data ', data.data.results)
         setReviews(data.data.results)
@@ -18,11 +18,20 @@ function ReviewList(props) {
       .catch((err) => {
         console.log('Error retrieving reviews: ', err)
       });
+  }
+  useEffect(() => {
+    grd('reviews', 1, 5, '', '65651', '') // (route, page, count, sort, Id, endParam)
+      .then((data) => {
+        setReviews(data.data.results)
+      })
+      .catch((err) => {
+        console.log('Error retrieving reviews: ', err)
+      });
   }, []);
 
   return (
-    <div>
-      <label for="reviewlist">Sort by:</label>
+    <div className="review-list">
+      <label>Sort by:</label>
       <select id="reviewlist">
         <option value="relevance" onChange={() => {alert('DISABLED')}}>Relevance</option>
         <option value="highest" onChange={() => {alert('DISABLED')}}>Highest</option>
@@ -31,38 +40,50 @@ function ReviewList(props) {
 
       <ul>
         {reviews.map((review) => (
-            <li key={review.reviewer_name}>
-              <div className = "tile">
-                <img src="https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png" width = "100" alt="placeholderstars"/>
-                <div>
-                  Rating: {review.rating}
-                </div>
-                <div>
-                  Name: {review.reviewer_name}
-                </div>
-                <div>
-                  Left from: {moment(review.date).format('MMMM Do YYYY')}
-                </div>
-                <div>
-                  {review.body}
-                </div>
-                <div>
-                  Recommend? FILL_ME_IN
-                </div>
-                <div>
-                  {review.photos.map((photo)=>
-                    <img src={`${photo.url}`} alt="reviewimages" width="200"/>
-                  )}
-
-                </div>
-                <input type="text" placeholder="Leave a comment"></input>
-                <button onClick={() => {alert('DISABLED')}}>Comment</button>
+          <li key={`${review.reviewer_name}1`}>
+            <div className="tile">
+              <img src="https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png" width="100" alt="placeholderstars" />
+              <div>
+                Rating: {review.rating}
               </div>
-            </li>
+              <div>
+                Name: {review.reviewer_name}
+              </div>
+              <div>
+                Reviewed on: {moment(review.date).format('MMMM Do YYYY')}
+              </div>
+              <div className="reviewbody">
+                {review.body}
+              </div>
+              {/* <style dangerouslySetInnerHTML={{_html: `.reviewbody {color:blue}`}}/> */}
+              <div className="inline-block">
+                {review.photos.map((photo)=>
+                  <img src={`${photo.url}`} value={photo.url} style={{display: 'inline-block'}} className="zoom" onMouseOver={e=>console.log(e.target.currentSrc)} onMouseOut={e=>console.log(e.target.currentSrc)} alt="reviewimages" height="200" width="200"/>
+                )}
+              </div>
+              <div style={{color: 'blue'}}>
+                Recommend? {review.recommend ? 'Yes' : 'No'}
+              </div>
+              <div>
+                {review.helpfulness} people found this review helpful.
+              </div>
+              <br/>
+              <input type="text" placeholder="Leave a comment" />
+              <button onClick={() => {alert('DISABLED')}}>Comment</button>
+            </div>
+          </li>
         ),
         )}
       </ul>
-      <button onClick={()=>{alert('DISABLED')}}>Show More Reviews</button>
+      <div>
+        <button onClick={()=>{pagination(1)}}>1</button>
+        <button onClick={()=>{pagination(2)}}>2</button>
+        <button onClick={()=>{pagination(3)}}>3</button>
+        <button onClick={()=>{pagination(4)}}>4</button>
+        <button onClick={()=>{pagination(5)}}>5</button>
+        <button onClick={()=>{pagination(6)}}>6</button>
+        <button onClick={()=>{pagination(7)}}>7</button>
+      </div>
     </div>
   );
 }
