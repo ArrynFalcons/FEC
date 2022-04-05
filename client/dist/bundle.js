@@ -2339,12 +2339,20 @@ function ComparisonModal(_ref) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "comparisonModal"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, "".concat(featuredProduct.name, " characteristics ").concat(product.name)), features.map(function (feature) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, featuredProduct.features.includes(feature) ? '√' : null, "".concat(feature.feature, ": ").concat(feature.value), product.features.filter(function (e) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "modalContentLeft"
+  }, "".concat(featuredProduct.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "modalContentRight"
+  }, "".concat(product.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, "characteristics"), features.map(function (feature) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: "modalContentLeft"
+    }, featuredProduct.features.includes(feature) ? '√' : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "".concat(feature.feature, ": ").concat(feature.value)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: "modalContentRight"
+    }, product.features.filter(function (e) {
       if (e.value === feature.value) {
         return e;
       }
-    }).length ? '√' : null);
+    }).length ? '√' : null));
   }));
 }
 

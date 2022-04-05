@@ -57,3 +57,28 @@ p, h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   color: white;
 }
+
+.comparisonModal {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  height: auto;
+  width: auto;
+  text-align: center;
+  background-color: beige;
+  padding: 10px;
+  gap: 15px;
+}
+
+.modalContentLeft {
+  position: relative;
+  float: left;
+  padding-right: 10px;
+}
+
+.modalContentRight {
+  position: relative;
+  float: right;
+  padding-left: 10px;
+}
+

@@ -16,18 +16,22 @@ function ComparisonModal({ featuredProduct, product }) {
 
   return (
     <div className="comparisonModal">
-      <pre>{`${featuredProduct.name} characteristics ${product.name}`}</pre>
+      <pre>
+        <span className="modalContentLeft">{`${featuredProduct.name}`}</span>
+        <span className="modalContentRight">{`${product.name}`}</span>
+      </pre>
+      <pre>characteristics</pre>
       {features.map((feature) => (
         <pre>
-          {featuredProduct.features.includes(feature) ? '√' : null}
-
-          {`${feature.feature}: ${feature.value}`}
-
-          {product.features.filter((e) => {
-            if (e.value === feature.value) {
-              return e;
-            }
-          }).length ? '√' : null}
+          <span className="modalContentLeft">{featuredProduct.features.includes(feature) ? '√' : null}</span>
+          <span>{`${feature.feature}: ${feature.value}`}</span>
+          <span className="modalContentRight">
+            {product.features.filter((e) => {
+              if (e.value === feature.value) {
+                return e;
+              }
+            }).length ? '√' : null}
+          </span>
         </pre>
       ))}
     </div>
