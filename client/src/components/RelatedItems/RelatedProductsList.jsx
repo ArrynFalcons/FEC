@@ -16,15 +16,17 @@ function reducer(state, action) {
 }
 function RelatedProductsList({ products, featured, getRouteData }) {
   const [state, dispatch] = useReducer(reducer, { start: 0, next: 3 });
+  const [featuredProduct, setFeaturedProduct] = useState([]);
 
-  // useEffect(() => {
-  //   getRouteData('products', 1, 10, '', featured, '')
-  //     .then((data) => {
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    getRouteData('products', 1, 1, '', featured, '')
+      .then((data) => {
+        setFeaturedProduct(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
@@ -33,8 +35,14 @@ function RelatedProductsList({ products, featured, getRouteData }) {
         {state.start === 0 ? null : (
           <button type="submit" onClick={() => { dispatch({ type: 'previous' }); }}>{'<'}</button>)}
 
-        {products.slice(state.start, state.next).map((product) =>
-          <ProductsCard product={product} key={product.id} featured={featured} />)}
+        {products.slice(state.start, state.next).map((product) => (
+          <ProductsCard
+            product={product}
+            key={product.id}
+            featuredProduct={featuredProduct}
+            getRouteData={getRouteData}
+          />
+        ))}
 
         {state.next === products.length ? null : (
           <button type="submit" onClick={() => { dispatch({ type: 'next' }); }}>{'>'}</button>)}

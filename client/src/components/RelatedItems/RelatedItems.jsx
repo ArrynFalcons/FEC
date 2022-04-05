@@ -7,7 +7,7 @@ import RelatedProductsList from './RelatedProductsList.jsx';
 // const getRouteData = (route, page, count, sort, Id, endParam)
 function RelatedItems({ getRouteData }) {
   const [products, setProducts] = useState([]);
-  const [featured, setFeatured] = useState(65651);
+  const [featured, setFeatured] = useState(65691);
 
   useEffect(() => {
     getRouteData('products', 1, 10, '', 65651, 'related')
