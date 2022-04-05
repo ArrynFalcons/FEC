@@ -7,12 +7,13 @@ import RelatedProductsList from './RelatedProductsList.jsx';
 // const getRouteData = (route, page, count, sort, Id, endParam)
 function RelatedItems({ getRouteData }) {
   const [products, setProducts] = useState([]);
-  const [featured, setFeatured] = useState(65691);
+  const [featured, setFeatured] = useState(65635);
 
   useEffect(() => {
-    getRouteData('products', 1, 10, '', 65651, 'related')
+    getRouteData('products', 1, 10, '', 65635, 'related')
       .then((data) => {
-        const container = data.data.map((relatedId) => getRouteData('products', 1, 10, '', relatedId, '').then((res) => res.data));
+        // slice off duplicate
+        const container = data.data.slice(1).map((relatedId) => getRouteData('products', 1, 10, '', relatedId, '').then((res) => res.data));
         Promise.all(container)
           .then((related) => setProducts(related));
       })

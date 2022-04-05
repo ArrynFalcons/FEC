@@ -45,3 +45,15 @@ p, h1, h2, h3, h4, h5, h6 {
   height: 300px;
   width: 200px;
 }
+
+.thumbnail {
+  height: 200px;
+  width: 200px;
+}
+
+.top-right {
+  position: absolute;
+  padding-left: 160px;
+  cursor: pointer;
+  color: white;
+}
