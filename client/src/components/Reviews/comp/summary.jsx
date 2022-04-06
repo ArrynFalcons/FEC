@@ -13,10 +13,10 @@ function Summary(props) {
   const { grd } = props;
 
   useEffect(() => {
-    grd('reviews/meta', '', '1000', '', '65635', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews', '', '', '', '65635', '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
         let [sum, total, one, two, three, four, five] = [0, 0, 0, 0, 0, 0, 0];
-        console.log('Metadata retrieved: ', data.data.results);
+        console.log('Summary data retrieved: ', data.data.results);
         data.data.results.forEach((obj) => {
           switch (obj.rating) {
             case 5: five += 1;
@@ -48,7 +48,7 @@ function Summary(props) {
   }, []);
   return (
     <div className="summary">
-      Summary
+      Ratings and Reviews
       <div>
         Average Rating:
         {' '}

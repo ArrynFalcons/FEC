@@ -2417,42 +2417,164 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function NewReview(props) {
+  var grd = props.grd;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       reviewstate = _useState2[0],
       setreviewstate = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState4 = _slicedToArray(_useState3, 2),
-      reviewtext = _useState4[0],
-      setreviewtext = _useState4[1];
+      bodyparams = _useState4[0],
+      setbodyparams = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState6 = _slicedToArray(_useState5, 2),
+      metadata = _useState6[0],
+      setmetadata = _useState6[1];
 
   var openReviewBox = function openReviewBox() {
     setreviewstate(true);
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    grd('reviews', '', '', '', '65635', 'meta').then(function (data) {
+      console.log('Metadata retrieved: ', data.data);
+      setmetadata(data.data);
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.product_id = Number(data.data.product_id);
+      bodyparamscopy.characteristics = {
+        220243: 4,
+        220244: 3.5,
+        220245: 4,
+        220246: 3.5
+      };
+      bodyparamscopy.rating = 5;
+      setbodyparams(bodyparamscopy);
+    })["catch"](function (err) {
+      console.log('Error retrieving reviews: ', err);
+    });
+  }, []);
+  /* Sample Post Body Parameters
+  {
+    "product_id": "65635",
+    "rating": 5,
+    "summary": "These shoes are great! They really up my court game!",
+    "recommend": true,
+    "name": "Zucc Berg",
+    "email": "zuccberg@fb.com",
+    "photos": ["https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2021%2F04%2F05%2Fsteph-curry-4-2000.jpg"],
+    "characteristics": {
+        "220243": 4,
+        "220244": 3.5,
+        "220245": 4,
+        "220246": 3.5
+    }
+  }
+  Meta data for 65635
+  {
+    "product_id": "65635",
+    "ratings": {
+        "3": "1",
+        "4": "1"
+    },
+    "recommended": {
+        "true": "2"
+    },
+    "characteristics": {
+        "Size": {
+            "id": 220243,
+            "value": "4.0000000000000000"
+        },
+        "Width": {
+            "id": 220244,
+            "value": "3.5000000000000000"
+        },
+        "Comfort": {
+            "id": 220245,
+            "value": "4.0000000000000000"
+        },
+        "Quality": {
+            "id": 220246,
+            "value": "3.5000000000000000"
+        }
+    }
+  }
+  */
+
   return reviewstate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.name = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
     placeholder: "Name"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.email = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Email"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Please rate out of 5 stars:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png",
     width: "100",
     alt: "placeholderstars"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Do you recommend this product?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    type: "submit"
+    type: "submit",
+    onClick: function onClick() {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.recommend = true;
+      setbodyparams(bodyparamscopy);
+    }
   }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    type: "submit"
+    type: "submit",
+    onClick: function onClick() {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.recommend = false;
+      setbodyparams(bodyparamscopy);
+    }
   }, "No")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    rows: "1",
+    cols: "80",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.summary = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Review Title"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     rows: "5",
     cols: "80",
-    onChange: function onChange() {},
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.body = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
     placeholder: "Write your review here"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     rows: "2",
     cols: "80",
-    placeholder: "Add three comma separated URLs to include images"
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.photos = e.target.value.split(',');
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Add comma separated URLs to include images"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    type: "submit"
+    type: "submit",
+    onClick: function onClick() {
+      alert('Hold up! Did you implement the 5 star feature yet?');
+      console.log('Body params are being sent to server!', bodyparams);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/reviews', bodyparams).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }, "Submit")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "new-review"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2683,7 +2805,7 @@ function Summary(props) {
 
   var grd = props.grd;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    grd('reviews/meta', '', '1000', '', '65635', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews', '', '', '', '65635', '') // (route, page, count, sort, Id, endParam)
     .then(function (data) {
       var sum = 0,
           total = 0,
@@ -2692,7 +2814,7 @@ function Summary(props) {
           three = 0,
           four = 0,
           five = 0;
-      console.log('Metadata retrieved: ', data.data.results);
+      console.log('Summary data retrieved: ', data.data.results);
       data.data.results.forEach(function (obj) {
         switch (obj.rating) {
           case 5:
@@ -2735,7 +2857,7 @@ function Summary(props) {
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "summary"
-  }, "Summary", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Average Rating:", ' ', Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Ratings and Reviews", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Average Rating:", ' ', Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "foreground5",

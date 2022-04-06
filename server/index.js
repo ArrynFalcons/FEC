@@ -8,6 +8,11 @@ const port = 3000;
 app.use(express.static(`${__dirname}/../client/dist`));
 app.use(express.json());
 
+// Post Routes for Reviews
+app.post('/reviews', (req, res) => {
+  console.log('Request needs forwarding to blackbox: ', req.body);
+});
+
 // All Get Routes
 app.use('/', (req, res) => {
   const params = '' || req.originalUrl;
