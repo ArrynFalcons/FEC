@@ -34,11 +34,11 @@ function Reviews(props) {
   //   });
 
   return (
-  <div className="ratings-container">
-    <Summary grd={getRouteData}/>
-    <ReviewList grd={getRouteData}/>
-    <NewReview grd={getRouteData}/>
-  </div>
+    <div className="ratings-container">
+      <Summary grd={getRouteData} />
+      <ReviewList grd={getRouteData} />
+      <NewReview grd={getRouteData} />
+    </div>
   );
 }
 

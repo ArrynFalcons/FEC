@@ -71,7 +71,7 @@ function Summary(props) {
       <div className="background-bar">
         <div id="foreground2" className="foreground-bar" style={{ height: '30px', width: `${100 * count2 / total}%`, backgroundColor: 'blue' }} />
       </div>
-      <div>1: </div>
+      <div>1 Star: </div>
       <div className="background-bar">
         <div id="foreground1" className="foreground-bar" style={{ height: '30px', width: `${100 * count1 / total}%`, backgroundColor: 'blue' }} />
       </div>

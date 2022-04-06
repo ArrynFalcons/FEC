@@ -10,7 +10,22 @@ app.use(express.json());
 
 // Post Routes for Reviews
 app.post('/reviews', (req, res) => {
-  console.log('Request needs forwarding to blackbox: ', req.body);
+  console.log('Forwarding request to blackbox: ', req.body);
+  const options = {
+    headers: {
+      Authorization: config.token,
+    },
+  };
+  axios.post(`${config.url}/reviews`, req.body, options)
+    .then((data) => {
+      console.log('Successfully posted to blackbox!');
+      res.send(data.data);
+    })
+    .catch((err) => {
+      console.log('Something went wrong');
+      console.log(err);
+      res.status(404).send(err);
+    });
 });
 
 // All Get Routes

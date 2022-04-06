@@ -24,11 +24,12 @@ function ReviewList(props) {
 
   return (
     <div className="review-list">
+      <div className="stars" style={{"--rating": 2.3}} aria-label="Rating of this product is 2.3 out of 5." />
       <label>Sort by:</label>
       <select id="reviewlist">
-        <option value="relevance" onChange={() => {alert('DISABLED')}}>Relevance</option>
-        <option value="highest" onChange={() => {alert('DISABLED')}}>Highest</option>
-        <option value="lowest" onChange={() => {alert('DISABLED')}}>Lowest</option>
+        <option value="relevance">Relevance</option>
+        <option value="highest">Highest</option>
+        <option value="lowest">Lowest</option>
       </select>
 
       <ul>
@@ -38,6 +39,9 @@ function ReviewList(props) {
               <img src="https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png" width="100" alt="placeholderstars" />
               <div>
                 Rating: {review.rating}
+              </div>
+              <div>
+                Title: {review.summary}
               </div>
               <div>
                 Name: {review.reviewer_name}

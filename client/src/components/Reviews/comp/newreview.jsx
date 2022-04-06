@@ -23,7 +23,7 @@ function NewReview(props) {
           220245: 4,
           220246: 3.5,
         };
-        bodyparamscopy.rating = 5;
+        bodyparamscopy.rating = 1;
         setbodyparams(bodyparamscopy);
       })
       .catch((err) => {
@@ -77,7 +77,7 @@ function NewReview(props) {
     }
 }
   */
-  return (reviewstate ? (
+  return (
     <div>
       <input
         type="text"
@@ -171,12 +171,6 @@ function NewReview(props) {
         Submit
       </button>
     </div>
-  )
-    : (
-      <div className="new-review">
-        <button type="submit" onClick={() => { openReviewBox(); }}>Leave a New Review</button>
-      </div>
-    )
   );
 }
 
