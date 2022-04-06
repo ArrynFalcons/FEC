@@ -37,9 +37,7 @@ function App() {
 
   return (
     <div className="container">
-      <div className="overview">
-        <Overview />
-      </div>
+      <Overview getRouteData={getRouteData} />
       <div className="related-items">
         <RelatedItems />
       </div>
