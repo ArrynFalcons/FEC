@@ -26,7 +26,7 @@ function ProductsCard({ product, featuredProduct, getRouteData }) {
         <ComparisonModal featuredProduct={featuredProduct} product={product} />
       ) : null}
       <div className="productCard">
-        <h1 className="top-right" onClick={() => setModal(!showModal)}>*</h1>
+        <h2 className="top-right" onClick={() => setModal(!showModal)}>★</h2>
         <img className="thumbnail" src={photo} alt="stock clothing item" />
         <span>{product.category}</span>
         <span>{product.name}</span>
