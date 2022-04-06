@@ -2242,96 +2242,6 @@ function App() {
 
 /***/ }),
 
-/***/ "./client/src/components/Overview/Cart.jsx":
-/*!*************************************************!*\
-  !*** ./client/src/components/Overview/Cart.jsx ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* eslint-disable */
-
-
-function Cart(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "cart"
-  }, "Cart");
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cart);
-
-/***/ }),
-
-/***/ "./client/src/components/Overview/Description.jsx":
-/*!********************************************************!*\
-  !*** ./client/src/components/Overview/Description.jsx ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* eslint-disable */
-
-
-function Description(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "description"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "product-slogan"
-  }, props.product.slogan), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "product-description"
-  }, props.product.description ? props.product.description : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-    className: "feature-list"
-  }, props.product.features ? props.product.features.map(function (feature) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      className: "feature",
-      key: feature.feature
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "feature-name"
-    }, feature.feature), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "feature-value"
-    }, feature.value));
-  }) : null));
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Description);
-
-/***/ }),
-
-/***/ "./client/src/components/Overview/Gallery.jsx":
-/*!****************************************************!*\
-  !*** ./client/src/components/Overview/Gallery.jsx ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* eslint-disable */
-
-
-function Gallery(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "gallery"
-  }, "Gallery");
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Gallery);
-
-/***/ }),
-
 /***/ "./client/src/components/Overview/Overview.jsx":
 /*!*****************************************************!*\
   !*** ./client/src/components/Overview/Overview.jsx ***!
@@ -2344,10 +2254,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Gallery_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Gallery.jsx */ "./client/src/components/Overview/Gallery.jsx");
-/* harmony import */ var _Description_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Description.jsx */ "./client/src/components/Overview/Description.jsx");
-/* harmony import */ var _Cart_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Cart.jsx */ "./client/src/components/Overview/Cart.jsx");
-/* harmony import */ var _Styles_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Styles.jsx */ "./client/src/components/Overview/Styles.jsx");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './Gallery.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './Description.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './Cart.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './Styles.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2400,97 +2310,22 @@ function Overview(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overview"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Gallery_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module './Gallery.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: "product-category"
   }, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "product-title"
-  }, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Styles_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module './Styles.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
     styles: styles,
     style: style,
     setStyle: setStyle
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Cart_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Description_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module './Cart.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module './Description.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
     product: product
   }));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);
-
-/***/ }),
-
-/***/ "./client/src/components/Overview/Styles.jsx":
-/*!***************************************************!*\
-  !*** ./client/src/components/Overview/Styles.jsx ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-/* eslint-disable */
-
-
-function Styles(props) {
-  var handleStyleClick = function handleStyleClick(event) {
-    var _iterator = _createForOfIteratorHelper(props.styles),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var style = _step.value;
-
-        if (style.style_id === Number(event.target.id)) {
-          props.setStyle(style);
-          break;
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "styles"
-  }, props.style.sale_price ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    style: {
-      color: "red"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("s", {
-    style: {
-      color: "gray"
-    }
-  }, "$", props.style.original_price), "$", props.style.sale_price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "$", props.style.original_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "STYLE ", "<", " ", props.style.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "style-thumbnails"
-  }, props.styles.map(function (style) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "thumbnail-container",
-      key: style.style_id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      className: "style-thumbnail",
-      id: style.style_id,
-      src: style.photos[0].thumbnail_url,
-      width: "60",
-      height: "60",
-      onClick: function onClick(event) {
-        return handleStyleClick(event);
-      }
-    }));
-  })));
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Styles);
 
 /***/ }),
 
