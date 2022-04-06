@@ -1,8 +1,10 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import Gallery from './Gallery.jsx';
-import Description from './Description.jsx';
-import Cart from './Cart.jsx';
+import StarRating from './StarRating.jsx';
+import Description from './Description/Description.jsx';
+import Features from './Description/Features.jsx';
+import Cart from './Cart/Cart.jsx';
 import Styles from './Styles.jsx';
 
 function Overview(props) {
@@ -11,6 +13,8 @@ function Overview(props) {
   const [style, setStyle] = useState({});
 
   //test id 65722
+  //default id 65635
+  //65632
   useEffect(() => {
     props.getRouteData('products', 1, 1, '', '65635', '')
       .then((res) => setProduct(res.data))
@@ -28,12 +32,14 @@ function Overview(props) {
     <div className="overview">
       <Gallery />
       <div className="main">
+        <StarRating getRouteData={props.getRouteData}/>
         <h3 className="product-category">{product.category}</h3>
         <h1 className="product-title">{product.name}</h1>
         <Styles styles={styles} style={style} setStyle={setStyle}/>
-        <Cart />
+        <Cart style={style}/>
       </div>
       <Description product={product} />
+      <Features product={product}/>
     </div>
   );
 }

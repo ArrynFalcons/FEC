@@ -90,7 +90,7 @@ p, h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 3fr 2fr;
   grid-template-areas:
     "gallery main"
-    "description description"
+    "description features"
 }
 
 .gallery {
@@ -103,6 +103,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .description {
   grid-area: description;
+}
+
+.features {
+  grid-area: features;
 }
 
 .style-thumbnails {
