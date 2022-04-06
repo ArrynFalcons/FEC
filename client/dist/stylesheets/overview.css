@@ -1,0 +1,37 @@
+.overview {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 3fr 2fr;
+  grid-template-areas:
+    "gallery main"
+    "description features"
+}
+
+.gallery {
+  grid-area: gallery;
+}
+
+.main {
+  grid-area: main;
+}
+
+.description {
+  grid-area: description;
+}
+
+.features {
+  grid-area: features;
+}
+
+.style-thumbnails {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.thumbnail-container {
+  flex-basis: 25%;
+}
+
+.style-thumbnail {
+  border-radius: 50%;
+}

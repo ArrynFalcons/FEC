@@ -35,7 +35,7 @@ function Cart(props) {
       <form>
         <SizeSelector skus={skus} size={size} setSize={setSize}/>
         <QuantitySelector skus={skus} sku={sku} setQuantity={setQuantity}/>
-        <AddToCart />
+        <input type="submit" value="Add to Cart"/>
       </form>
     </div>
   );

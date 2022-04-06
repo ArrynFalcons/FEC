@@ -2352,7 +2352,10 @@ function Cart(props) {
     skus: skus,
     sku: sku,
     setQuantity: setQuantity
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AddToCart_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "submit",
+    value: "Add to Cart"
+  })));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cart);
