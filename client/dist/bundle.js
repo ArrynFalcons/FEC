@@ -2216,9 +2216,9 @@ function App() {
       params: params
     });
   }; // example of how to use helper function
-  // getRouteData('products', 1, 10, '', '65651', '')
+  // getRouteData('reviews', 1, 10, '', '65651', '')
   //   .then((data) => {
-  //     console.log(data);
+  //     console.log('Example', data);
   //   })
   //   .catch((err) => {
   //     console.log(err);
@@ -2858,14 +2858,591 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _comp_summary_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./comp/summary.jsx */ "./client/src/components/Reviews/comp/summary.jsx");
+/* harmony import */ var _comp_ReviewList_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./comp/ReviewList.jsx */ "./client/src/components/Reviews/comp/ReviewList.jsx");
+/* harmony import */ var _comp_NewReview_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./comp/NewReview.jsx */ "./client/src/components/Reviews/comp/NewReview.jsx");
 /* eslint-disable no-unused-vars */
 
 
+
+
+
+
 function Reviews(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Reviews");
+  var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
+    var params = {
+      page: page,
+      count: count,
+      sort: sort,
+      product_id: Id
+    };
+
+    if (route === 'products') {
+      return Id ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/products/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products', {
+        params: params
+      });
+    }
+
+    if (route === 'qa/questions') {
+      return endParam ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/qa/questions/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/qa/questions', {
+        params: params
+      });
+    }
+
+    return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/reviews/".concat(endParam), {
+      params: params
+    });
+  }; // example of how to use helper function
+  // getRouteData('products', 1, 10, '', '65651', '')
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ratings-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_summary_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    grd: getRouteData
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_ReviewList_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    grd: getRouteData
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_NewReview_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    grd: getRouteData
+  }));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reviews);
+
+/***/ }),
+
+/***/ "./client/src/components/Reviews/comp/NewReview.jsx":
+/*!**********************************************************!*\
+  !*** ./client/src/components/Reviews/comp/NewReview.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable no-unused-vars */
+
+
+
+function NewReview(props) {
+  var grd = props.grd;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      reviewstate = _useState2[0],
+      setreviewstate = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      bodyparams = _useState4[0],
+      setbodyparams = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState6 = _slicedToArray(_useState5, 2),
+      metadata = _useState6[0],
+      setmetadata = _useState6[1];
+
+  var openReviewBox = function openReviewBox() {
+    setreviewstate(true);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    grd('reviews', '', '', '', '65635', 'meta').then(function (data) {
+      console.log('Metadata retrieved: ', data.data);
+      setmetadata(data.data);
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.product_id = Number(data.data.product_id);
+      bodyparamscopy.characteristics = {
+        220243: 4,
+        220244: 3.5,
+        220245: 4,
+        220246: 3.5
+      };
+      bodyparamscopy.rating = 5;
+      setbodyparams(bodyparamscopy);
+    })["catch"](function (err) {
+      console.log('Error retrieving reviews: ', err);
+    });
+  }, []);
+  /* Sample Post Body Parameters
+  {
+    "product_id": "65635",
+    "rating": 5,
+    "summary": "These shoes are great! They really up my court game!",
+    "recommend": true,
+    "name": "Zucc Berg",
+    "email": "zuccberg@fb.com",
+    "photos": ["https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2021%2F04%2F05%2Fsteph-curry-4-2000.jpg"],
+    "characteristics": {
+        "220243": 4,
+        "220244": 3.5,
+        "220245": 4,
+        "220246": 3.5
+    }
+  }
+  Meta data for 65635
+  {
+    "product_id": "65635",
+    "ratings": {
+        "3": "1",
+        "4": "1"
+    },
+    "recommended": {
+        "true": "2"
+    },
+    "characteristics": {
+        "Size": {
+            "id": 220243,
+            "value": "4.0000000000000000"
+        },
+        "Width": {
+            "id": 220244,
+            "value": "3.5000000000000000"
+        },
+        "Comfort": {
+            "id": 220245,
+            "value": "4.0000000000000000"
+        },
+        "Quality": {
+            "id": 220246,
+            "value": "3.5000000000000000"
+        }
+    }
+  }
+  */
+
+  return reviewstate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.name = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Name"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.email = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Email"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Please rate out of 5 stars:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: "https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png",
+    width: "100",
+    alt: "placeholderstars"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Do you recommend this product?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.recommend = true;
+      setbodyparams(bodyparamscopy);
+    }
+  }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.recommend = false;
+      setbodyparams(bodyparamscopy);
+    }
+  }, "No")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    rows: "1",
+    cols: "80",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.summary = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Review Title"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    rows: "5",
+    cols: "80",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.body = "".concat(e.target.value);
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Write your review here"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    rows: "2",
+    cols: "80",
+    onChange: function onChange(e) {
+      var bodyparamscopy = bodyparams;
+      bodyparamscopy.photos = e.target.value.split(',');
+      setbodyparams(bodyparamscopy);
+    },
+    placeholder: "Add comma separated URLs to include images"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      alert('Hold up! Did you implement the 5 star feature yet?');
+      console.log('Body params are being sent to server!', bodyparams);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/reviews', bodyparams).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, "Submit")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "new-review"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      openReviewBox();
+    }
+  }, "Leave a New Review"));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewReview);
+
+/***/ }),
+
+/***/ "./client/src/components/Reviews/comp/ReviewList.jsx":
+/*!***********************************************************!*\
+  !*** ./client/src/components/Reviews/comp/ReviewList.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'moment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable no-unused-vars */
+
+
+
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'moment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())().format();
+
+function ReviewList(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      reviews = _useState2[0],
+      setReviews = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      count = _useState4[0],
+      setCount = _useState4[1];
+
+  var grd = props.grd;
+
+  var pagination = function pagination(page) {
+    grd('reviews', page, 5, '', '65635', '') // (route, page, count, sort, Id, endParam)
+    .then(function (data) {
+      console.log('Data ', data.data.results);
+      setReviews(data.data.results);
+    })["catch"](function (err) {
+      console.log('Error retrieving reviews: ', err);
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    pagination(1);
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "review-list"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Sort by:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    id: "reviewlist"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "relevance",
+    onChange: function onChange() {
+      alert('DISABLED');
+    }
+  }, "Relevance"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "highest",
+    onChange: function onChange() {
+      alert('DISABLED');
+    }
+  }, "Highest"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "lowest",
+    onChange: function onChange() {
+      alert('DISABLED');
+    }
+  }, "Lowest")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews.map(function (review) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: "".concat(review.reviewer_name, "1")
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "tile"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      src: "https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png",
+      width: "100",
+      alt: "placeholderstars"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Rating: ", review.rating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Name: ", review.reviewer_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Reviewed on: ", Object(function webpackMissingModule() { var e = new Error("Cannot find module 'moment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(review.date).format('MMMM Do YYYY')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "reviewbody"
+    }, review.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "inline-block"
+    }, review.photos.map(function (photo) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: "".concat(photo.url),
+        value: photo.url,
+        style: {
+          display: 'inline-block'
+        },
+        className: "zoom",
+        onMouseOver: function onMouseOver(e) {
+          return console.log(e.target.currentSrc);
+        } // onMouseOut={e=>console.log(e.target.currentSrc)}
+        ,
+        alt: "reviewimages",
+        height: "200",
+        width: "200"
+      });
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      style: {
+        color: 'blue'
+      }
+    }, "Recommend?", review.recommend ? 'Yes' : 'No'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, review.helpfulness, "people found this review helpful.")));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      pagination(1);
+    }
+  }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      pagination(2);
+    }
+  }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      pagination(3);
+    }
+  }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      pagination(4);
+    }
+  }, "4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      pagination(5);
+    }
+  }, "5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      pagination(6);
+    }
+  }, "6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      pagination(7);
+    }
+  }, "7")));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewList);
+
+/***/ }),
+
+/***/ "./client/src/components/Reviews/comp/summary.jsx":
+/*!********************************************************!*\
+  !*** ./client/src/components/Reviews/comp/summary.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable no-unused-vars */
+
+
+
+function Summary(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      avg = _useState2[0],
+      setAvg = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      total = _useState4[0],
+      setTotal = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      count5 = _useState6[0],
+      set5count = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      count4 = _useState8[0],
+      set4count = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      count3 = _useState10[0],
+      set3count = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState12 = _slicedToArray(_useState11, 2),
+      count2 = _useState12[0],
+      set2count = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState14 = _slicedToArray(_useState13, 2),
+      count1 = _useState14[0],
+      set1count = _useState14[1];
+
+  var grd = props.grd;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    grd('reviews', '', '', '', '65635', '') // (route, page, count, sort, Id, endParam)
+    .then(function (data) {
+      var sum = 0,
+          total = 0,
+          one = 0,
+          two = 0,
+          three = 0,
+          four = 0,
+          five = 0;
+      console.log('Summary data retrieved: ', data.data.results);
+      data.data.results.forEach(function (obj) {
+        switch (obj.rating) {
+          case 5:
+            five += 1;
+            break;
+
+          case 4:
+            four += 1;
+            break;
+
+          case 3:
+            three += 1;
+            break;
+
+          case 2:
+            two += 1;
+            break;
+
+          case 1:
+            one += 1;
+            break;
+
+          default:
+            console.log('Default triggered');
+        }
+
+        total += 1;
+        sum += obj.rating;
+      });
+      setAvg(sum / total);
+      setTotal(total);
+      set5count(five);
+      set4count(four);
+      set3count(three);
+      set2count(two);
+      set1count(one);
+    })["catch"](function (err) {
+      console.log('Error retrieving reviews: ', err);
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "summary"
+  }, "Ratings and Reviews", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Average Rating:", ' ', Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "background-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "foreground5",
+    className: "foreground-bar",
+    style: {
+      height: '30px',
+      width: "".concat(100 * count5 / total, "%"),
+      backgroundColor: 'blue'
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "4 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "background-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "foreground4",
+    className: "foreground-bar",
+    style: {
+      height: '30px',
+      width: "".concat(100 * count4 / total, "%"),
+      backgroundColor: 'blue'
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "3 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "background-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "foreground3",
+    className: "foreground-bar",
+    style: {
+      height: '30px',
+      width: "".concat(100 * count3 / total, "%"),
+      backgroundColor: 'blue'
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "2 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "background-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "foreground2",
+    className: "foreground-bar",
+    style: {
+      height: '30px',
+      width: "".concat(100 * count2 / total, "%"),
+      backgroundColor: 'blue'
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "background-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "foreground1",
+    className: "foreground-bar",
+    style: {
+      height: '30px',
+      width: "".concat(100 * count1 / total, "%"),
+      backgroundColor: 'blue'
+    }
+  })));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Summary);
 
 /***/ }),
 

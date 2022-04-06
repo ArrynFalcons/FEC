@@ -27,9 +27,9 @@ function App() {
   };
 
   // example of how to use helper function
-  // getRouteData('products', 1, 10, '', '65651', '')
+  // getRouteData('reviews', 1, 10, '', '65651', '')
   //   .then((data) => {
-  //     console.log(data);
+  //     console.log('Example', data);
   //   })
   //   .catch((err) => {
   //     console.log(err);
