@@ -28,3 +28,118 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+/* App styling */
+
+.container {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.overview {
+  grid-row: 1 / 2;
+}
+
+.related-items {
+  grid-row: 2 / 3;
+}
+
+.q-and-a {
+  grid-row: 3 / 4;
+}
+
+.ratings-and-reviews {
+  grid-row: 4 / 5;
+}
+
+/* Thinh's CSS edits */
+.relatedProducts {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  gap: 10px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-color: turquoise;
+  padding: 5px;
+  height: 300px;
+  width: 200px;
+}
+
+.thumbnail {
+  height: 200px;
+  width: 200px;
+}
+
+.top-right {
+  position: absolute;
+  padding-left: 160px;
+  cursor: pointer;
+  color: white;
+}
+
+.comparisonModal {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  height: auto;
+  width: auto;
+  text-align: center;
+  background-color: beige;
+  padding: 10px;
+  gap: 15px;
+}
+
+.modalContentLeft {
+  position: relative;
+  float: left;
+  padding-right: 10px;
+}
+
+.modalContentRight {
+  position: relative;
+  float: right;
+  padding-left: 10px;
+}
+
+/* Overview styling */
+
+.overview {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 3fr 2fr;
+  grid-template-areas:
+    "gallery main"
+    "description description"
+}
+
+.gallery {
+  grid-area: gallery;
+}
+
+.main {
+  grid-area: main;
+}
+
+.description {
+  grid-area: description;
+}
+
+.style-thumbnails {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.thumbnail-container {
+  flex-basis: 25%;
+}
+
+.style-thumbnail {
+  border-radius: 50%;
+}

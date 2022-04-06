@@ -39,7 +39,7 @@ function App() {
     <div className="container">
       <Overview getRouteData={getRouteData} />
       <div className="related-items">
-        <RelatedItems />
+        <RelatedItems getRouteData={getRouteData} />
       </div>
       <div className="q-and-a">
         <Questions />
