@@ -2383,7 +2383,8 @@ function Overview(props) {
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState6 = _slicedToArray(_useState5, 2),
       style = _useState6[0],
-      setStyle = _useState6[1];
+      setStyle = _useState6[1]; //test id 65722
+
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     props.getRouteData('products', 1, 1, '', '65635', '').then(function (res) {
@@ -2391,8 +2392,7 @@ function Overview(props) {
     })["catch"](function (err) {
       return console.log(err);
     });
-    props.getRouteData('products', '', '', '', '65722', 'styles').then(function (res) {
-      console.log(res.data.results);
+    props.getRouteData('products', '', '', '', '65635', 'styles').then(function (res) {
       setStyles(res.data.results);
       setStyle(res.data.results[0]);
     })["catch"](function (err) {

@@ -10,13 +10,13 @@ function Overview(props) {
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
 
+  //test id 65722
   useEffect(() => {
     props.getRouteData('products', 1, 1, '', '65635', '')
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
-    props.getRouteData('products', '', '', '', '65722', 'styles')
+    props.getRouteData('products', '', '', '', '65635', 'styles')
       .then((res) => {
-        console.log(res.data.results)
         setStyles(res.data.results);
         setStyle(res.data.results[0]);
       })
