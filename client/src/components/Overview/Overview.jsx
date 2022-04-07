@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
-import Gallery from './Gallery.jsx';
+import Gallery from './Gallery/Gallery.jsx';
 import StarRating from './StarRating.jsx';
 import Description from './Description/Description.jsx';
 import Features from './Description/Features.jsx';
 import Cart from './Cart/Cart.jsx';
-import Styles from './Styles.jsx';
+import Styles from './Styles/Styles.jsx';
 
 function Overview(props) {
   const [product, setProduct] = useState({});
@@ -30,7 +30,7 @@ function Overview(props) {
   //conditional rendering for loading
   return (
     <div className="overview">
-      <Gallery />
+      <Gallery style={style}/>
       <div className="main">
         <StarRating getRouteData={props.getRouteData}/>
         <h3 className="product-category">{product.category}</h3>

@@ -1,3 +1,5 @@
+/* Overview grid setup */
+
 .overview {
   display: grid;
   grid-template-rows: 3fr 1fr;
@@ -22,6 +24,8 @@
 .features {
   grid-area: features;
 }
+
+/* Styles */
 
 .style-thumbnails {
   display: flex;

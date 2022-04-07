@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
-import AddToCart from './AddToCart.jsx';
 import axios from 'axios';
 
 function Cart(props) {
