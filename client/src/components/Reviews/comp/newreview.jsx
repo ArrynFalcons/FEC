@@ -23,7 +23,7 @@ function NewReview(props) {
           220245: 4,
           220246: 3.5,
         };
-        bodyparamscopy.rating = 1;
+        bodyparamscopy.rating = 4;
         setbodyparams(bodyparamscopy);
       })
       .catch((err) => {
@@ -78,7 +78,8 @@ function NewReview(props) {
 }
   */
   return (
-    <div>
+    <div> Leave a New Review
+      <br />
       <input
         type="text"
         onChange={(e) => {
@@ -157,7 +158,6 @@ function NewReview(props) {
       <button
         type="submit"
         onClick={() => {
-          alert('Hold up! Did you implement the 5 star feature yet?')
           console.log('Body params are being sent to server!', bodyparams)
           axios.post('/reviews', bodyparams)
             .then((response) => {
