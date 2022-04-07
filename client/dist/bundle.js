@@ -3177,13 +3177,7 @@ function ReviewList(props) {
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "review-list"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "stars",
-    style: {
-      "--rating": 2.3
-    },
-    "aria-label": "Rating of this product is 2.3 out of 5."
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Sort by:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, " Sort by:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     id: "reviewlist"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "relevance"
@@ -3328,7 +3322,7 @@ function Summary(props) {
 
   var grd = props.grd;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    grd('reviews', '', '', '', '65635', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews', '', '3000', '', '65635', '') // (route, page, count, sort, Id, endParam)
     .then(function (data) {
       var sum = 0,
           total = 0,
@@ -3337,7 +3331,6 @@ function Summary(props) {
           three = 0,
           four = 0,
           five = 0;
-      console.log('Summary data retrieved: ', data.data.results);
       data.data.results.forEach(function (obj) {
         switch (obj.rating) {
           case 5:

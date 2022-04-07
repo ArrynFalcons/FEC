@@ -27,7 +27,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 #root, #__next {
   isolation: isolate;
-} /*John last common line*/
+}
 /* Thinh's CSS edits */
 .relatedProducts {
   display: flex;
@@ -156,26 +156,3 @@ p, h1, h2, h3, h4, h5, h6 {
   width: 20%;
   backgroundColor: blue
 } *//*JST last common line*/
-
-:root {
-  --star-size: 60px;
-}
-
-.stars {
-  color: rgb(0, 0, 0);
-  background: rgb(255, 230, 0);
-  --percent: 20%;
-
-  display: inline-block;
-  font-size: var(--star-size);
-  font-family: Times; // make sure ★ appears correctly
-  line-height: 1;
-
-  &::before {
-    content: '★★★★★';
-    letter-spacing: 3px;
-    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}

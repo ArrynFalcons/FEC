@@ -11,7 +11,6 @@ function ReviewList(props) {
   const pagination = (page) => {
     grd('reviews', page, 5, '', '65635', '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
-        console.log('Data ', data.data.results);
         setReviews(data.data.results);
       })
       .catch((err) => {
@@ -21,11 +20,9 @@ function ReviewList(props) {
   useEffect(() => {
     pagination(1);
   }, []);
-
   return (
     <div className="review-list">
-      <div className="stars" style={{"--rating": 2.3}} aria-label="Rating of this product is 2.3 out of 5." />
-      <label>Sort by:</label>
+      <label> Sort by:</label>
       <select id="reviewlist">
         <option value="relevance">Relevance</option>
         <option value="highest">Highest</option>

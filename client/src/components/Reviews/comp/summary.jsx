@@ -13,10 +13,9 @@ function Summary(props) {
   const { grd } = props;
 
   useEffect(() => {
-    grd('reviews', '', '', '', '65635', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews', '', '3000', '', '65635', '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
         let [sum, total, one, two, three, four, five] = [0, 0, 0, 0, 0, 0, 0];
-        console.log('Summary data retrieved: ', data.data.results);
         data.data.results.forEach((obj) => {
           switch (obj.rating) {
             case 5: five += 1;
