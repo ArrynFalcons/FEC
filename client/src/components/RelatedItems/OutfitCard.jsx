@@ -6,9 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
 
-function OutfitCard({ product, featuredProduct, getRouteData }) {
+function OutfitCard({ product, setOutfits, getRouteData }) {
   const [photo, setPhoto] = useState([]);
-  const [showModal, setModal] = useState(false);
 
   useEffect(() => {
     getRouteData('products', 1, 5, '', product.id, 'styles')
@@ -20,10 +19,20 @@ function OutfitCard({ product, featuredProduct, getRouteData }) {
       });
   }, []);
 
+  const deleteFromLocalStorage = (deletedProduct) => {
+    const updatedStorage = JSON.parse(localStorage.getItem('addedProducts')).filter((item) => {
+      if (item.id !== deletedProduct.id) {
+        return item;
+      }
+    });
+    localStorage.setItem('addedProducts', JSON.stringify(updatedStorage));
+    setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
+  };
+
   return (
     <div>
       <div className="productCard">
-        <h2 className="top-right">x</h2>
+        <h2 className="top-right" onClick={() => { deleteFromLocalStorage(product); }}>x</h2>
         <img className="thumbnail" src={photo} alt="stock clothing item" />
         <span>{product.category}</span>
         <span>{product.name}</span>

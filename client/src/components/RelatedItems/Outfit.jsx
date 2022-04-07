@@ -25,7 +25,7 @@ function outfit({ currentProduct, getRouteData }) {
   useEffect(() => {
     getRouteData('products', 1, 1, '', currentProduct, '')
       .then((data) => {
-        setAddedProducts([data.data]);
+        setAddedProducts(data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -39,16 +39,16 @@ function outfit({ currentProduct, getRouteData }) {
 
   const saveToLocalStorage = (addedProduct) => {
     if (!localStorage.getItem('addedProducts')) {
-      localStorage.setItem('addedProducts', JSON.stringify(addedProduct));
+      localStorage.setItem('addedProducts', JSON.stringify([addedProduct]));
     }
     const storage = JSON.parse(localStorage.getItem('addedProducts'));
     const duplicate = storage.filter((product) => {
-      if (product.id === addedProduct[0].id) {
-        return addedProduct[0];
+      if (product.id === addedProduct.id) {
+        return addedProduct;
       }
     });
     duplicate.length ? null
-      : (storage.push(addedProduct[0]),
+      : (storage.push(addedProduct),
       localStorage.setItem('addedProducts', JSON.stringify(storage))
       );
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
@@ -71,11 +71,12 @@ function outfit({ currentProduct, getRouteData }) {
           <OutfitCard
             product={product}
             key={product.id}
+            setOutfits={setOutfits}
             getRouteData={getRouteData}
           />
         )) : null}
 
-        {state.next === addedProducts.length ? null : (
+        {state.next === outfits.length ? null : (
           <button type="submit" onClick={() => { dispatch({ type: 'next' }); }}>{'>'}</button>)}
       </div>
     </div>

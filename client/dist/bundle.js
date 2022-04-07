@@ -2676,7 +2676,7 @@ function outfit(_ref) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('products', 1, 1, '', currentProduct, '').then(function (data) {
-      setAddedProducts([data.data]);
+      setAddedProducts(data.data);
     })["catch"](function (err) {
       console.log(err);
     });
@@ -2687,16 +2687,16 @@ function outfit(_ref) {
 
   var saveToLocalStorage = function saveToLocalStorage(addedProduct) {
     if (!localStorage.getItem('addedProducts')) {
-      localStorage.setItem('addedProducts', JSON.stringify(addedProduct));
+      localStorage.setItem('addedProducts', JSON.stringify([addedProduct]));
     }
 
     var storage = JSON.parse(localStorage.getItem('addedProducts'));
     var duplicate = storage.filter(function (product) {
-      if (product.id === addedProduct[0].id) {
-        return addedProduct[0];
+      if (product.id === addedProduct.id) {
+        return addedProduct;
       }
     });
-    duplicate.length ? null : (storage.push(addedProduct[0]), localStorage.setItem('addedProducts', JSON.stringify(storage)));
+    duplicate.length ? null : (storage.push(addedProduct), localStorage.setItem('addedProducts', JSON.stringify(storage)));
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
   };
 
@@ -2719,9 +2719,10 @@ function outfit(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OutfitCard_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       product: product,
       key: product.id,
+      setOutfits: setOutfits,
       getRouteData: getRouteData
     });
-  }) : null, state.next === addedProducts.length ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }) : null, state.next === outfits.length ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",
     onClick: function onClick() {
       dispatch({
@@ -2774,18 +2775,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function OutfitCard(_ref) {
   var product = _ref.product,
-      featuredProduct = _ref.featuredProduct,
+      setOutfits = _ref.setOutfits,
       getRouteData = _ref.getRouteData;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       photo = _useState2[0],
       setPhoto = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      showModal = _useState4[0],
-      setModal = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('products', 1, 5, '', product.id, 'styles').then(function (data) {
@@ -2794,10 +2790,24 @@ function OutfitCard(_ref) {
       console.log(err);
     });
   }, []);
+
+  var deleteFromLocalStorage = function deleteFromLocalStorage(deletedProduct) {
+    var updatedStorage = JSON.parse(localStorage.getItem('addedProducts')).filter(function (item) {
+      if (item.id !== deletedProduct.id) {
+        return item;
+      }
+    });
+    localStorage.setItem('addedProducts', JSON.stringify(updatedStorage));
+    setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "productCard"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-    className: "top-right"
+    className: "top-right",
+    onClick: function onClick() {
+      deleteFromLocalStorage(product);
+    }
   }, "x"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "thumbnail",
     src: photo,
@@ -2938,7 +2948,7 @@ function RelatedItems(_ref) {
       setFeatured = _useState4[1]; // current product should eventually be passed down from APPS
 
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(65635),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(65639),
       _useState6 = _slicedToArray(_useState5, 2),
       currentProduct = _useState6[0],
       setCurrentProduct = _useState6[1];
@@ -3434,7 +3444,7 @@ function ReviewList(props) {
     }
   }, "Lowest")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews.map(function (review) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: "".concat(review.reviewer_name, "1")
+      key: "".concat(review.reviewer_name)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "tile"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
