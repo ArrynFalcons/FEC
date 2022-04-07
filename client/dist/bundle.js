@@ -3551,7 +3551,7 @@ function Summary(props) {
       position: 'absolute',
       left: "".concat(comfort * 40, "px")
     }
-  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Low - 5: Extreme")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Quality", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Low - 5: High")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Quality", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "foreground-bar",
     style: {
       height: '20px',
@@ -3563,7 +3563,7 @@ function Summary(props) {
       position: 'absolute',
       left: "".concat(quality * 40, "px")
     }
-  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Poor - 5: Outstanding"))));
+  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Poor - 5: High"))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Summary);
