@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import RelatedProductsList from './RelatedProductsList.jsx';
+import Outfit from './Outfit.jsx';
 
 // const getRouteData = (route, page, count, sort, Id, endParam)
 function RelatedItems({ getRouteData }) {
@@ -23,11 +24,18 @@ function RelatedItems({ getRouteData }) {
   }, []);
 
   return (
-    <RelatedProductsList
-      products={products}
-      featured={featured}
-      getRouteData={getRouteData}
-    />
+    <>
+      <RelatedProductsList
+        products={products}
+        featured={featured}
+        getRouteData={getRouteData}
+      />
+      <Outfit
+        products={products}
+        featured={featured}
+        getRouteData={getRouteData}
+      />
+    </>
   );
 }
 

@@ -11,7 +11,6 @@ function ReviewList(props) {
   const pagination = (page) => {
     grd('reviews', page, 5, '', '65635', '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
-        console.log('Data ', data.data.results);
         setReviews(data.data.results);
       })
       .catch((err) => {

@@ -35,6 +35,12 @@ function App() {
   //     console.log(err);
   //   });
 
+  useEffect(() => {
+    window.onclick = (event) => {
+      // console.log(event.target);
+    };
+  });
+
   return (
     <div className="container">
       <Overview getRouteData={getRouteData} />

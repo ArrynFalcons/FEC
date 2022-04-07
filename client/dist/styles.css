@@ -34,6 +34,7 @@ p, h1, h2, h3, h4, h5, h6 {
   flex-direction: row;
   margin: 10px;
   gap: 10px;
+  width: auto;
 }
 
 .productCard {
@@ -62,10 +63,21 @@ p, h1, h2, h3, h4, h5, h6 {
   display: flex;
   position: absolute;
   flex-direction: column;
-  height: auto;
+  height: 250px;
   width: auto;
   text-align: center;
   background-color: beige;
+  padding: 10px;
+  gap: 15px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 200px;
+  text-align: center;
+  width: auto;
   padding: 10px;
   gap: 15px;
 }

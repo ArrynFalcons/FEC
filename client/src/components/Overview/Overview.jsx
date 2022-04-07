@@ -16,7 +16,6 @@ function Overview(props) {
       .catch((err) => console.log(err));
     props.getRouteData('products', '', '', '', '65722', 'styles')
       .then((res) => {
-        console.log(res.data.results)
         setStyles(res.data.results);
         setStyle(res.data.results[0]);
       })

@@ -2225,6 +2225,10 @@ function App() {
   //   });
 
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    window.onclick = function (event) {// console.log(event.target);
+    };
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -2392,7 +2396,6 @@ function Overview(props) {
       return console.log(err);
     });
     props.getRouteData('products', '', '', '', '65722', 'styles').then(function (res) {
-      console.log(res.data.results);
       setStyles(res.data.results);
       setStyle(res.data.results[0]);
     })["catch"](function (err) {
@@ -2570,7 +2573,9 @@ function ComparisonModal(_ref) {
     className: "modalContentLeft"
   }, "".concat(featuredProduct.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "modalContentRight"
-  }, "".concat(product.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, "characteristics"), features.map(function (feature) {
+  }, "".concat(product.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, "characteristics"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "features"
+  }, features.map(function (feature) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "modalContentLeft"
     }, featuredProduct.features.includes(feature) ? '√' : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "".concat(feature.feature, ": ").concat(feature.value)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -2580,10 +2585,117 @@ function ComparisonModal(_ref) {
         return e;
       }
     }).length ? '√' : null));
-  }));
+  })));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ComparisonModal);
+
+/***/ }),
+
+/***/ "./client/src/components/RelatedItems/Outfit.jsx":
+/*!*******************************************************!*\
+  !*** ./client/src/components/RelatedItems/Outfit.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _ProductsCard_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductsCard.jsx */ "./client/src/components/RelatedItems/ProductsCard.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable import/extensions */
+
+/* eslint-disable react/prop-types */
+
+/* eslint-disable no-unused-vars */
+
+
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'next':
+      return {
+        next: state.next + 1,
+        start: state.start + 1
+      };
+
+    case 'previous':
+      return {
+        next: state.next - 1,
+        start: state.start - 1
+      };
+
+    default:
+      throw new Error();
+  }
+}
+
+function outfit(_ref) {
+  var products = _ref.products,
+      featured = _ref.featured,
+      getRouteData = _ref.getRouteData;
+
+  var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(reducer, {
+    start: 0,
+    next: 3
+  }),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      state = _useReducer2[0],
+      dispatch = _useReducer2[1];
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      featuredProduct = _useState2[0],
+      setFeaturedProduct = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getRouteData('products', 1, 1, '', featured, '').then(function (data) {
+      setFeaturedProduct(data.data);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "YOUR OUTFIT", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "relatedProducts"
+  }, state.start === 0 ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      dispatch({
+        type: 'previous'
+      });
+    }
+  }, '<'), products.slice(state.start, state.next).map(function (product) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductsCard_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      product: product,
+      key: product.id,
+      featuredProduct: featuredProduct,
+      getRouteData: getRouteData
+    });
+  }), state.next === products.length ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      dispatch({
+        type: 'next'
+      });
+    }
+  }, '>')));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (outfit);
 
 /***/ }),
 
@@ -2680,6 +2792,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _RelatedProductsList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedProductsList.jsx */ "./client/src/components/RelatedItems/RelatedProductsList.jsx");
+/* harmony import */ var _Outfit_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Outfit.jsx */ "./client/src/components/RelatedItems/Outfit.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2697,6 +2810,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable react/prop-types */
 
 /* eslint-disable no-unused-vars */
+
 
  // const getRouteData = (route, page, count, sort, Id, endParam)
 
@@ -2728,11 +2842,15 @@ function RelatedItems(_ref) {
       console.log(err);
     });
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProductsList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProductsList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     products: products,
     featured: featured,
     getRouteData: getRouteData
-  });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Outfit_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    products: products,
+    featured: featured,
+    getRouteData: getRouteData
+  }));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedItems);
@@ -3346,8 +3464,8 @@ function Summary(props) {
           two = 0,
           three = 0,
           four = 0,
-          five = 0;
-      console.log('Summary data retrieved: ', data.data.results);
+          five = 0; // console.log('Summary data retrieved: ', data.data.results);
+
       data.data.results.forEach(function (obj) {
         switch (obj.rating) {
           case 5:
