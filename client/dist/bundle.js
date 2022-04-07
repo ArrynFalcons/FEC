@@ -3372,7 +3372,8 @@ function Summary(props) {
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "summary"
+    className: "summary",
+    title: "reviews"
   }, "Ratings and Reviews", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Average Rating:", ' ', Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

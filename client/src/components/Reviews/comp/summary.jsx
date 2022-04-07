@@ -46,9 +46,9 @@ function Summary(props) {
       });
   }, []);
   return (
-    <div className="summary">
+    <div className="summary" title="reviews">
       Ratings and Reviews
-      <div>
+      <div title="summary">
         Average Rating:
         {' '}
         {Math.round(10 * avg) / 10}
