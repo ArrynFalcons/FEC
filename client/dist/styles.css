@@ -46,6 +46,16 @@ p, h1, h2, h3, h4, h5, h6 {
   height: 300px;
   width: 200px;
 }
+.staticCard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2px solid;
+  border-color: gray;
+  padding: 5px;
+  height: 300px;
+  width: 200px;
+}
 
 .thumbnail {
   height: 200px;

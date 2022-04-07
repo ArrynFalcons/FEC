@@ -23,7 +23,7 @@ function ComparisonModal({ featuredProduct, product }) {
       <pre>characteristics</pre>
       <div className="features">
         {features.map((feature) => (
-          <pre>
+          <pre key={feature.feature}>
             <span className="modalContentLeft">{featuredProduct.features.includes(feature) ? '√' : null}</span>
             <span>{`${feature.feature}: ${feature.value}`}</span>
             <span className="modalContentRight">

@@ -9,6 +9,8 @@ import Outfit from './Outfit.jsx';
 function RelatedItems({ getRouteData }) {
   const [products, setProducts] = useState([]);
   const [featured, setFeatured] = useState(65635);
+  // current product should eventually be passed down from APPS
+  const [currentProduct, setCurrentProduct] = useState(65635);
 
   useEffect(() => {
     getRouteData('products', 1, 10, '', 65635, 'related')
@@ -31,8 +33,7 @@ function RelatedItems({ getRouteData }) {
         getRouteData={getRouteData}
       />
       <Outfit
-        products={products}
-        featured={featured}
+        currentProduct={currentProduct}
         getRouteData={getRouteData}
       />
     </>
