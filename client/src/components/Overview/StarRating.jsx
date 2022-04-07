@@ -19,7 +19,7 @@ const StarRating = (props) => {
         }
         let ratingAvg = rating / total;
         setRating(ratingAvg);
-        setFullStars(rating => Math.floor(rating));
+        //setFullStars(rating => Math.floor(rating));
       })
       .catch((err) => console.log(err));
   }, [])
@@ -36,6 +36,7 @@ const StarRating = (props) => {
       setFullStars(fullStars - 1);
       return <h1>full</h1>
     }
+
   }
 
   return rating > 0 ? (

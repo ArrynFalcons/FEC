@@ -2284,6 +2284,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SizeSelector_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SizeSelector.jsx */ "./client/src/components/Overview/Cart/SizeSelector.jsx");
 /* harmony import */ var _QuantitySelector_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuantitySelector.jsx */ "./client/src/components/Overview/Cart/QuantitySelector.jsx");
 /* harmony import */ var _AddToCart_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddToCart.jsx */ "./client/src/components/Overview/Cart/AddToCart.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2297,6 +2299,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* eslint-disable */
+
 
 
 
@@ -2320,8 +2323,13 @@ function Cart(props) {
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      quantity = _useState8[0],
-      setQuantity = _useState8[1];
+      skuId = _useState8[0],
+      setSkuId = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('1'),
+      _useState10 = _slicedToArray(_useState9, 2),
+      quantity = _useState10[0],
+      setQuantity = _useState10[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var skuArr = [];
@@ -2338,13 +2346,34 @@ function Cart(props) {
     for (var _sku2 in props.style.skus) {
       if (props.style.skus[_sku2].size === size) {
         setSku(props.style.skus[_sku2]);
+        setSkuId(_sku2);
         break;
       }
     }
   }, [size]);
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+
+    for (var i = 0; i < Number(quantity); i++) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default().post('/cart', {
+        sku_id: Number(skuId)
+      }).then(function (res) {
+        return console.log('success posting');
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    } //axios.get('/cart').then((res) => console.log('get successful on front end'))
+
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cart"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SizeSelector_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    onSubmit: function onSubmit(event) {
+      return handleSubmit(event);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SizeSelector_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     skus: skus,
     size: size,
     setSize: setSize
@@ -2731,10 +2760,7 @@ var StarRating = function StarRating(props) {
       }
 
       var ratingAvg = rating / total;
-      setRating(ratingAvg);
-      setFullStars(function (rating) {
-        return Math.floor(rating);
-      });
+      setRating(ratingAvg); //setFullStars(rating => Math.floor(rating));
     })["catch"](function (err) {
       return console.log(err);
     });
@@ -3324,7 +3350,7 @@ function NewReview(props) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     grd('reviews', '', '', '', '65635', 'meta').then(function (data) {
-      console.log('Metadata retrieved: ', data.data);
+      //console.log('Metadata retrieved: ', data.data);
       setmetadata(data.data);
       var bodyparamscopy = bodyparams;
       bodyparamscopy.product_id = Number(data.data.product_id);
@@ -3523,7 +3549,7 @@ function ReviewList(props) {
   var pagination = function pagination(page) {
     grd('reviews', page, 5, '', '65635', '') // (route, page, count, sort, Id, endParam)
     .then(function (data) {
-      console.log('Data ', data.data.results);
+      //console.log('Data ', data.data.results);
       setReviews(data.data.results);
     })["catch"](function (err) {
       console.log('Error retrieving reviews: ', err);
