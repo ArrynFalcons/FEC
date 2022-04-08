@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import Arrows from './Arrows.jsx';
+import Thumbnails from './Thumbnails.jsx';
 
 function Gallery(props) {
 
@@ -17,9 +18,11 @@ function Gallery(props) {
 
   return (images.length > 0
     ? <div className="gallery">
-        {<img className="gallery-image" src={images[index].url} key={index}/>}
-        {/* {images.map((image, i) => <img className="gallery-image" src={image.url} key={i}/>)} */}
-        <Arrows index={index} setIndex={setIndex} length={images.length}/>
+        <Thumbnails index={index} setIndex={setIndex} images={images}/>
+        <div className="carousel-container">
+          {<img className="gallery-image carousel" src={images[index].url} key={index} width="765px" height="600px"/>}
+          <Arrows index={index} setIndex={setIndex} length={images.length}/>
+        </div>
       </div>
     : null
   )

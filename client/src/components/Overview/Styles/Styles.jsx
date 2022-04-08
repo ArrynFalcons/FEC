@@ -20,7 +20,7 @@ function Styles(props) {
       <p>STYLE {"<"} {props.style.name}</p>
       <div className="style-thumbnails">
         {props.styles.map((style) =>
-          <div className="thumbnail-container" key={style.style_id}>
+          <div className="style-thumbnail-container" key={style.style_id}>
             <img className="style-thumbnail" id={style.style_id} src={style.photos[0].thumbnail_url} width="60" height="60" onClick={(event) => handleStyleClick(event)}/>
           </div>
         )}

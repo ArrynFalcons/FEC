@@ -8,6 +8,14 @@ import RelatedItems from '../RelatedItems/RelatedItems.jsx';
 import Reviews from '../Reviews/Reviews.jsx';
 
 function App() {
+  //have product id and view in state
+  //move this outside of app
+
+  useEffect(() => {
+    //need to get access to product id in url
+    //set it into state
+  }, []);
+
   const getRouteData = (route, page, count, sort, Id, endParam) => {
     const params = {
       page,

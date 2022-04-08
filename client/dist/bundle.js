@@ -2192,6 +2192,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
+  //have product id and view in state
+  //move this outside of app
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {//need to get access to product id in url
+    //set it into state
+  }, []);
+
   var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
     var params = {
       page: page,
@@ -2279,47 +2285,42 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Cart(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var skus = props.skus;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      skus = _useState2[0],
-      setSkus = _useState2[1];
+      size = _useState2[0],
+      setSize = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState4 = _slicedToArray(_useState3, 2),
-      size = _useState4[0],
-      setSize = _useState4[1];
+      sku = _useState4[0],
+      setSku = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      sku = _useState6[0],
-      setSku = _useState6[1];
+      skuId = _useState6[0],
+      setSkuId = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('1'),
       _useState8 = _slicedToArray(_useState7, 2),
-      skuId = _useState8[0],
-      setSkuId = _useState8[1];
+      quantity = _useState8[0],
+      setQuantity = _useState8[1]; // useEffect(() => {
+  //   const skuArr = [];
+  //   for (let sku in props.style.skus) {
+  //     if (props.style.skus[sku].quantity > 0) {
+  //       skuArr.push(props.style.skus[sku]);
+  //     }
+  //   }
+  //   setSkus(skuArr);
+  // }, [props.style])
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('1'),
-      _useState10 = _slicedToArray(_useState9, 2),
-      quantity = _useState10[0],
-      setQuantity = _useState10[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var skuArr = [];
-
     for (var _sku in props.style.skus) {
-      if (props.style.skus[_sku].quantity > 0) {
-        skuArr.push(props.style.skus[_sku]);
-      }
-    }
-
-    setSkus(skuArr);
-  }, [props.style]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    for (var _sku2 in props.style.skus) {
-      if (props.style.skus[_sku2].size === size) {
-        setSku(props.style.skus[_sku2]);
-        setSkuId(_sku2);
+      if (props.style.skus[_sku].size === size) {
+        setSku(props.style.skus[_sku]);
+        setSkuId(_sku);
         break;
       }
     }
@@ -2566,67 +2567,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Arrows(props) {
-  // const [prevDisabled, setPrevDisabled] = useState(true);
-  // const [nextDisabled, setNextDisabled] = useState(false);
-  // if (props.index === 0) {
-  //   setPrevDisabled(true);
-  // } else if (props.index === props.length - 1) {
-  //   setNextDisabled(true);
-  // } else {
-  //   setPrevDisabled(false);
-  //   setNextDisabled(false);
-  // }
-  if (props.index === 0) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "arrows"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "prev",
-      onClick: function onClick() {
-        return props.setIndex(props.index - 1);
-      },
-      disabled: true
-    }, '<'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "next",
-      onClick: function onClick() {
-        return props.setIndex(props.index + 1);
-      }
-    }, '>'));
-  } else if (props.index === props.length - 1) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "arrows"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "prev",
-      onClick: function onClick() {
-        return props.setIndex(props.index - 1);
-      }
-    }, '<'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "next",
-      onClick: function onClick() {
-        return props.setIndex(props.index + 1);
-      },
-      disabled: true
-    }, '>'));
-  } else {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "arrows"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "prev",
-      onClick: function onClick() {
-        return props.setIndex(props.index - 1);
-      }
-    }, '<'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "next",
-      onClick: function onClick() {
-        return props.setIndex(props.index + 1);
-      }
-    }, '>'));
-  } // return (
-  //   <div className="arrows">
-  //     <button className="prev" onClick={() => props.setIndex(props.index + 1)} disabled={prevDisabled}>{'<'}</button>
-  //     <button className="next" onClick={() => props.setIndex(props.index + 1)} disabled={nextDisabled}>{'>'}</button>
-  //   </div>
-  // );
-
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "arrows carousel"
+  }, props.index === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "prev",
+    onClick: function onClick() {
+      return props.setIndex(props.index - 1);
+    },
+    disabled: true
+  }, "\u2190") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "prev",
+    onClick: function onClick() {
+      return props.setIndex(props.index - 1);
+    }
+  }, "\u2190"), props.index === props.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "next",
+    onClick: function onClick() {
+      return props.setIndex(props.index + 1);
+    },
+    disabled: true
+  }, "\u2192") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "next",
+    onClick: function onClick() {
+      return props.setIndex(props.index + 1);
+    }
+  }, "\u2192"));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Arrows);
@@ -2646,6 +2611,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Arrows.jsx */ "./client/src/components/Overview/Gallery/Arrows.jsx");
+/* harmony import */ var _Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Thumbnails.jsx */ "./client/src/components/Overview/Gallery/Thumbnails.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2659,6 +2625,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* eslint-disable */
+
 
 
 
@@ -2684,19 +2651,120 @@ function Gallery(props) {
   }, [props.style]);
   return images.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "gallery"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    index: index,
+    setIndex: setIndex,
+    images: images
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "carousel-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "gallery-image",
+    className: "gallery-image carousel",
     src: images[index].url,
-    key: index
+    key: index,
+    width: "765px",
+    height: "600px"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     index: index,
     setIndex: setIndex,
     length: images.length
-  })) : null;
+  }))) : null;
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Gallery); //<img className="gallery-image" src={image.url}/>
 //{images.map((image, i) => <img className="gallery-image" src={image.url} key={i}/>)}
+
+/***/ }),
+
+/***/ "./client/src/components/Overview/Gallery/Thumbnails.jsx":
+/*!***************************************************************!*\
+  !*** ./client/src/components/Overview/Gallery/Thumbnails.jsx ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable */
+
+
+var Thumbnails = function Thumbnails(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      page = _useState2[0],
+      setPage = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      thumbnails = _useState4[0],
+      setThumbnails = _useState4[1]; //const [currThumbnails, setCurrThumbnails] = useState([]);
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var imagesCopy = props.images.slice();
+    var thumbnailPages = [];
+
+    while (imagesCopy.length > 0) {
+      thumbnailPages.push(imagesCopy.splice(0, 6));
+    }
+
+    setThumbnails(thumbnailPages); //setCurrThumbnails(thumbnails[page]);
+  }, [props.images]);
+  return thumbnails.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "gallery-thumbnails"
+  }, page === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "thumbnail-arrow",
+    onClick: function onClick() {
+      return setPage(page - 1);
+    },
+    disabled: true
+  }, "\u2227") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "thumbnail-arrow",
+    onClick: function onClick() {
+      return setPage(page - 1);
+    }
+  }, "\u2227"), thumbnails[page].map(function (image, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: i === props.index ? "gallery-thumbnail-container selected" : "gallery-thumbnail-container",
+      key: i
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      className: "gallery-image",
+      src: image.thumbnail_url,
+      width: "60px",
+      height: "60px",
+      onClick: function onClick() {
+        props.setIndex(i);
+      }
+    }));
+  }), page === thumbnails.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "thumbnail-arrow",
+    onClick: function onClick() {
+      return setPage(page + 1);
+    },
+    disabled: true
+  }, "\u2228") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "thumbnail-arrow",
+    onClick: function onClick() {
+      return setPage(page + 1);
+    }
+  }, "\u2228")) : null;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Thumbnails);
 
 /***/ }),
 
@@ -2738,6 +2806,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+function getSkus(style) {
+  var skus = [];
+
+  for (var sku in style.skus) {
+    if (style.skus[sku].quantity > 0) {
+      skus.push(style.skus[sku]);
+    }
+  }
+
+  return skus;
+}
 
 function Overview(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
@@ -2789,7 +2869,8 @@ function Overview(props) {
     style: style,
     setStyle: setStyle
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Cart_Cart_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    style: style
+    style: style,
+    skus: getSkus(style)
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Description_Description_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     product: product
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Description_Features_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -2954,7 +3035,7 @@ function Styles(props) {
     className: "style-thumbnails"
   }, props.styles.map(function (style) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "thumbnail-container",
+      className: "style-thumbnail-container",
       key: style.style_id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       className: "style-thumbnail",

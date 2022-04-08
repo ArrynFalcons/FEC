@@ -7,6 +7,16 @@ import Features from './Description/Features.jsx';
 import Cart from './Cart/Cart.jsx';
 import Styles from './Styles/Styles.jsx';
 
+function getSkus(style) {
+  const skus = [];
+    for (let sku in style.skus) {
+      if (style.skus[sku].quantity > 0) {
+        skus.push(style.skus[sku]);
+      }
+    }
+  return skus;
+}
+
 function Overview(props) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
@@ -36,7 +46,7 @@ function Overview(props) {
         <h3 className="product-category">{product.category}</h3>
         <h1 className="product-title">{product.name}</h1>
         <Styles styles={styles} style={style} setStyle={setStyle}/>
-        <Cart style={style}/>
+        <Cart style={style} skus={getSkus(style)}/>
       </div>
       <Description product={product} />
       <Features product={product}/>
