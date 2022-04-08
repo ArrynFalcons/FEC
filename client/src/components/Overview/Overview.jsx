@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import Gallery from './Gallery/Gallery.jsx';
-import StarRating from './StarRating.jsx';
 import Description from './Description/Description.jsx';
 import Features from './Description/Features.jsx';
 import Cart from './Cart/Cart.jsx';
@@ -42,7 +41,6 @@ function Overview(props) {
     <div className="overview">
       <Gallery style={style}/>
       <div className="main">
-        <StarRating getRouteData={props.getRouteData}/>
         <h3 className="product-category">{product.category}</h3>
         <h1 className="product-title">{product.name}</h1>
         <Styles styles={styles} style={style} setStyle={setStyle}/>
