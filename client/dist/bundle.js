@@ -2201,7 +2201,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // import Summary from '../Reviews/comp/summary.jsx';
 
-var getRouteData = Object(function webpackMissingModule() { var e = new Error("Cannot find module './Helpers.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+var getRouteData = (__webpack_require__(/*! ./Helpers.js */ "./client/src/components/App/Helpers.js")["default"]);
 
 function App() {
   //have product id and view in state
@@ -2251,6 +2251,58 @@ function App() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./client/src/components/App/Helpers.js":
+/*!**********************************************!*\
+  !*** ./client/src/components/App/Helpers.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
+  var params = {
+    page: page,
+    count: count,
+    sort: sort,
+    product_id: Id
+  };
+
+  if (route === 'products') {
+    return Id ? axios__WEBPACK_IMPORTED_MODULE_0___default().get("/products/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_0___default().get('/products', {
+      params: params
+    });
+  }
+
+  if (route === 'qa/questions') {
+    return endParam ? axios__WEBPACK_IMPORTED_MODULE_0___default().get("/qa/questions/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_0___default().get('/qa/questions', {
+      params: params
+    });
+  }
+
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/reviews/".concat(endParam), {
+    params: params
+  });
+}; // example of how to use helper function
+// getRouteData('reviews', 1, 10, '', '65651', '')
+//   .then((data) => {
+//     console.log('Example', data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getRouteData);
 
 /***/ }),
 
