@@ -7,6 +7,7 @@
   grid-template-areas:
     "gallery main"
     "description features";
+  gap: 50px 0px;
 }
 
 .gallery {
@@ -21,8 +22,26 @@
   grid-area: description;
 }
 
-.features {
+.features-container {
   grid-area: features;
+}
+
+h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 55px;
+  opacity: 80%;
+}
+
+h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 30px;
+  opacity: 80%;
+}
+
+h3 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 35px;
+  opacity: 80%;
 }
 
 /* Styles */
@@ -30,6 +49,7 @@
 .style-thumbnails {
   display: flex;
   flex-flow: row wrap;
+  padding-right: 20%;
 }
 
 .style-thumbnail-container {
@@ -44,13 +64,14 @@
 
 .gallery {
   display: flex;
-  justify-content: space-around;
+  gap: 5%
+  /* justify-content: space-around; */
 }
 
 .carousel-container {
   position: relative;
   width: 765px;
-  height: 765px;
+  height: 600px;
   /* margin: 10px; */
   /* display: flex;
   justify-content: space-between; */
@@ -68,6 +89,7 @@
 
 .arrows {
   z-index: 2;
+  padding: 15px;
   width: 765px;
   height: 600px;
   display: flex;
@@ -90,13 +112,15 @@
   height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-around; */
+  gap: 2%;
 }
 
 .gallery-thumbnail-container {
   /* width: 60px; */
-  width: 70px;
+  width:70px;
   height: 70px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,3 +144,7 @@
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+/* .feature {
+  list-style-type: >&#10003;
+} */
