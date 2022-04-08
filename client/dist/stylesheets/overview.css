@@ -87,6 +87,10 @@ h3 {
   justify-content: flex-end; */
 }
 
+.carousel:hover {
+  cursor: zoom-in;
+}
+
 .arrows {
   z-index: 2;
   padding: 15px;
@@ -148,3 +152,12 @@ h3 {
 /* .feature {
   list-style-type: >&#10003;
 } */
+
+/* .gallery-image:hover {
+  cursor: zoom-in;
+} */
+
+.expand {
+  width: 60px;
+  height: 50px;
+}

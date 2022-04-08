@@ -2623,6 +2623,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Arrows(props) {
+  // const handleNext = () => {
+  //   if (props.index === 4) {
+  //     props.setIndex(0);
+  //     props.setP
+  //   }
+  // }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "arrows carousel"
   }, props.index === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2694,7 +2700,11 @@ function Gallery(props) {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       index = _useState4[0],
-      setIndex = _useState4[1];
+      setIndex = _useState4[1]; // const [firstSelected, setFirstSelected] = useState(true);
+  // const [lastSelected, setLastSelected] = useState(false);
+  // const [selected, setSelected] = useState('first');
+  // const [numThumbnails, setNumThumbnails] = useState(6);
+
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var imageArr = [];
@@ -2723,6 +2733,8 @@ function Gallery(props) {
     index: index,
     setIndex: setIndex,
     length: images.length
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "fas-plus"
   }))) : null;
 }
 
@@ -2767,8 +2779,7 @@ var Thumbnails = function Thumbnails(props) {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
       thumbnails = _useState4[0],
-      setThumbnails = _useState4[1]; //const [currThumbnails, setCurrThumbnails] = useState([]);
-
+      setThumbnails = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var imagesCopy = props.images.slice();
@@ -2778,8 +2789,18 @@ var Thumbnails = function Thumbnails(props) {
       thumbnailPages.push(imagesCopy.splice(0, 6));
     }
 
-    setThumbnails(thumbnailPages); //setCurrThumbnails(thumbnails[page]);
-  }, [props.images]);
+    setThumbnails(thumbnailPages);
+  }, [props.images]); // const handleSelected = (i) => {
+  //   if (i === props.index && i === thumbnails[page].length - 1) {
+  //     props.setSelected('last');
+  //   } else if (i === 0) {
+  //     props.setSelected('first');
+  //   }
+  //   else {
+  //     props.setSelected('');
+  //   }
+  // }
+
   return thumbnails.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "gallery-thumbnails"
   }, page === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2794,6 +2815,7 @@ var Thumbnails = function Thumbnails(props) {
       return setPage(page - 1);
     }
   }, "\u2227"), thumbnails[page].map(function (image, i) {
+    // handleSelected(i);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: i === props.index ? "gallery-thumbnail-container selected" : "gallery-thumbnail-container",
       key: i

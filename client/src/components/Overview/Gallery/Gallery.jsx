@@ -7,6 +7,10 @@ function Gallery(props) {
 
   const [images, setImages] = useState([]);
   const [index, setIndex] = useState(0);
+  // const [firstSelected, setFirstSelected] = useState(true);
+  // const [lastSelected, setLastSelected] = useState(false);
+  // const [selected, setSelected] = useState('first');
+  // const [numThumbnails, setNumThumbnails] = useState(6);
 
   useEffect(() => {
     const imageArr = [];
@@ -22,6 +26,8 @@ function Gallery(props) {
         <div className="carousel-container">
           {<img className="gallery-image carousel" src={images[index].url} key={index} width="765px" height="600px"/>}
           <Arrows index={index} setIndex={setIndex} length={images.length}/>
+          {/* <button className="expand">[  ]</button> */}
+          <i className="fas-plus"></i>
         </div>
       </div>
     : null
