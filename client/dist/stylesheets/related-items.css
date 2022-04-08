@@ -1,0 +1,76 @@
+.relatedProducts {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  gap: 10px;
+  width: auto;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-color: gray;
+  padding: 5px;
+  height: 300px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.staticCard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2px solid;
+  border-color: gray;
+  padding: 5px;
+  height: 300px;
+  width: 200px;
+}
+
+.thumbnail {
+  height: 200px;
+  width: 200px;
+}
+
+.cardIcon {
+  position: absolute;
+  padding-left: 150px;
+  cursor: pointer;
+  color: white;
+}
+
+.comparisonModal {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  height: 250px;
+  width: auto;
+  text-align: center;
+  background-color: beige;
+  padding: 10px;
+  gap: 15px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 200px;
+  text-align: center;
+  width: auto;
+  padding: 10px;
+  gap: 15px;
+}
+
+.modalContentLeft {
+  position: relative;
+  float: left;
+  padding-right: 10px;
+}
+
+.modalContentRight {
+  position: relative;
+  float: right;
+  padding-left: 10px;
+}

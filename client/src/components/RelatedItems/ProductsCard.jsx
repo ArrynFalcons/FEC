@@ -15,7 +15,7 @@ function ProductsCard({ product, featuredProduct, getRouteData }) {
     getRouteData('products', 1, 5, '', product.id, 'styles')
       .then((data) => {
         setPhoto(data.data.results[0].photos[0].thumbnail_url);
-        setSale(data.data.results[3].sale_price);
+        setSale(data.data.results[0].sale_price);
       })
       .catch((err) => {
         console.log(err);

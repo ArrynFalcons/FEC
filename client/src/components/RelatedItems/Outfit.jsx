@@ -52,8 +52,6 @@ function outfit({ currentProduct, getRouteData }) {
       localStorage.setItem('addedProducts', JSON.stringify(storage))
       );
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
-    // adding an outfit scrolls next on carousel
-    dispatch({ type: 'next' });
   };
 
   return (

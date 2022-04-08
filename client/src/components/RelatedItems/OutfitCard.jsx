@@ -14,7 +14,7 @@ function OutfitCard({ product, setOutfits, getRouteData, dispatch }) {
     getRouteData('products', 1, 5, '', product.id, 'styles')
       .then((data) => {
         setPhoto(data.data.results[0].photos[0].thumbnail_url);
-        setSale(data.data.results[3].sale_price);
+        setSale(data.data.results[0].sale_price);
       })
       .catch((err) => {
         console.log(err);
@@ -29,8 +29,6 @@ function OutfitCard({ product, setOutfits, getRouteData, dispatch }) {
     });
     localStorage.setItem('addedProducts', JSON.stringify(updatedStorage));
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
-    // deleting product also backtracks on carousel
-    dispatch({ type: 'previous' });
   };
 
   return (

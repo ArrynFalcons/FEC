@@ -13,6 +13,7 @@ function NewReview(props) {
   useEffect(() => {
     grd('reviews', '', '', '', '65635', 'meta')
       .then((data) => {
+        //console.log('Metadata retrieved: ', data.data);
         setmetadata(data.data);
         let bodyparamscopy = bodyparams;
         bodyparamscopy.product_id = Number(data.data.product_id);
