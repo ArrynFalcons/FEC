@@ -45,7 +45,9 @@ p, h1, h2, h3, h4, h5, h6 {
   padding: 5px;
   height: 300px;
   width: 200px;
+  cursor: pointer;
 }
+
 .staticCard {
   display: flex;
   flex-direction: column;
@@ -62,7 +64,7 @@ p, h1, h2, h3, h4, h5, h6 {
   width: 200px;
 }
 
-.top-right {
+.cardIcon {
   position: absolute;
   padding-left: 150px;
   cursor: pointer;

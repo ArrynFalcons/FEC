@@ -2697,7 +2697,11 @@ function outfit(_ref) {
       }
     });
     duplicate.length ? null : (storage.push(addedProduct), localStorage.setItem('addedProducts', JSON.stringify(storage)));
-    setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
+    setOutfits(JSON.parse(localStorage.getItem('addedProducts'))); // adding an outfit scrolls next on carousel
+
+    dispatch({
+      type: 'next'
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "YOUR OUTFIT", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2719,10 +2723,11 @@ function outfit(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OutfitCard_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       product: product,
       key: product.id,
+      dispatch: dispatch,
       setOutfits: setOutfits,
       getRouteData: getRouteData
     });
-  }) : null, state.next === outfits.length ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }) : null, state.next === outfits.length || outfits.length < 2 ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",
     onClick: function onClick() {
       dispatch({
@@ -2776,16 +2781,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function OutfitCard(_ref) {
   var product = _ref.product,
       setOutfits = _ref.setOutfits,
-      getRouteData = _ref.getRouteData;
+      getRouteData = _ref.getRouteData,
+      dispatch = _ref.dispatch;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       photo = _useState2[0],
       setPhoto = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      sale = _useState4[0],
+      setSale = _useState4[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('products', 1, 5, '', product.id, 'styles').then(function (data) {
       setPhoto(data.data.results[0].photos[0].thumbnail_url);
+      setSale(data.data.results[3].sale_price);
     })["catch"](function (err) {
       console.log(err);
     });
@@ -2798,13 +2810,17 @@ function OutfitCard(_ref) {
       }
     });
     localStorage.setItem('addedProducts', JSON.stringify(updatedStorage));
-    setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
+    setOutfits(JSON.parse(localStorage.getItem('addedProducts'))); // deleting product also backtracks on carousel
+
+    dispatch({
+      type: 'previous'
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "productCard"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-    className: "top-right",
+    className: "cardIcon",
     onClick: function onClick() {
       deleteFromLocalStorage(product);
     }
@@ -2812,7 +2828,16 @@ function OutfitCard(_ref) {
     className: "thumbnail",
     src: photo,
     alt: "stock clothing item"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price))));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.name), sale ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    style: {
+      textDecoration: 'line-through',
+      color: 'gray'
+    }
+  }, "$".concat(product.default_price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    style: {
+      color: 'red'
+    }
+  }, "$".concat(sale))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OutfitCard);
@@ -2871,20 +2896,35 @@ function ProductsCard(_ref) {
       showModal = _useState4[0],
       setModal = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      sale = _useState6[0],
+      setSale = _useState6[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('products', 1, 5, '', product.id, 'styles').then(function (data) {
       setPhoto(data.data.results[0].photos[0].thumbnail_url);
+      setSale(data.data.results[3].sale_price);
     })["catch"](function (err) {
       console.log(err);
     });
   }, []);
+
+  var sendToGallery = function sendToGallery(sentProduct) {
+    // sends product to gallery for display on click
+    console.log(sentProduct);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, showModal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     featuredProduct: featuredProduct,
     product: product
   }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "productCard"
+    className: "productCard",
+    onClick: function onClick() {
+      sendToGallery(product);
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-    className: "top-right",
+    className: "cardIcon",
     onClick: function onClick() {
       return setModal(!showModal);
     }
@@ -2892,7 +2932,16 @@ function ProductsCard(_ref) {
     className: "thumbnail",
     src: photo,
     alt: "stock clothing item"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price))));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, product.name), sale ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    style: {
+      textDecoration: 'line-through',
+      color: 'gray'
+    }
+  }, "$".concat(product.default_price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    style: {
+      color: 'red'
+    }
+  }, "$".concat(sale))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductsCard);
@@ -2948,7 +2997,7 @@ function RelatedItems(_ref) {
       setFeatured = _useState4[1]; // current product should eventually be passed down from APPS
 
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(65639),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(65633),
       _useState6 = _slicedToArray(_useState5, 2),
       currentProduct = _useState6[0],
       setCurrentProduct = _useState6[1];

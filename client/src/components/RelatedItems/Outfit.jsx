@@ -52,6 +52,8 @@ function outfit({ currentProduct, getRouteData }) {
       localStorage.setItem('addedProducts', JSON.stringify(storage))
       );
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
+    // adding an outfit scrolls next on carousel
+    dispatch({ type: 'next' });
   };
 
   return (
@@ -71,12 +73,13 @@ function outfit({ currentProduct, getRouteData }) {
           <OutfitCard
             product={product}
             key={product.id}
+            dispatch={dispatch}
             setOutfits={setOutfits}
             getRouteData={getRouteData}
           />
         )) : null}
 
-        {state.next === outfits.length ? null : (
+        {(state.next === outfits.length || outfits.length < 2) ? null : (
           <button type="submit" onClick={() => { dispatch({ type: 'next' }); }}>{'>'}</button>)}
       </div>
     </div>

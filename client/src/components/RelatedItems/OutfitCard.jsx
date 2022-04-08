@@ -6,13 +6,15 @@
 import React, { useState, useEffect } from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
 
-function OutfitCard({ product, setOutfits, getRouteData }) {
+function OutfitCard({ product, setOutfits, getRouteData, dispatch }) {
   const [photo, setPhoto] = useState([]);
+  const [sale, setSale] = useState(null);
 
   useEffect(() => {
     getRouteData('products', 1, 5, '', product.id, 'styles')
       .then((data) => {
         setPhoto(data.data.results[0].photos[0].thumbnail_url);
+        setSale(data.data.results[3].sale_price);
       })
       .catch((err) => {
         console.log(err);
@@ -27,16 +29,25 @@ function OutfitCard({ product, setOutfits, getRouteData }) {
     });
     localStorage.setItem('addedProducts', JSON.stringify(updatedStorage));
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
+    // deleting product also backtracks on carousel
+    dispatch({ type: 'previous' });
   };
 
   return (
     <div>
       <div className="productCard">
-        <h2 className="top-right" onClick={() => { deleteFromLocalStorage(product); }}>x</h2>
+        <h2 className="cardIcon" onClick={() => { deleteFromLocalStorage(product); }}>x</h2>
         <img className="thumbnail" src={photo} alt="stock clothing item" />
         <span>{product.category}</span>
         <span>{product.name}</span>
-        <span>{`$${product.default_price}`}</span>
+        {sale ? (
+          <span>
+            <span style={{ textDecoration: 'line-through', color: 'gray' }}>{`$${product.default_price}`}</span>
+            <span style={{ color: 'red' }}>{`$${sale}`}</span>
+          </span>
+        ) : (
+          <span>{`$${product.default_price}`}</span>
+        )}
         {/* {product.rating} */}
       </div>
     </div>
