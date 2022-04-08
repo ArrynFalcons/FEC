@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 
 function ComparisonModal({ featuredProduct, product, setModal }) {
   const container = [];
-  const features = [...featuredProduct.features, ...product.features].filter((feature)=> {
+  const features = [...featuredProduct.features, ...product.features].filter((feature) => {
     if (!container.includes(feature.value)) {
       container.push(feature.value);
       return feature;
