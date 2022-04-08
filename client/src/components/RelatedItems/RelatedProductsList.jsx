@@ -14,7 +14,7 @@ function reducer(state, action) {
       throw new Error();
   }
 }
-function RelatedProductsList({ products, featured, getRouteData }) {
+function RelatedProductsList({ products, featured, getRouteData, setProductId }) {
   const [state, dispatch] = useReducer(reducer, { start: 0, next: 3 });
   const [featuredProduct, setFeaturedProduct] = useState([]);
 
@@ -30,22 +30,23 @@ function RelatedProductsList({ products, featured, getRouteData }) {
 
   return (
     <div>
-      RELATED PRODUCTS
+      <h2>COMPLETE THE LOOK</h2>
       <div className="relatedProducts">
         {state.start === 0 ? null : (
-          <button type="submit" onClick={() => { dispatch({ type: 'previous' }); }}>{'<'}</button>)}
+          <h2 className="product-arrows" onClick={() => { dispatch({ type: 'previous' }); }}>◀︎</h2>)}
 
         {products.slice(state.start, state.next).map((product) => (
           <ProductsCard
             product={product}
             key={product.id}
+            setProductId={setProductId}
             featuredProduct={featuredProduct}
             getRouteData={getRouteData}
           />
         ))}
 
         {state.next === products.length ? null : (
-          <button type="submit" onClick={() => { dispatch({ type: 'next' }); }}>{'>'}</button>)}
+          <h2 className="product-arrows" onClick={() => { dispatch({ type: 'next' }); }}>►</h2>)}
       </div>
     </div>
   );

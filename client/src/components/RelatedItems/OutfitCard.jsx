@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
 
-function OutfitCard({ product, setOutfits, getRouteData, dispatch }) {
+function OutfitCard({ product, setOutfits, getRouteData, dispatch, start }) {
   const [photo, setPhoto] = useState([]);
   const [sale, setSale] = useState(null);
 
@@ -29,6 +29,7 @@ function OutfitCard({ product, setOutfits, getRouteData, dispatch }) {
     });
     localStorage.setItem('addedProducts', JSON.stringify(updatedStorage));
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
+    updatedStorage.length >= 2 && start !== 0 ? dispatch({ type: 'previous' }) : null;
   };
 
   return (
