@@ -6,9 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
 
-function ProductsCard({ product, featuredProduct, getRouteData }) {
+function OutfitCard({ product, setOutfits, getRouteData, dispatch }) {
   const [photo, setPhoto] = useState([]);
-  const [showModal, setModal] = useState(false);
   const [sale, setSale] = useState(null);
 
   useEffect(() => {
@@ -22,18 +21,20 @@ function ProductsCard({ product, featuredProduct, getRouteData }) {
       });
   }, []);
 
-  const sendToGallery = (sentProduct) => {
-    // sends product to gallery for display on click
-    console.log(sentProduct);
+  const deleteFromLocalStorage = (deletedProduct) => {
+    const updatedStorage = JSON.parse(localStorage.getItem('addedProducts')).filter((item) => {
+      if (item.id !== deletedProduct.id) {
+        return item;
+      }
+    });
+    localStorage.setItem('addedProducts', JSON.stringify(updatedStorage));
+    setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
   };
 
   return (
-    <div className="product-card-container">
-      {showModal ? (
-        <ComparisonModal featuredProduct={featuredProduct} product={product} setModal={setModal} />
-      ) : null}
-      <div className="productCard overlay" onClick={() => { sendToGallery(product) }}>
-        <h2 className="cardIcon overlay" onClick={() => setModal(!showModal)}>★</h2>
+    <div>
+      <div className="productCard">
+        <h2 className="cardIcon overlay" onClick={() => { deleteFromLocalStorage(product); }}>x</h2>
         <img className="thumbnail" src={photo} alt="stock clothing item" />
         <span>{product.category}</span>
         <span>{product.name}</span>
@@ -51,4 +52,4 @@ function ProductsCard({ product, featuredProduct, getRouteData }) {
   );
 }
 
-export default ProductsCard;
+export default OutfitCard;

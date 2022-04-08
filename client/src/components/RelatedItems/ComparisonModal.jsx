@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 
-function ComparisonModal({ featuredProduct, product }) {
+function ComparisonModal({ featuredProduct, product, setModal }) {
   const container = [];
   const features = [...featuredProduct.features, ...product.features].filter((feature)=> {
     if (!container.includes(feature.value)) {
@@ -15,25 +15,27 @@ function ComparisonModal({ featuredProduct, product }) {
   });
 
   return (
-    <div className="comparisonModal">
+    <div className="comparisonModal overlay" onClick={ () => setModal(false)}>
       <pre>
         <span className="modalContentLeft">{`${featuredProduct.name}`}</span>
         <span className="modalContentRight">{`${product.name}`}</span>
       </pre>
       <pre>characteristics</pre>
-      {features.map((feature) => (
-        <pre>
-          <span className="modalContentLeft">{featuredProduct.features.includes(feature) ? '√' : null}</span>
-          <span>{`${feature.feature}: ${feature.value}`}</span>
-          <span className="modalContentRight">
-            {product.features.filter((e) => {
-              if (e.value === feature.value) {
-                return e;
-              }
-            }).length ? '√' : null}
-          </span>
-        </pre>
-      ))}
+      <div className="features">
+        {features.map((feature) => (
+          <pre key={feature.feature}>
+            <span className="modalContentLeft">{featuredProduct.features.includes(feature) ? '√' : null}</span>
+            <span>{`${feature.feature}: ${feature.value}`}</span>
+            <span className="modalContentRight">
+              {product.features.filter((e) => {
+                if (e.value === feature.value) {
+                  return e;
+                }
+              }).length ? '√' : null}
+            </span>
+          </pre>
+        ))}
+      </div>
     </div>
   );
 }
