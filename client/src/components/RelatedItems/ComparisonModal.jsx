@@ -15,7 +15,7 @@ function ComparisonModal({ featuredProduct, product, setModal }) {
   });
 
   return (
-    <div className="comparisonModal overlay" onClick={ () => setModal(!showModal)}>
+    <div className="comparisonModal overlay" onClick={ () => setModal(false)}>
       <pre>
         <span className="modalContentLeft">{`${featuredProduct.name}`}</span>
         <span className="modalContentRight">{`${product.name}`}</span>

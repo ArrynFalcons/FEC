@@ -3030,7 +3030,7 @@ function ComparisonModal(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "comparisonModal overlay",
     onClick: function onClick() {
-      return setModal(!showModal);
+      return setModal(false);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "modalContentLeft"
