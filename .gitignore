@@ -60,7 +60,8 @@ jspm_packages/
 .cache
 
 # bundle
-dist/bundle.js
+client/dist/bundle.js
+client/dist/bundle.js.map
 
 # config.js
 config.js
