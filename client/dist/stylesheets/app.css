@@ -18,6 +18,7 @@ html, body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font-family: 'PT Serif', serif;
 }
 
 img, picture, video, canvas, svg {

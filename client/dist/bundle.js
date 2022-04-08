@@ -2175,21 +2175,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Overview/Overview.jsx */ "./client/src/components/Overview/Overview.jsx");
-/* harmony import */ var _Questions_Questions_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Questions/Questions.jsx */ "./client/src/components/Questions/Questions.jsx");
-/* harmony import */ var _RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../RelatedItems/RelatedItems.jsx */ "./client/src/components/RelatedItems/RelatedItems.jsx");
-/* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Reviews/Reviews.jsx */ "./client/src/components/Reviews/Reviews.jsx");
+/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Overview/Overview.jsx */ "./client/src/components/Overview/Overview.jsx");
+/* harmony import */ var _Questions_Questions_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Questions/Questions.jsx */ "./client/src/components/Questions/Questions.jsx");
+/* harmony import */ var _RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../RelatedItems/RelatedItems.jsx */ "./client/src/components/RelatedItems/RelatedItems.jsx");
+/* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Reviews/Reviews.jsx */ "./client/src/components/Reviews/Reviews.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 /* eslint-disable import/extensions */
 
 /* eslint-disable no-unused-vars */
+ // import { getRouteData } from './Helpers.js';
 
 
 
 
+ // import Summary from '../Reviews/comp/summary.jsx';
 
-
+var getRouteData = (__webpack_require__(/*! ./Helpers.js */ "./client/src/components/App/Helpers.js")["default"]);
 
 function App() {
   //have product id and view in state
@@ -2198,60 +2210,99 @@ function App() {
     //set it into state
   }, []);
 
-  var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
-    var params = {
-      page: page,
-      count: count,
-      sort: sort,
-      product_id: Id
-    };
-
-    if (route === 'products') {
-      return Id ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/products/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products', {
-        params: params
-      });
-    }
-
-    if (route === 'qa/questions') {
-      return endParam ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/qa/questions/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/qa/questions', {
-        params: params
-      });
-    }
-
-    return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/reviews/".concat(endParam), {
-      params: params
-    });
-  }; // example of how to use helper function
-  // getRouteData('reviews', 1, 10, '', '65651', '')
-  //   .then((data) => {
-  //     console.log('Example', data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('65635'),
+      _useState2 = _slicedToArray(_useState, 2),
+      productId = _useState2[0],
+      setProductId = _useState2[1]; // const [avgRating, setAvgRating] = useState(0);
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.onclick = function (event) {// console.log(event.target);
     };
-  });
+  }); // useEffect(() => {
+  //   getRouteData('reviews', '', '', '', productId, 'meta')
+  //     .then((data) => {
+  //       const num = 1 * data.data.ratings['1'] + 2;
+  //       const div = rating
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error retrieving reviews: ', err);
+  //     });
+  // }, []);
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container",
     title: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    getRouteData: getRouteData
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    getRouteData: getRouteData,
+    productId: productId
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "related-items"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    getRouteData: getRouteData
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    getRouteData: getRouteData,
+    productId: productId,
+    setProductId: setProductId
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "q-and-a"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Questions_Questions_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "ratings-and-reviews"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    grd: getRouteData,
+    productId: productId
+  })));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./client/src/components/App/Helpers.js":
+/*!**********************************************!*\
+  !*** ./client/src/components/App/Helpers.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
+  var params = {
+    page: page,
+    count: count,
+    sort: sort,
+    product_id: Id
+  };
+
+  if (route === 'products') {
+    return Id ? axios__WEBPACK_IMPORTED_MODULE_0___default().get("/products/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_0___default().get('/products', {
+      params: params
+    });
+  }
+
+  if (route === 'qa/questions') {
+    return endParam ? axios__WEBPACK_IMPORTED_MODULE_0___default().get("/qa/questions/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_0___default().get('/qa/questions', {
+      params: params
+    });
+  }
+
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/reviews/".concat(endParam), {
+    params: params
+  });
+}; // example of how to use helper function
+// getRouteData('reviews', 1, 10, '', '65651', '')
+//   .then((data) => {
+//     console.log('Example', data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getRouteData);
 
 /***/ }),
 
@@ -2537,7 +2588,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Features(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "features"
+    className: "features-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "feature-list"
   }, props.product.features ? props.product.features.map(function (feature) {
@@ -2822,7 +2873,10 @@ function getSkus(style) {
   return skus;
 }
 
-function Overview(props) {
+function Overview(_ref) {
+  var productId = _ref.productId,
+      getRouteData = _ref.getRouteData;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
       product = _useState2[0],
@@ -2842,12 +2896,12 @@ function Overview(props) {
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    props.getRouteData('products', 1, 1, '', '65635', '').then(function (res) {
+    getRouteData('products', 1, 1, '', productId, '').then(function (res) {
       return setProduct(res.data);
     })["catch"](function (err) {
       return console.log(err);
     });
-    props.getRouteData('products', '', '', '', '65635', 'styles').then(function (res) {
+    getRouteData('products', '', '', '', productId, 'styles').then(function (res) {
       setStyles(res.data.results);
       setStyle(res.data.results[0]);
     })["catch"](function (err) {
@@ -2861,7 +2915,7 @@ function Overview(props) {
     style: style
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "main"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "product-category"
   }, product.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "product-title"
@@ -4208,6 +4262,9 @@ function Summary(props) {
       console.log('Error retrieving reviews: ', err);
     });
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    Summary.averageRating = avg;
+  }, [avg]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "summary",
     title: "reviews"
