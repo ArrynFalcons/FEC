@@ -188,13 +188,13 @@ p, h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
 }
 
-body {
+/* body {
   background: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
+} */
 
 * {
   position: relative;

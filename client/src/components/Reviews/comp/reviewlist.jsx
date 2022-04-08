@@ -54,94 +54,98 @@ function ReviewList(props) {
       </select>
 
       <ul>
-        {reviews.map((review) => (
-          <li key={`${review.review_id}`}>
-            <div className="tile">
-              <img src="https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png" width="100" alt="placeholderstars" />
-              <div>
-                Rating:
-                {' '}
-                {review.rating}
-              </div>
-              <div>
-                Title:
-                {' '}
-                {review.summary}
-              </div>
-              <div>
-                Name:
-                {' '}
-                {review.reviewer_name}
-              </div>
-              <div>
-                Reviewed on:
-                {' '}
-                {moment(review.date).format('MMMM Do YYYY')}
-              </div>
-              <div className="reviewbody">
-                {review.body}
-              </div>
-              {/* <style dangerouslySetInnerHTML={{_html: `.reviewbody {color:blue}`}}/> */}
-              <div className="inline-block">
-                {review.photos.map((photo) => (
-                  <img
-                    src={`${photo.url}`}
-                    value={photo.url}
-                    style={{ display: 'inline-block' }}
-                    className="zoom"
-                    // onMouseOver={(e) => console.log(e.target.currentSrc)}
-                  // onMouseOut={e=>console.log(e.target.currentSrc)}
-                    alt="reviewimages"
-                    height="200"
-                    width="200"
-                  />
-                ))}
-              </div>
-              <div style={{ color: 'blue' }}>
-                Recommend?
-                {review.recommend ? ' Yes' : ' No'}
-              </div>
-              <div>
-                {review.helpfulness}
-                people found this review helpful.
-              </div>
-              <div>
-                Did you find this review helpful?
-                <button
-                  type="submit"
-                  value={`${review.review_id}`}
-                  onClick={(e) => {
-                    markAsHelpful(e.target.value);
-                  }}
-                >
-                  Yes
-
-                </button>
-                <button
-                  type="submit"
-                  value={`${review.reviewer_name}`}
-                  onClick={(e) => {
-                    setReport(true);
-                    setActiveKey(e.target.value);
-                  }}
-                >
-                  No
-                </button>
-              </div>
-              {report && activekey === review.reviewer_name
-                ? (
-                  <>
-                    <textarea
-                      rows="4"
-                      cols="50"
-                      placeholder="If you wish to report this review, please use this form and submit your feedback. Thank you for keeping this site safe for all users"
+        {reviews.map((review) => {
+          let cssProps = {};
+          cssProps['--rating'] = review.rating;
+          return (
+            <li key={`${review.review_id}`}>
+              <div className="tile">
+                <div className="Stars" style={cssProps} ></div>
+                <div>
+                  Rating:
+                  {' '}
+                  {review.rating}
+                </div>
+                <div>
+                  Title:
+                  {' '}
+                  {review.summary}
+                </div>
+                <div>
+                  Name:
+                  {' '}
+                  {review.reviewer_name}
+                </div>
+                <div>
+                  Reviewed on:
+                  {' '}
+                  {moment(review.date).format('MMMM Do YYYY')}
+                </div>
+                <div className="reviewbody">
+                  {review.body}
+                </div>
+                {/* <style dangerouslySetInnerHTML={{_html: `.reviewbody {color:blue}`}}/> */}
+                <div className="inline-block">
+                  {review.photos.map((photo) => (
+                    <img
+                      src={`${photo.url}`}
+                      value={photo.url}
+                      style={{ display: 'inline-block' }}
+                      className="zoom"
+                      // onMouseOver={(e) => console.log(e.target.currentSrc)}
+                    // onMouseOut={e=>console.log(e.target.currentSrc)}
+                      alt="reviewimages"
+                      height="200"
+                      width="200"
                     />
-                    <button type="submit" value={`${review.review_id}`} onClick={(e) => { reportReview(e.target.value); }}>Submit</button>
-                  </>
-                ) : null}
-            </div>
-          </li>
-        ))}
+                  ))}
+                </div>
+                <div style={{ color: 'blue' }}>
+                  Recommend?
+                  {review.recommend ? ' Yes' : ' No'}
+                </div>
+                <div>
+                  {review.helpfulness}
+                  people found this review helpful.
+                </div>
+                <div>
+                  Did you find this review helpful?
+                  <button
+                    type="submit"
+                    value={`${review.review_id}`}
+                    onClick={(e) => {
+                      markAsHelpful(e.target.value);
+                    }}
+                  >
+                    Yes
+
+                  </button>
+                  <button
+                    type="submit"
+                    value={`${review.reviewer_name}`}
+                    onClick={(e) => {
+                      setReport(true);
+                      setActiveKey(e.target.value);
+                    }}
+                  >
+                    No
+                  </button>
+                </div>
+                {report && activekey === review.reviewer_name
+                  ? (
+                    <>
+                      <textarea
+                        rows="4"
+                        cols="50"
+                        placeholder="If you wish to report this review, please use this form and submit your feedback. Thank you for keeping this site safe for all users"
+                      />
+                      <button type="submit" value={`${review.review_id}`} onClick={(e) => { reportReview(e.target.value); }}>Submit</button>
+                    </>
+                  ) : null}
+              </div>
+            </li>
+          )
+        })}
       </ul>
       <div>
         <button onClick={() => { pagination(1); }}>1</button>
