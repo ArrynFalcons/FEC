@@ -120,7 +120,7 @@ function Summary(props) {
             <div style={{position: 'absolute', left: `${comfort * 40}px` }}>▼</div>
           </div>
           <div>
-            1: Low - 5: Extreme
+            1: Low - 5: High
           </div>
         </div>
         <div>Quality
@@ -128,7 +128,7 @@ function Summary(props) {
             <div style={{position: 'absolute', left: `${quality * 40}px` }}>▼</div>
           </div>
           <div>
-            1: Poor - 5: Outstanding
+            1: Poor - 5: High
           </div>
         </div>
 
