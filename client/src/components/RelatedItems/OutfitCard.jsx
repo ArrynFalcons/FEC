@@ -34,7 +34,7 @@ function OutfitCard({ product, setOutfits, getRouteData, dispatch }) {
   return (
     <div>
       <div className="productCard">
-        <h2 className="cardIcon" onClick={() => { deleteFromLocalStorage(product); }}>x</h2>
+        <h2 className="cardIcon overlay" onClick={() => { deleteFromLocalStorage(product); }}>x</h2>
         <img className="thumbnail" src={photo} alt="stock clothing item" />
         <span>{product.category}</span>
         <span>{product.name}</span>

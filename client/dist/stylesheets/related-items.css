@@ -1,5 +1,6 @@
 .relatedProducts {
   display: flex;
+  position: relative;
   flex-direction: row;
   margin: 10px;
   gap: 10px;
@@ -8,6 +9,7 @@
 
 .productCard {
   display: flex;
+  position: relative;
   flex-direction: column;
   border: 2px solid;
   border-color: gray;
@@ -28,16 +30,20 @@
   width: 200px;
 }
 
+.overlay {
+  position: absolute;
+}
+
 .thumbnail {
   height: 200px;
   width: 200px;
 }
 
 .cardIcon {
-  position: absolute;
   padding-left: 150px;
   cursor: pointer;
   color: white;
+  z-index: 1;
 }
 
 .comparisonModal {
@@ -50,6 +56,7 @@
   background-color: beige;
   padding: 10px;
   gap: 15px;
+  z-index: 2;
 }
 
 .features {
@@ -73,4 +80,10 @@
   position: relative;
   float: right;
   padding-left: 10px;
+}
+
+.product-card-container {
+  position: relative;
+  height: 300px;
+  width: 200px;
 }

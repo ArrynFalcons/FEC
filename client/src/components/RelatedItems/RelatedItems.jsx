@@ -10,7 +10,7 @@ function RelatedItems({ getRouteData }) {
   const [products, setProducts] = useState([]);
   const [featured, setFeatured] = useState(65635);
   // current product should eventually be passed down from APPS
-  const [currentProduct, setCurrentProduct] = useState(65639);
+  const [currentProduct, setCurrentProduct] = useState(65635);
 
   useEffect(() => {
     getRouteData('products', 1, 10, '', 65635, 'related')

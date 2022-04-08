@@ -28,12 +28,12 @@ function ProductsCard({ product, featuredProduct, getRouteData }) {
   };
 
   return (
-    <div>
+    <div className="product-card-container">
       {showModal ? (
-        <ComparisonModal featuredProduct={featuredProduct} product={product} />
+        <ComparisonModal featuredProduct={featuredProduct} product={product} setModal={setModal} />
       ) : null}
-      <div className="productCard" onClick={() => { sendToGallery(product) }}>
-        <h2 className="cardIcon" onClick={() => setModal(!showModal)}>★</h2>
+      <div className="productCard overlay" onClick={() => { sendToGallery(product) }}>
+        <h2 className="cardIcon overlay" onClick={() => setModal(!showModal)}>★</h2>
         <img className="thumbnail" src={photo} alt="stock clothing item" />
         <span>{product.category}</span>
         <span>{product.name}</span>
