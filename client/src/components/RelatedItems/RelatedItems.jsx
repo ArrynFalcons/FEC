@@ -3,11 +3,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import RelatedProductsList from './RelatedProductsList.jsx';
+import Outfit from './Outfit.jsx';
 
 // const getRouteData = (route, page, count, sort, Id, endParam)
 function RelatedItems({ getRouteData }) {
   const [products, setProducts] = useState([]);
   const [featured, setFeatured] = useState(65635);
+  // current product should eventually be passed down from APPS
+  const [currentProduct, setCurrentProduct] = useState(65635);
 
   useEffect(() => {
     getRouteData('products', 1, 10, '', 65635, 'related')
@@ -23,11 +26,17 @@ function RelatedItems({ getRouteData }) {
   }, []);
 
   return (
-    <RelatedProductsList
-      products={products}
-      featured={featured}
-      getRouteData={getRouteData}
-    />
+    <>
+      <RelatedProductsList
+        products={products}
+        featured={featured}
+        getRouteData={getRouteData}
+      />
+      <Outfit
+        currentProduct={currentProduct}
+        getRouteData={getRouteData}
+      />
+    </>
   );
 }
 
