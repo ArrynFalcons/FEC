@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 function Features(props) {
 
   return (
-    <div className="features">
+    <div className="features-container">
       <ul className="feature-list">
         {props.product.features ?
           props.product.features.map((feature) => (

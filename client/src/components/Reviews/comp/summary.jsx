@@ -64,6 +64,11 @@ function Summary(props) {
         console.log('Error retrieving reviews: ', err);
       });
   }, []);
+
+  useEffect(() => {
+    Summary.averageRating = avg;
+  }, [avg]);
+
   return (
     <div className="summary" title="reviews">
       Ratings and Reviews

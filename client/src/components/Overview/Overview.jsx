@@ -16,7 +16,7 @@ function getSkus(style) {
   return skus;
 }
 
-function Overview(props) {
+function Overview({productId, getRouteData}) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
@@ -25,10 +25,10 @@ function Overview(props) {
   //default id 65635
   //65632
   useEffect(() => {
-    props.getRouteData('products', 1, 1, '', '65635', '')
+    getRouteData('products', 1, 1, '', productId, '')
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
-    props.getRouteData('products', '', '', '', '65635', 'styles')
+    getRouteData('products', '', '', '', productId, 'styles')
       .then((res) => {
         setStyles(res.data.results);
         setStyle(res.data.results[0]);
@@ -41,7 +41,7 @@ function Overview(props) {
     <div className="overview">
       <Gallery style={style}/>
       <div className="main">
-        <h3 className="product-category">{product.category}</h3>
+        <h2 className="product-category">{product.category}</h2>
         <h1 className="product-title">{product.name}</h1>
         <Styles styles={styles} style={style} setStyle={setStyle}/>
         <Cart style={style} skus={getSkus(style)}/>
