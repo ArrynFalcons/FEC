@@ -22,12 +22,22 @@
 .staticCard {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   text-align: center;
   border: 2px solid;
   border-color: gray;
-  padding: 5px;
+  padding: 10px;
   height: 300px;
   width: 200px;
+}
+
+.plus-sign {
+  border-radius: 75%;
+  background-color: whitesmoke;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 15%;
+  cursor: pointer;
 }
 
 .overlay {
@@ -40,7 +50,8 @@
 }
 
 .cardIcon {
-  padding-left: 150px;
+  padding-left: 160px;
+  padding-top: 5px;
   cursor: pointer;
   color: white;
   z-index: 1;
@@ -86,4 +97,14 @@
   position: relative;
   height: 300px;
   width: 200px;
+}
+
+.product-arrows {
+  z-index: 2;
+  margin: -25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  opacity: 25%;
 }

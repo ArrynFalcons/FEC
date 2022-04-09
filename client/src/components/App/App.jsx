@@ -1,6 +1,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import moment from 'moment';
 // import { getRouteData } from './Helpers.js';
 import Overview from '../Overview/Overview.jsx';
 import Questions from '../Questions/Questions.jsx';
@@ -11,20 +13,41 @@ import Reviews from '../Reviews/Reviews.jsx';
 const getRouteData = require('./Helpers.js').default;
 
 function App() {
-  //have product id and view in state
-  //move this outside of app
+  // have product id and view in state
+  // move this outside of app
 
   useEffect(() => {
-    //need to get access to product id in url
-    //set it into state
+    // need to get access to product id in url
+    // set it into state
   }, []);
 
   const [productId, setProductId] = useState('65635');
   // const [avgRating, setAvgRating] = useState(0);
 
+  // sends User Click info to data scientists
   useEffect(() => {
     window.onclick = (event) => {
-      // console.log(event.target);
+      let widget = '';
+      if (event.pageY <= 900) {
+        widget = 'Overview';
+      } else if (event.pageY > 900 && event.pageY <= 1700) {
+        widget = 'Related Products';
+      } else {
+        widget = 'Reviews and Ratings';
+      }
+      const body = {
+        element: event.target.outerHTML,
+        widget,
+        time: moment().format(),
+      };
+      axios.post('/interactions', body)
+        .then((res) => {
+          // don't want to let the client know we're tracking their clicks
+          // console.log(res);
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
     };
   });
 
