@@ -79,6 +79,23 @@ app.post('/reviews', (req, res) => {
     });
 });
 
+// Post route for client click interactions
+app.post('/interactions', (req, res) => {
+  let options = {
+    headers: {
+      Authorization: config.token,
+    },
+  };
+  axios.post(`${config.url}/interactions`, req.body, options)
+    .then((response) => {
+      // we don't want to let client know we're tracking their clicks
+      // console.log(response.data);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+});
+
 // Get route for cart (testing purposes)
 app.get('/cart', (req, res) => {
   const options = {

@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
 
-function ProductsCard({ product, featuredProduct, getRouteData }) {
+function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) {
   const [photo, setPhoto] = useState([]);
   const [showModal, setModal] = useState(false);
   const [sale, setSale] = useState(null);
@@ -24,7 +24,8 @@ function ProductsCard({ product, featuredProduct, getRouteData }) {
 
   const sendToGallery = (sentProduct) => {
     // sends product to gallery for display on click
-    console.log(sentProduct);
+    setProductId(sentProduct.id);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -32,20 +33,22 @@ function ProductsCard({ product, featuredProduct, getRouteData }) {
       {showModal ? (
         <ComparisonModal featuredProduct={featuredProduct} product={product} setModal={setModal} />
       ) : null}
-      <div className="productCard overlay" onClick={() => { sendToGallery(product) }}>
-        <h2 className="cardIcon overlay" onClick={() => setModal(!showModal)}>★</h2>
-        <img className="thumbnail" src={photo} alt="stock clothing item" />
-        <span>{product.category}</span>
-        <span>{product.name}</span>
-        {sale ? (
-          <span>
-            <span style={{ textDecoration: 'line-through', color: 'gray' }}>{`$${product.default_price}`}</span>
-            <span style={{ color: 'red' }}>{`$${sale}`}</span>
-          </span>
-        ) : (
-          <span>{`$${product.default_price}`}</span>
-        )}
-        {/* {product.rating} */}
+      <div className="overlay">
+        <h2 className="cardIcon overlay" onClick={() => { setModal(!showModal); }}>★</h2>
+        <div className="productCard " onClick={() => { sendToGallery(product) }}>
+          <img className="thumbnail" src={photo} alt="stock clothing item" />
+          <span>{product.category}</span>
+          <span>{product.name}</span>
+          {sale ? (
+            <span>
+              <span style={{ textDecoration: 'line-through', color: 'gray' }}>{`$${product.default_price}`}</span>
+              <span style={{ color: 'red' }}>{`$${sale}`}</span>
+            </span>
+          ) : (
+            <span>{`$${product.default_price}`}</span>
+          )}
+          {/* {product.rating} */}
+        </div>
       </div>
     </div>
   );

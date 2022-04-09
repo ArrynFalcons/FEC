@@ -30,7 +30,7 @@ function outfit({ currentProduct, getRouteData }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [currentProduct]);
 
   useEffect(() => {
     JSON.parse(localStorage.getItem('addedProducts'))
@@ -49,21 +49,22 @@ function outfit({ currentProduct, getRouteData }) {
     });
     duplicate.length ? null
       : (storage.push(addedProduct),
-      localStorage.setItem('addedProducts', JSON.stringify(storage))
+      localStorage.setItem('addedProducts', JSON.stringify(storage)),
+      storage.length > 2 ? dispatch({ type: 'next' }) : null
       );
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
   };
 
   return (
     <div>
-      YOUR OUTFIT
+      <h2>YOUR CLOSET</h2>
       <div className="relatedProducts">
 
         {state.start === 0 ? null : (
-          <button type="submit" onClick={() => { dispatch({ type: 'previous' }); }}>{'<'}</button>)}
+          <h2 className="product-arrows" onClick={() => { dispatch({ type: 'previous' }); }}>◀︎</h2>)}
 
         <div className="staticCard">
-          <h2 onClick={() => { saveToLocalStorage(addedProducts); }}>+</h2>
+          <h2 className="plus-sign" onClick={() => { saveToLocalStorage(addedProducts); }}>+</h2>
           <h2>Add to Outfit</h2>
         </div>
 
@@ -74,11 +75,12 @@ function outfit({ currentProduct, getRouteData }) {
             dispatch={dispatch}
             setOutfits={setOutfits}
             getRouteData={getRouteData}
+            start={state.start}
           />
         )) : null}
 
         {(state.next === outfits.length || outfits.length < 2) ? null : (
-          <button type="submit" onClick={() => { dispatch({ type: 'next' }); }}>{'>'}</button>)}
+          <h2 className="product-arrows" onClick={() => { dispatch({ type: 'next' }); }}>►</h2>)}
       </div>
     </div>
   );
