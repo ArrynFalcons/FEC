@@ -2272,7 +2272,7 @@ function App() {
     className: "ratings-and-reviews"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
     grd: getRouteData,
-    productId: productId
+    pid: productId
   })));
 }
 
@@ -3726,47 +3726,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Reviews(props) {
-  var getRouteData = function getRouteData(route, page, count, sort, Id, endParam) {
-    var params = {
-      page: page,
-      count: count,
-      sort: sort,
-      product_id: Id
-    };
-
-    if (route === 'products') {
-      return Id ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/products/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products', {
-        params: params
-      });
-    }
-
-    if (route === 'qa/questions') {
-      return endParam ? axios__WEBPACK_IMPORTED_MODULE_1___default().get("/qa/questions/".concat(Id, "/").concat(endParam)) : axios__WEBPACK_IMPORTED_MODULE_1___default().get('/qa/questions', {
-        params: params
-      });
-    }
-
-    return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/reviews/".concat(endParam), {
-      params: params
-    });
-  }; // example of how to use helper function
-  // getRouteData('products', 1, 10, '', '65651', '')
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
-
+  var grd = props.grd,
+      pid = props.pid;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "ratings-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_summary_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    grd: getRouteData
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_NewReview_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    pid: pid,
+    grd: grd
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_summary_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    pid: pid,
+    grd: grd
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_ReviewList_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    grd: getRouteData
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comp_NewReview_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    grd: getRouteData
+    pid: pid,
+    grd: grd
   }));
 }
 
@@ -4316,12 +4288,25 @@ function Summary(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     Summary.averageRating = avg;
   }, [avg]);
+  var cssProps = {};
+  cssProps['--rating'] = avg;
+  var foregroundstyle = {
+    height: '10px',
+    width: '100%',
+    backgroundColor: '#F0F8FF'
+  };
+  var marginbottom = {
+    'margin-bottom': '20px'
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "summary",
     title: "reviews"
-  }, "Ratings and Reviews", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Ratings and Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, total, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     title: "summary"
-  }, "Average Rating:", ' ', Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, total, " people left a review."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Average Rating:", ' ', Math.round(10 * avg) / 10, "/5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "Stars",
+    style: cssProps
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "5 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "foreground5",
@@ -4329,7 +4314,7 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count5 / total, "%"),
-      backgroundColor: '#90EE90'
+      backgroundColor: 'black'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "4 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
@@ -4339,7 +4324,7 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count4 / total, "%"),
-      backgroundColor: '#90EE90'
+      backgroundColor: 'black'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "3 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
@@ -4349,7 +4334,7 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count3 / total, "%"),
-      backgroundColor: '#90EE90'
+      backgroundColor: 'black'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "2 Stars: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "background-bar"
@@ -4359,9 +4344,10 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count2 / total, "%"),
-      backgroundColor: '#90EE90'
+      backgroundColor: 'black'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1 Star: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: marginbottom,
     className: "background-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "foreground1",
@@ -4369,59 +4355,54 @@ function Summary(props) {
     style: {
       height: '30px',
       width: "".concat(100 * count1 / total, "%"),
-      backgroundColor: '#90EE90'
+      backgroundColor: 'black'
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Average Recommendation: ", Math.round(recommend * 100 / total), "% said yes."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    id: "characteristics"
-  }, "Characteristics Summary as reported by users.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Size", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: marginbottom
+  }, "Average Recommendation: ", Math.round(recommend * 100 / total), "% said yes."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "characteristics",
+    style: marginbottom
+  }, "Characteristics", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: marginbottom
+  }, "Size", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "foreground-bar",
-    style: {
-      height: '20px',
-      width: '200px',
-      backgroundColor: '#F0F8FF'
-    }
+    style: foregroundstyle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
       position: 'absolute',
       left: "".concat(size * 40, "px")
     }
-  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Too Small - 5: Too Large")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Width", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Too Small ------ Perfect ------ Too Large")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: marginbottom
+  }, "Width", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "foreground-bar",
-    style: {
-      height: '20px',
-      width: '200px',
-      backgroundColor: '#F0F8FF'
-    }
+    style: foregroundstyle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
       position: 'absolute',
       left: "".concat(width * 40, "px")
     }
-  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Too Narrow - 5: Too Wide")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Comfort", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Too Narrow --- Just Right ----- Too Wide")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: marginbottom
+  }, "Comfort", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "foreground-bar",
-    style: {
-      height: '20px',
-      width: '200px',
-      backgroundColor: '#F0F8FF'
-    }
+    style: foregroundstyle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
       position: 'absolute',
       left: "".concat(comfort * 40, "px")
     }
-  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Low - 5: High")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Quality", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Low ---------- Average ------------ High")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: marginbottom
+  }, "Quality", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "foreground-bar",
-    style: {
-      height: '20px',
-      width: '200px',
-      backgroundColor: '#F0F8FF'
-    }
+    style: foregroundstyle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
       position: 'absolute',
       left: "".concat(quality * 40, "px")
     }
-  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "1: Poor - 5: High"))));
+  }, "\u25BC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Poor --------- Average ----------- High"))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Summary);
