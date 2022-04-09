@@ -54,7 +54,7 @@ function App() {
         <Questions />
       </div> */}
       <div className="ratings-and-reviews">
-        <Reviews grd={getRouteData} productId={productId} />
+        <Reviews grd={getRouteData} pid={productId} />
       </div>
     </div>
   );
