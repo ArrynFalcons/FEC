@@ -2239,11 +2239,9 @@ function App() {
         element: event.target.outerHTML,
         widget: widget,
         time: moment__WEBPACK_IMPORTED_MODULE_2___default()().format()
-      };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/interactions', body).then(function (res) {// don't want to let the client know we're tracking their clicks
-        // console.log(res);
-      })["catch"](function (err) {// console.log(err);
-      });
+      }; // axios.post('/interactions', body);
+      // too many post requests on click will crash the app
+      // probably need to store in windowLocal storage
     };
   }); // useEffect(() => {
   //   getRouteData('reviews', '', '', '', productId, 'meta')
