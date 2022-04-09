@@ -2175,10 +2175,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Overview/Overview.jsx */ "./client/src/components/Overview/Overview.jsx");
-/* harmony import */ var _Questions_Questions_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Questions/Questions.jsx */ "./client/src/components/Questions/Questions.jsx");
-/* harmony import */ var _RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../RelatedItems/RelatedItems.jsx */ "./client/src/components/RelatedItems/RelatedItems.jsx");
-/* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Reviews/Reviews.jsx */ "./client/src/components/Reviews/Reviews.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Overview/Overview.jsx */ "./client/src/components/Overview/Overview.jsx");
+/* harmony import */ var _Questions_Questions_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Questions/Questions.jsx */ "./client/src/components/Questions/Questions.jsx");
+/* harmony import */ var _RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../RelatedItems/RelatedItems.jsx */ "./client/src/components/RelatedItems/RelatedItems.jsx");
+/* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Reviews/Reviews.jsx */ "./client/src/components/Reviews/Reviews.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2194,6 +2198,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable import/extensions */
 
 /* eslint-disable no-unused-vars */
+
+
  // import { getRouteData } from './Helpers.js';
 
 
@@ -2204,20 +2210,40 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var getRouteData = (__webpack_require__(/*! ./Helpers.js */ "./client/src/components/App/Helpers.js")["default"]);
 
 function App() {
-  //have product id and view in state
-  //move this outside of app
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {//need to get access to product id in url
-    //set it into state
+  // have product id and view in state
+  // move this outside of app
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {// need to get access to product id in url
+    // set it into state
   }, []);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('65635'),
       _useState2 = _slicedToArray(_useState, 2),
       productId = _useState2[0],
       setProductId = _useState2[1]; // const [avgRating, setAvgRating] = useState(0);
+  // sends User Click info to data scientists
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    window.onclick = function (event) {// console.log(event.target);
+    window.onclick = function (event) {
+      var widget = '';
+
+      if (event.pageY <= 900) {
+        widget = 'Overview';
+      } else if (event.pageY > 900 && event.pageY <= 1700) {
+        widget = 'Related Products';
+      } else {
+        widget = 'Reviews and Ratings';
+      }
+
+      var body = {
+        element: event.target.outerHTML,
+        widget: widget,
+        time: moment__WEBPACK_IMPORTED_MODULE_2___default()().format()
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/interactions', body).then(function (res) {// don't want to let the client know we're tracking their clicks
+        // console.log(res);
+      })["catch"](function (err) {// console.log(err);
+      });
     };
   }); // useEffect(() => {
   //   getRouteData('reviews', '', '', '', productId, 'meta')
@@ -2233,18 +2259,18 @@ function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container",
     title: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     getRouteData: getRouteData,
     productId: productId
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "related-items"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
     getRouteData: getRouteData,
     productId: productId,
     setProductId: setProductId
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "ratings-and-reviews"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
     grd: getRouteData,
     productId: productId
   })));
