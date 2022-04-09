@@ -7,13 +7,13 @@ function NewReview(props) {
   const [reviewstate, setreviewstate] = useState(false);
   const [bodyparams, setbodyparams] = useState({});
   const [metadata, setmetadata] = useState({});
+  const [newrating, setnewrating] = useState(1);
   const openReviewBox = () => {
     setreviewstate(true);
   };
   useEffect(() => {
     grd('reviews', '', '', '', '65635', 'meta')
       .then((data) => {
-        //console.log('Metadata retrieved: ', data.data);
         setmetadata(data.data);
         let bodyparamscopy = bodyparams;
         bodyparamscopy.product_id = Number(data.data.product_id);
@@ -23,14 +23,21 @@ function NewReview(props) {
           220245: 4,
           220246: 3.5,
         };
-        bodyparamscopy.rating = 4;
+        bodyparamscopy.rating = newrating;
         setbodyparams(bodyparamscopy);
       })
       .catch((err) => {
         console.log('Error retrieving reviews: ', err);
       });
   }, []);
-
+  const ratingHelper = (rating) => {
+    setnewrating(rating);
+  };
+  useEffect(() => {
+    let bodyparamscopy = bodyparams;
+    bodyparamscopy.rating = newrating;
+    setbodyparams(bodyparamscopy);
+  }, [newrating]);
   /* Sample Post Body Parameters
   {
     "product_id": "65635",
@@ -75,14 +82,22 @@ function NewReview(props) {
             "value": "3.5000000000000000"
         }
     }
-}
+  }
   */
+ let cssProps = {};
+ cssProps['--rating'] = newrating;
+//  cssProps['z-index'] = 10;
+ let cssFloaters = { float:'left', width: '42px' };
+ let cssFloaters1 = { float:'left', width: '45px', marginLeft: '15px' };
+
   return (
-    <div> Leave a New Review
+    <div>
+      <h1>Leave a New Review</h1>
       <br />
       <input
         type="text"
         onChange={(e) => {
+          setnewrating
           let bodyparamscopy = bodyparams;
           bodyparamscopy.name = `${e.target.value}`;
           setbodyparams(bodyparamscopy);
@@ -98,9 +113,24 @@ function NewReview(props) {
         }}
         placeholder="Email"
       />
-      <div>
-        Please rate out of 5 stars:
-        <img src="https://wpmediastorage.blob.core.windows.net/grabcaruber/2017/05/5-stars-rating.png" width="100" alt="placeholderstars" />
+      <div style={{width: '300px'}}>
+        <div>Please rate out of 5 stars:</div>
+        <div className="1star" style={cssFloaters1} onMouseOver={(e) => {
+          ratingHelper(1);
+        }}>1</div>
+        <div className="2star" style={cssFloaters} onMouseOver={(e) => {
+          ratingHelper(2);
+        }}>2</div>
+        <div className="3star" style={cssFloaters} onMouseOver={(e) => {
+          ratingHelper(3);
+        }}>3</div>
+        <div className="4star" style={cssFloaters} onMouseOver={(e) => {
+          ratingHelper(4);
+        }}>4</div>
+        <div className="5star" style={cssFloaters} onMouseOver={(e) => {
+          ratingHelper(5);
+        }}>5</div>
+          <div className="Stars" style={cssProps} ></div>
       </div>
       <div>
         Do you recommend this product?
