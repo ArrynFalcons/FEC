@@ -38,7 +38,10 @@ const Thumbnails = (props) => {
           <div className={i === props.index
             ? "gallery-thumbnail-container selected"
             : "gallery-thumbnail-container"} key={i}>
-            <img className="gallery-image" src={image.thumbnail_url} width="60px" height="60px" onClick={() => {props.setIndex(i);}}/>
+            <img className="gallery-image" src={image.thumbnail_url} width="60px" height="60px" onClick={() => {
+              props.setIndex(i);
+              props.setExpandedView(false);
+            }}/>
           </div>
         )
       })}

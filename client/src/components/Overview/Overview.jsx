@@ -16,7 +16,7 @@ function getSkus(style) {
   return skus;
 }
 
-function Overview({productId, getRouteData}) {
+function Overview({productId, getRouteData, setAppView, setImageUrl}) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
@@ -39,7 +39,7 @@ function Overview({productId, getRouteData}) {
   //conditional rendering for loading
   return (
     <div className="overview">
-      <Gallery style={style}/>
+      <Gallery style={style} setAppView={setAppView} setImageUrl={setImageUrl}/>
       <div className="main">
         <h2 className="product-category">{product.category}</h2>
         <h1 className="product-title">{product.name}</h1>

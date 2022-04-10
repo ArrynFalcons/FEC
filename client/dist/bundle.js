@@ -2191,6 +2191,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+/* eslint-disable*/
+
 /* eslint-disable import/extensions */
 
 /* eslint-disable no-unused-vars */
@@ -2204,50 +2206,83 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var getRouteData = (__webpack_require__(/*! ./Helpers.js */ "./client/src/components/App/Helpers.js")["default"]);
 
 function App() {
-  //have product id and view in state
-  //move this outside of app
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {//need to get access to product id in url
-    //set it into state
+  // have product id and view in state
+  // move this outside of app
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {// need to get access to product id in url
+    // set it into state
   }, []);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('65635'),
       _useState2 = _slicedToArray(_useState, 2),
       productId = _useState2[0],
-      setProductId = _useState2[1]; // const [avgRating, setAvgRating] = useState(0);
+      setProductId = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('default'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      appView = _useState4[0],
+      setAppView = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      imageUrl = _useState6[0],
+      setImageUrl = _useState6[1]; // const [avgRating, setAvgRating] = useState(0);
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.onclick = function (event) {// console.log(event.target);
     };
-  }); // useEffect(() => {
-  //   getRouteData('reviews', '', '', '', productId, 'meta')
-  //     .then((data) => {
-  //       const num = 1 * data.data.ratings['1'] + 2;
-  //       const div = rating
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error retrieving reviews: ', err);
-  //     });
-  // }, []);
+  });
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "container",
-    title: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    getRouteData: getRouteData,
-    productId: productId
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "related-items"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    getRouteData: getRouteData,
-    productId: productId,
-    setProductId: setProductId
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "ratings-and-reviews"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    grd: getRouteData,
-    productId: productId
-  })));
+  var handleMouseMove = function handleMouseMove(event) {
+    var view = document.querySelector('.expanded-view');
+    view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
+    view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
+  };
+
+  if (appView === 'default') {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "container",
+      title: "container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      getRouteData: getRouteData,
+      productId: productId,
+      setAppView: setAppView,
+      setImageUrl: setImageUrl
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "related-items"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      getRouteData: getRouteData,
+      productId: productId,
+      setProductId: setProductId
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "ratings-and-reviews"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      grd: getRouteData,
+      productId: productId
+    })));
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "carousel-container",
+      onClick: function onClick() {
+        return setAppView('default');
+      },
+      onMouseMove: function onMouseMove(event) {
+        return handleMouseMove(event);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "expanded-view",
+      style: {
+        backgroundImage: "url(".concat(imageUrl, ")"),
+        width: 800,
+        height: 800
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "exit-button",
+      onClick: function onClick() {
+        return setAppView('default');
+      }
+    }, "X"));
+  }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -2702,13 +2737,10 @@ function Gallery(props) {
       index = _useState4[0],
       setIndex = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('default'),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      view = _useState6[0],
-      setView = _useState6[1]; // const [positionX, setPositionX] = useState('');
-  // const [positionY, setPositionY] = useState('');
-  // const [expandedStyle, setExpandedStyle] = useState({});
-  // const [firstSelected, setFirstSelected] = useState(true);
+      isExpandedView = _useState6[0],
+      setExpandedView = _useState6[1]; // const [firstSelected, setFirstSelected] = useState(true);
   // const [lastSelected, setLastSelected] = useState(false);
   // const [selected, setSelected] = useState('first');
   // const [numThumbnails, setNumThumbnails] = useState(6);
@@ -2723,64 +2755,85 @@ function Gallery(props) {
 
     setImages(imageArr);
   }, [props.style]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (images.length > 0) {
+      props.setImageUrl(images[index].url);
+    }
+  }, [images]);
 
   var handleMouseMove = function handleMouseMove(event) {
     var view = document.querySelector('.expanded-view');
-    view.style.backgroundPositionX = -event.nativeEvent.offsetX + "px";
-    view.style.backgroundPositionY = -event.nativeEvent.offsetY + "px";
+    view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
+    view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
   };
 
-  return images.length > 0 && view === 'default' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "gallery"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    index: index,
-    setIndex: setIndex,
-    images: images
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "carousel-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "gallery-image carousel",
-    src: images[index].url,
-    key: index,
-    width: "765px",
-    height: "600px"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    index: index,
-    setIndex: setIndex,
-    length: images.length
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "expand-button",
-    onClick: function onClick() {
-      return setView('expanded');
-    }
-  }, "[ ]"))) : images.length > 0 && view === 'expanded' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "gallery"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    index: index,
-    setIndex: setIndex,
-    images: images
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "carousel-container",
-    onMouseMove: function onMouseMove(event) {
-      return handleMouseMove(event);
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "expanded-view",
-    style: {
-      backgroundImage: "url(".concat(images[index].url, ")"),
-      width: 765,
-      height: 600
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    index: index,
-    setIndex: setIndex,
-    length: images.length
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "expand-button",
-    onClick: function onClick() {
-      return setView('default');
-    }
-  }, "[ ]"))) : null;
+  if (images.length > 0 && isExpandedView === false) {
+    // props.setImageUrl(images[index].url);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "gallery"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      index: index,
+      setIndex: setIndex,
+      images: images,
+      setExpandedView: setExpandedView
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "carousel-container",
+      onClick: function onClick() {
+        return setExpandedView(!isExpandedView);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      className: "gallery-image carousel",
+      src: images[index].url,
+      key: index,
+      width: "765px",
+      height: "600px"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      index: index,
+      setIndex: setIndex,
+      length: images.length
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "expand-button",
+      onClick: function onClick() {
+        return props.setAppView('expanded');
+      }
+    }, "[ ]")));
+  } else if (images.length > 0 && isExpandedView === true) {
+    // props.setImageUrl(images[index].url);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "gallery"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      index: index,
+      setIndex: setIndex,
+      images: images,
+      setExpandedView: setExpandedView
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "carousel-container",
+      onClick: function onClick() {
+        return setExpandedView(!isExpandedView);
+      },
+      onMouseMove: function onMouseMove(event) {
+        return handleMouseMove(event);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "expanded-view",
+      style: {
+        backgroundImage: "url(".concat(images[index].url, ")"),
+        width: 765,
+        height: 600
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      index: index,
+      setIndex: setIndex,
+      length: images.length
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "expand-button",
+      onClick: function onClick() {
+        return setExpandedView(!isExpandedView);
+      }
+    }, "[ ]")));
+  } else {
+    return null;
+  }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Gallery); //<img className="gallery-image" src={image.url}/>
@@ -2871,6 +2924,7 @@ var Thumbnails = function Thumbnails(props) {
       height: "60px",
       onClick: function onClick() {
         props.setIndex(i);
+        props.setExpandedView(false);
       }
     }));
   }), page === thumbnails.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2942,7 +2996,9 @@ function getSkus(style) {
 
 function Overview(_ref) {
   var productId = _ref.productId,
-      getRouteData = _ref.getRouteData;
+      getRouteData = _ref.getRouteData,
+      setAppView = _ref.setAppView,
+      setImageUrl = _ref.setImageUrl;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2979,7 +3035,9 @@ function Overview(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overview"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Gallery_Gallery_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    style: style
+    style: style,
+    setAppView: setAppView,
+    setImageUrl: setImageUrl
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {

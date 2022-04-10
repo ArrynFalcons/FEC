@@ -8,10 +8,7 @@ function Gallery(props) {
 
   const [images, setImages] = useState([]);
   const [index, setIndex] = useState(0);
-  const [view, setView] = useState('default');
-  // const [positionX, setPositionX] = useState('');
-  // const [positionY, setPositionY] = useState('');
-  // const [expandedStyle, setExpandedStyle] = useState({});
+  const [isExpandedView, setExpandedView] = useState(false);
   // const [firstSelected, setFirstSelected] = useState(true);
   // const [lastSelected, setLastSelected] = useState(false);
   // const [selected, setSelected] = useState('first');
@@ -25,31 +22,37 @@ function Gallery(props) {
     setImages(imageArr);
   }, [props.style])
 
+  useEffect(() => {
+    if (images.length > 0) {
+      props.setImageUrl(images[index].url);
+    }
+  }, [images])
+
   const handleMouseMove = (event) => {
-
     const view = document.querySelector('.expanded-view');
-    view.style.backgroundPositionX = -event.nativeEvent.offsetX + "px";
-    view.style.backgroundPositionY = -event.nativeEvent.offsetY + "px";
-
+    view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
+    view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
   }
 
-  return (images.length > 0 && view === 'default'
-
-    ? <div className="gallery">
-        <Thumbnails index={index} setIndex={setIndex} images={images}/>
-        <div className="carousel-container">
+  if (images.length > 0 && isExpandedView === false) {
+    // props.setImageUrl(images[index].url);
+    return (
+      <div className="gallery">
+        <Thumbnails index={index} setIndex={setIndex} images={images} setExpandedView={setExpandedView}/>
+        <div className="carousel-container" onClick={() => setExpandedView(!isExpandedView)}>
           {<img className="gallery-image carousel" src={images[index].url} key={index} width="765px" height="600px"/>}
           <Arrows index={index} setIndex={setIndex} length={images.length}/>
-          <button className="expand-button" onClick={() => setView('expanded')}>[ ]</button>
+          <button className="expand-button" onClick={() => props.setAppView('expanded')}>[ ]</button>
           {/* <i className="fas-plus"></i> */}
         </div>
       </div>
-
-    : images.length > 0 && view === 'expanded'
-
-    ? <div className="gallery">
-        <Thumbnails index={index} setIndex={setIndex} images={images}/>
-        <div className="carousel-container" onMouseMove={(event) => handleMouseMove(event)}>
+    )
+  } else if (images.length > 0 && isExpandedView === true) {
+    // props.setImageUrl(images[index].url);
+    return (
+      <div className="gallery">
+        <Thumbnails index={index} setIndex={setIndex} images={images} setExpandedView={setExpandedView}/>
+        <div className="carousel-container" onClick={() => setExpandedView(!isExpandedView)} onMouseMove={(event) => handleMouseMove(event)}>
           <div className="expanded-view"
             style={{
               backgroundImage: `url(${images[index].url})`,
@@ -58,14 +61,15 @@ function Gallery(props) {
             }}>
           </div>
           <Arrows index={index} setIndex={setIndex} length={images.length}/>
-          <button className="expand-button" onClick={() => setView('default')}>[ ]</button>
+          <button className="expand-button" onClick={() => setExpandedView(!isExpandedView)}>[ ]</button>
           {/* <i className="fas-plus"></i> */}
         </div>
       </div>
 
-    : null
-
-  )
+    )
+  } else {
+    return null;
+  }
 
 }
 
