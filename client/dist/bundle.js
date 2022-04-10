@@ -2689,7 +2689,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable */
 
 
-
+ // import Expanded from './Expanded.jsx';
 
 function Gallery(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -2700,7 +2700,15 @@ function Gallery(props) {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       index = _useState4[0],
-      setIndex = _useState4[1]; // const [firstSelected, setFirstSelected] = useState(true);
+      setIndex = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('default'),
+      _useState6 = _slicedToArray(_useState5, 2),
+      view = _useState6[0],
+      setView = _useState6[1]; // const [positionX, setPositionX] = useState('');
+  // const [positionY, setPositionY] = useState('');
+  // const [expandedStyle, setExpandedStyle] = useState({});
+  // const [firstSelected, setFirstSelected] = useState(true);
   // const [lastSelected, setLastSelected] = useState(false);
   // const [selected, setSelected] = useState('first');
   // const [numThumbnails, setNumThumbnails] = useState(6);
@@ -2715,7 +2723,14 @@ function Gallery(props) {
 
     setImages(imageArr);
   }, [props.style]);
-  return images.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+
+  var handleMouseMove = function handleMouseMove(event) {
+    var view = document.querySelector('.expanded-view');
+    view.style.backgroundPositionX = -event.nativeEvent.offsetX + "px";
+    view.style.backgroundPositionY = -event.nativeEvent.offsetY + "px";
+  };
+
+  return images.length > 0 && view === 'default' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "gallery"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     index: index,
@@ -2733,9 +2748,39 @@ function Gallery(props) {
     index: index,
     setIndex: setIndex,
     length: images.length
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-    className: "fas-plus"
-  }))) : null;
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "expand-button",
+    onClick: function onClick() {
+      return setView('expanded');
+    }
+  }, "[ ]"))) : images.length > 0 && view === 'expanded' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "gallery"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    index: index,
+    setIndex: setIndex,
+    images: images
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "carousel-container",
+    onMouseMove: function onMouseMove(event) {
+      return handleMouseMove(event);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "expanded-view",
+    style: {
+      backgroundImage: "url(".concat(images[index].url, ")"),
+      width: 765,
+      height: 600
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    index: index,
+    setIndex: setIndex,
+    length: images.length
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "expand-button",
+    onClick: function onClick() {
+      return setView('default');
+    }
+  }, "[ ]"))) : null;
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Gallery); //<img className="gallery-image" src={image.url}/>

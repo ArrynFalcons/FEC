@@ -153,11 +153,24 @@ h3 {
   list-style-type: >&#10003;
 } */
 
-/* .gallery-image:hover {
-  cursor: zoom-in;
-} */
-
 .expand {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.expand-button {
+  position: absolute;
   width: 60px;
   height: 50px;
+  bottom: 15px;
+  right: 15px;
+  z-index: 3;
 }
+/*
+.expanded-view {
+  width: 765px;
+  height: 600px;
+} */
+
+
