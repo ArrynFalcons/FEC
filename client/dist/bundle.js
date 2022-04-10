@@ -3338,10 +3338,32 @@ function OutfitCard(_ref) {
       sale = _useState4[0],
       setSale = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      avgReview = _useState6[0],
+      setReview = _useState6[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('products', 1, 5, '', product.id, 'styles').then(function (data) {
       setPhoto(data.data.results[0].photos[0].thumbnail_url);
       setSale(data.data.results[0].sale_price);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getRouteData('reviews', '', '', '', product.id, 'meta').then(function (reviews) {
+      if (Object.keys(reviews.data.ratings).length) {
+        var total = 0;
+        var totalReviews = 0;
+
+        for (var i = 0; i < Object.keys(reviews.data.ratings).length; i += 1) {
+          total += Number(Object.keys(reviews.data.ratings)[i]) * Number(Object.values(reviews.data.ratings)[i]);
+          totalReviews += Number(Object.values(reviews.data.ratings)[i]);
+        }
+
+        setReview(Math.round(10 * (total / totalReviews)) / 10);
+      }
     })["catch"](function (err) {
       console.log(err);
     });
@@ -3380,7 +3402,12 @@ function OutfitCard(_ref) {
     style: {
       color: 'red'
     }
-  }, "$".concat(sale))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price))));
+  }, "$".concat(sale))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "product-stars",
+    style: {
+      '--rating': "".concat(avgReview)
+    }
+  }, avgReview ? "".concat(avgReview, "/5") : null)));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OutfitCard);
@@ -3445,10 +3472,32 @@ function ProductsCard(_ref) {
       sale = _useState6[0],
       setSale = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState8 = _slicedToArray(_useState7, 2),
+      avgReview = _useState8[0],
+      setReview = _useState8[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('products', 1, 5, '', product.id, 'styles').then(function (data) {
       setPhoto(data.data.results[0].photos[0].thumbnail_url);
       setSale(data.data.results[0].sale_price);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getRouteData('reviews', '', '', '', product.id, 'meta').then(function (reviews) {
+      if (Object.keys(reviews.data.ratings).length) {
+        var total = 0;
+        var totalReviews = 0;
+
+        for (var i = 0; i < Object.keys(reviews.data.ratings).length; i += 1) {
+          total += Number(Object.keys(reviews.data.ratings)[i]) * Number(Object.values(reviews.data.ratings)[i]);
+          totalReviews += Number(Object.values(reviews.data.ratings)[i]);
+        }
+
+        setReview(Math.round(10 * (total / totalReviews)) / 10);
+      }
     })["catch"](function (err) {
       console.log(err);
     });
@@ -3491,7 +3540,12 @@ function ProductsCard(_ref) {
     style: {
       color: 'red'
     }
-  }, "$".concat(sale))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price)))));
+  }, "$".concat(sale))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "$".concat(product.default_price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "product-stars",
+    style: {
+      '--rating': "".concat(avgReview)
+    }
+  }, avgReview ? "".concat(avgReview, "/5") : null))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductsCard);

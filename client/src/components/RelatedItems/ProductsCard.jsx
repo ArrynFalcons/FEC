@@ -10,12 +10,31 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
   const [photo, setPhoto] = useState([]);
   const [showModal, setModal] = useState(false);
   const [sale, setSale] = useState(null);
+  const [avgReview, setReview] = useState(null);
 
   useEffect(() => {
     getRouteData('products', 1, 5, '', product.id, 'styles')
       .then((data) => {
         setPhoto(data.data.results[0].photos[0].thumbnail_url);
         setSale(data.data.results[0].sale_price);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    getRouteData('reviews', '', '', '', product.id, 'meta')
+      .then((reviews) => {
+        if (Object.keys(reviews.data.ratings).length) {
+          let total = 0;
+          let totalReviews = 0;
+          for (let i = 0; i < Object.keys(reviews.data.ratings).length; i += 1) {
+            total += (Number(Object.keys(reviews.data.ratings)[i]) * Number(Object.values(reviews.data.ratings)[i]));
+            totalReviews += Number(Object.values(reviews.data.ratings)[i]);
+          }
+          setReview(Math.round(10 * (total / totalReviews)) / 10);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +66,9 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
           ) : (
             <span>{`$${product.default_price}`}</span>
           )}
-          {/* <span className="stars" style={{ '--rating': 2.3 }}>{2.3}</span> */}
+          <span className="product-stars" style={{ '--rating': `${avgReview}` }}>
+            {avgReview ? `${avgReview}/5` : null}
+          </span>
         </div>
       </div>
     </div>
