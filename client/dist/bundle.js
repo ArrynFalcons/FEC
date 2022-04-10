@@ -2417,8 +2417,8 @@ function Cart(props) {
     }
   }, [size]);
 
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
 
     for (var i = 0; i < Number(quantity); i++) {
       axios__WEBPACK_IMPORTED_MODULE_3___default().post('/cart', {
@@ -2435,8 +2435,8 @@ function Cart(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cart"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-    onSubmit: function onSubmit(event) {
-      return handleSubmit(event);
+    onSubmit: function onSubmit(e) {
+      return handleSubmit(e);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SizeSelector_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     skus: skus,
@@ -2507,8 +2507,8 @@ function QuantitySelector(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     name: "quantity",
     id: "quantity",
-    onChange: function onChange(event) {
-      return props.setQuantity(event.target.value);
+    onChange: function onChange(e) {
+      return props.setQuantity(e.target.value);
     }
   }, quantities.map(function (quantity, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
@@ -2558,8 +2558,8 @@ function SizeSelector(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     required: true,
     value: props.size,
-    onChange: function onChange(event) {
-      return props.setSize(event.target.value);
+    onChange: function onChange(e) {
+      return props.setSize(e.target.value);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "",
@@ -2657,36 +2657,56 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable */
 
 
-function Arrows(props) {
-  // const handleNext = () => {
-  //   if (props.index === 4) {
-  //     props.setIndex(0);
-  //     props.setP
-  //   }
-  // }
+function Arrows(_ref) {
+  var index = _ref.index,
+      setIndex = _ref.setIndex,
+      length = _ref.length,
+      page = _ref.page,
+      setPage = _ref.setPage;
+
+  var handlePrev = function handlePrev(e) {
+    e.stopPropagation();
+
+    if (index === page * 6) {
+      setPage(page - 1);
+    }
+
+    setIndex(index - 1);
+  };
+
+  var handleNext = function handleNext(e) {
+    e.stopPropagation();
+
+    if (index === (page + 1) * 6 - 1) {
+      setPage(page + 1);
+    }
+
+    setIndex(index + 1);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "arrows carousel"
-  }, props.index === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, index === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "prev",
-    onClick: function onClick() {
-      return props.setIndex(props.index - 1);
+    onClick: function onClick(e) {
+      return handlePrev(e);
     },
     disabled: true
   }, "\u2190") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "prev",
-    onClick: function onClick() {
-      return props.setIndex(props.index - 1);
+    onClick: function onClick(e) {
+      return handlePrev(e);
     }
-  }, "\u2190"), props.index === props.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, "\u2190"), index === length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "next",
-    onClick: function onClick() {
-      return props.setIndex(props.index + 1);
+    onClick: function onClick(e) {
+      return handleNext(e);
     },
     disabled: true
   }, "\u2192") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "next",
-    onClick: function onClick() {
-      return props.setIndex(props.index + 1);
+    onClick: function onClick(e) {
+      return handleNext(e);
     }
   }, "\u2192"));
 }
@@ -2724,7 +2744,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable */
 
 
- // import Expanded from './Expanded.jsx';
+
 
 function Gallery(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -2740,11 +2760,12 @@ function Gallery(props) {
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       isExpandedView = _useState6[0],
-      setExpandedView = _useState6[1]; // const [firstSelected, setFirstSelected] = useState(true);
-  // const [lastSelected, setLastSelected] = useState(false);
-  // const [selected, setSelected] = useState('first');
-  // const [numThumbnails, setNumThumbnails] = useState(6);
+      setExpandedView = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      page = _useState8[0],
+      setPage = _useState8[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var imageArr = [];
@@ -2761,10 +2782,10 @@ function Gallery(props) {
     }
   }, [images]);
 
-  var handleMouseMove = function handleMouseMove(event) {
+  var handleMouseMove = function handleMouseMove(e) {
     var view = document.querySelector('.expanded-view');
-    view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
-    view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
+    view.style.backgroundPositionX = -e.nativeEvent.offsetX + 'px';
+    view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
   };
 
   if (images.length > 0 && isExpandedView === false) {
@@ -2775,7 +2796,9 @@ function Gallery(props) {
       index: index,
       setIndex: setIndex,
       images: images,
-      setExpandedView: setExpandedView
+      setExpandedView: setExpandedView,
+      page: page,
+      setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "carousel-container",
       onClick: function onClick() {
@@ -2790,7 +2813,9 @@ function Gallery(props) {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       index: index,
       setIndex: setIndex,
-      length: images.length
+      length: images.length,
+      page: page,
+      setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "expand-button",
       onClick: function onClick() {
@@ -2805,14 +2830,16 @@ function Gallery(props) {
       index: index,
       setIndex: setIndex,
       images: images,
-      setExpandedView: setExpandedView
+      setExpandedView: setExpandedView,
+      page: page,
+      setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "carousel-container",
       onClick: function onClick() {
         return setExpandedView(!isExpandedView);
       },
-      onMouseMove: function onMouseMove(event) {
-        return handleMouseMove(event);
+      onMouseMove: function onMouseMove(e) {
+        return handleMouseMove(e);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "expanded-view",
@@ -2824,7 +2851,9 @@ function Gallery(props) {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       index: index,
       setIndex: setIndex,
-      length: images.length
+      length: images.length,
+      page: page,
+      setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "expand-button",
       onClick: function onClick() {
@@ -2868,19 +2897,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable */
 
 
-var Thumbnails = function Thumbnails(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState2 = _slicedToArray(_useState, 2),
-      page = _useState2[0],
-      setPage = _useState2[1];
+var Thumbnails = function Thumbnails(_ref) {
+  var index = _ref.index,
+      setIndex = _ref.setIndex,
+      images = _ref.images,
+      setExpandedView = _ref.setExpandedView,
+      page = _ref.page,
+      setPage = _ref.setPage;
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      thumbnails = _useState4[0],
-      setThumbnails = _useState4[1];
+  // const [page, setPage] = useState(0);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      thumbnails = _useState2[0],
+      setThumbnails = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var imagesCopy = props.images.slice();
+    var imagesCopy = images.slice();
     var thumbnailPages = [];
 
     while (imagesCopy.length > 0) {
@@ -2888,17 +2920,7 @@ var Thumbnails = function Thumbnails(props) {
     }
 
     setThumbnails(thumbnailPages);
-  }, [props.images]); // const handleSelected = (i) => {
-  //   if (i === props.index && i === thumbnails[page].length - 1) {
-  //     props.setSelected('last');
-  //   } else if (i === 0) {
-  //     props.setSelected('first');
-  //   }
-  //   else {
-  //     props.setSelected('');
-  //   }
-  // }
-
+  }, [images]);
   return thumbnails.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "gallery-thumbnails"
   }, page === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2913,9 +2935,8 @@ var Thumbnails = function Thumbnails(props) {
       return setPage(page - 1);
     }
   }, "\u2227"), thumbnails[page].map(function (image, i) {
-    // handleSelected(i);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: i === props.index ? "gallery-thumbnail-container selected" : "gallery-thumbnail-container",
+      className: index === page * 6 + i ? "gallery-thumbnail-container selected" : "gallery-thumbnail-container",
       key: i
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       className: "gallery-image",
@@ -2923,8 +2944,8 @@ var Thumbnails = function Thumbnails(props) {
       width: "60px",
       height: "60px",
       onClick: function onClick() {
-        props.setIndex(i);
-        props.setExpandedView(false);
+        setIndex(page * 6 + i);
+        setExpandedView(false);
       }
     }));
   }), page === thumbnails.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -3084,7 +3105,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 function Styles(props) {
-  var handleStyleClick = function handleStyleClick(event) {
+  var handleStyleClick = function handleStyleClick(e) {
     var _iterator = _createForOfIteratorHelper(props.styles),
         _step;
 
@@ -3092,7 +3113,7 @@ function Styles(props) {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var style = _step.value;
 
-        if (style.style_id === Number(event.target.id)) {
+        if (style.style_id === Number(e.target.id)) {
           props.setStyle(style);
           break;
         }
@@ -3126,8 +3147,8 @@ function Styles(props) {
       src: style.photos[0].thumbnail_url,
       width: "60",
       height: "60",
-      onClick: function onClick(event) {
-        return handleStyleClick(event);
+      onClick: function onClick(e) {
+        return handleStyleClick(e);
       }
     }));
   })));

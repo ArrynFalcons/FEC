@@ -13,7 +13,7 @@ function SizeSelector(props) {
     )
     : (
       <div className="size-selector">
-        <select required value={props.size} onChange={(event) => props.setSize(event.target.value)}>
+        <select required value={props.size} onChange={(e) => props.setSize(e.target.value)}>
           <option value="" selected hidden>Select Size</option>
           {props.skus.map((sku, i) => <option value={sku.size} key={i}>{sku.size}</option>)}
         </select>

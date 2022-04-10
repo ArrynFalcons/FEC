@@ -2,17 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import Arrows from './Arrows.jsx';
 import Thumbnails from './Thumbnails.jsx';
-// import Expanded from './Expanded.jsx';
 
 function Gallery(props) {
 
   const [images, setImages] = useState([]);
   const [index, setIndex] = useState(0);
   const [isExpandedView, setExpandedView] = useState(false);
-  // const [firstSelected, setFirstSelected] = useState(true);
-  // const [lastSelected, setLastSelected] = useState(false);
-  // const [selected, setSelected] = useState('first');
-  // const [numThumbnails, setNumThumbnails] = useState(6);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     const imageArr = [];
@@ -28,20 +24,20 @@ function Gallery(props) {
     }
   }, [images])
 
-  const handleMouseMove = (event) => {
+  const handleMouseMove = (e) => {
     const view = document.querySelector('.expanded-view');
-    view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
-    view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
+    view.style.backgroundPositionX = -e.nativeEvent.offsetX + 'px';
+    view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
   }
 
   if (images.length > 0 && isExpandedView === false) {
     // props.setImageUrl(images[index].url);
     return (
       <div className="gallery">
-        <Thumbnails index={index} setIndex={setIndex} images={images} setExpandedView={setExpandedView}/>
+        <Thumbnails index={index} setIndex={setIndex} images={images} setExpandedView={setExpandedView} page={page} setPage={setPage}/>
         <div className="carousel-container" onClick={() => setExpandedView(!isExpandedView)}>
           {<img className="gallery-image carousel" src={images[index].url} key={index} width="765px" height="600px"/>}
-          <Arrows index={index} setIndex={setIndex} length={images.length}/>
+          <Arrows index={index} setIndex={setIndex} length={images.length} page={page} setPage={setPage}/>
           <button className="expand-button" onClick={() => props.setAppView('expanded')}>[ ]</button>
           {/* <i className="fas-plus"></i> */}
         </div>
@@ -51,8 +47,8 @@ function Gallery(props) {
     // props.setImageUrl(images[index].url);
     return (
       <div className="gallery">
-        <Thumbnails index={index} setIndex={setIndex} images={images} setExpandedView={setExpandedView}/>
-        <div className="carousel-container" onClick={() => setExpandedView(!isExpandedView)} onMouseMove={(event) => handleMouseMove(event)}>
+        <Thumbnails index={index} setIndex={setIndex} images={images} setExpandedView={setExpandedView} page={page} setPage={setPage}/>
+        <div className="carousel-container" onClick={() => setExpandedView(!isExpandedView)} onMouseMove={(e) => handleMouseMove(e)}>
           <div className="expanded-view"
             style={{
               backgroundImage: `url(${images[index].url})`,
@@ -60,7 +56,7 @@ function Gallery(props) {
               height: 600,
             }}>
           </div>
-          <Arrows index={index} setIndex={setIndex} length={images.length}/>
+          <Arrows index={index} setIndex={setIndex} length={images.length} page={page} setPage={setPage}/>
           <button className="expand-button" onClick={() => setExpandedView(!isExpandedView)}>[ ]</button>
           {/* <i className="fas-plus"></i> */}
         </div>

@@ -19,7 +19,7 @@ function QuantitySelector(props) {
   return Object.keys(props.sku).length > 0
     ? (
       <div className="quantity-selector">
-        <select name="quantity" id="quantity" onChange={(event) => props.setQuantity(event.target.value)}>
+        <select name="quantity" id="quantity" onChange={(e) => props.setQuantity(e.target.value)}>
           {quantities.map((quantity, i) => <option value={quantity} key={i}>{quantity}</option>)}
         </select>
       </div>

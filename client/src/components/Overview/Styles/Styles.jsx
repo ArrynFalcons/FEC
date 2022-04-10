@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 
 function Styles(props) {
 
-  const handleStyleClick = (event) => {
+  const handleStyleClick = (e) => {
     for (let style of props.styles) {
-      if (style.style_id === Number(event.target.id)) {
+      if (style.style_id === Number(e.target.id)) {
         props.setStyle(style);
         break;
       }
@@ -21,7 +21,7 @@ function Styles(props) {
       <div className="style-thumbnails">
         {props.styles.map((style) =>
           <div className="style-thumbnail-container" key={style.style_id}>
-            <img className="style-thumbnail" id={style.style_id} src={style.photos[0].thumbnail_url} width="60" height="60" onClick={(event) => handleStyleClick(event)}/>
+            <img className="style-thumbnail" id={style.style_id} src={style.photos[0].thumbnail_url} width="60" height="60" onClick={(e) => handleStyleClick(e)}/>
           </div>
         )}
       </div>

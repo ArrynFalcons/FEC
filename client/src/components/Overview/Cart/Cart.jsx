@@ -32,8 +32,8 @@ function Cart(props) {
     }
   }, [size])
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     for (let i = 0; i < Number(quantity); i++) {
       axios.post('/cart', { sku_id: Number(skuId) })
         .then((res) => console.log('success posting'))
@@ -44,7 +44,7 @@ function Cart(props) {
 
   return (
     <div className="cart">
-      <form onSubmit={(event) => handleSubmit(event)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <SizeSelector skus={skus} size={size} setSize={setSize}/>
         <QuantitySelector skus={skus} sku={sku} setQuantity={setQuantity}/>
         <input type="submit" value="Add to Cart"/>
