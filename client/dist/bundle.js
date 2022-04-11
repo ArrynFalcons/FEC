@@ -2215,20 +2215,13 @@ function App() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('65635'),
       _useState2 = _slicedToArray(_useState, 2),
       productId = _useState2[0],
-      setProductId = _useState2[1]; // const [appView, setAppView] = useState('default');
-  // const [imageUrl, setImageUrl] = useState('');
-  // const [avgRating, setAvgRating] = useState(0);
+      setProductId = _useState2[1]; // const [avgRating, setAvgRating] = useState(0);
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.onclick = function (event) {// console.log(event.target);
     };
-  }); // const handleMouseMove = (event) => {
-  //   const view = document.querySelector('.expanded-view');
-  //   view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
-  //   view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
-  // }
-
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container",
     title: "container"
@@ -2246,36 +2239,7 @@ function App() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
     grd: getRouteData,
     productId: productId
-  }))); // if (appView === 'default') {
-  //   return (
-  //     <div className="container" title="container">
-  //       <Overview getRouteData={getRouteData} productId={productId} setAppView={setAppView} setImageUrl={setImageUrl}/>
-  //       <div className="related-items">
-  //         <RelatedItems
-  //           getRouteData={getRouteData}
-  //           productId={productId}
-  //           setProductId={setProductId}
-  //         />
-  //       </div>
-  //       <div className="ratings-and-reviews">
-  //         <Reviews grd={getRouteData} productId={productId} />
-  //       </div>
-  //     </div>
-  //   );
-  // } else {
-  //   return (
-  //     <div className="carousel-container" onClick={() => setAppView('default')} onMouseMove={(event) => handleMouseMove(event)}>
-  //       <div className="expanded-view"
-  //         style={{
-  //           backgroundImage: `url(${imageUrl})`,
-  //           width: 800,
-  //           height: 800
-  //         }}>
-  //       </div>
-  //       <button className="exit-button" onClick={() => setAppView('default')}>X</button>
-  //     </div>
-  //   );
-  // }
+  })));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -2368,9 +2332,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Cart(props) {
-  var skus = props.skus;
+function Cart(_ref) {
+  var style = _ref.style,
+      skus = _ref.skus;
 
+  // const {skus} = props;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       size = _useState2[0],
@@ -2389,21 +2355,12 @@ function Cart(props) {
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('1'),
       _useState8 = _slicedToArray(_useState7, 2),
       quantity = _useState8[0],
-      setQuantity = _useState8[1]; // useEffect(() => {
-  //   const skuArr = [];
-  //   for (let sku in props.style.skus) {
-  //     if (props.style.skus[sku].quantity > 0) {
-  //       skuArr.push(props.style.skus[sku]);
-  //     }
-  //   }
-  //   setSkus(skuArr);
-  // }, [props.style])
-
+      setQuantity = _useState8[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    for (var _sku in props.style.skus) {
-      if (props.style.skus[_sku].size === size) {
-        setSku(props.style.skus[_sku]);
+    for (var _sku in style.skus) {
+      if (style.skus[_sku].size === size) {
+        setSku(style.skus[_sku]);
         setSkuId(_sku);
         break;
       }
@@ -2476,7 +2433,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable */
 
 
-function QuantitySelector(props) {
+function QuantitySelector(_ref) {
+  var sku = _ref.sku,
+      size = _ref.size,
+      setQuantity = _ref.setQuantity;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       quantities = _useState2[0],
@@ -2485,7 +2446,7 @@ function QuantitySelector(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var quantArr = [];
 
-    for (var i = 1; i <= props.sku.quantity; i++) {
+    for (var i = 1; i <= sku.quantity; i++) {
       if (i > 15) {
         break;
       }
@@ -2494,14 +2455,14 @@ function QuantitySelector(props) {
     }
 
     setQuantities(quantArr);
-  }, [props.sku]);
-  return Object.keys(props.sku).length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, [sku]);
+  return Object.keys(sku).length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "quantity-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     name: "quantity",
     id: "quantity",
     onChange: function onChange(e) {
-      return props.setQuantity(e.target.value);
+      return setQuantity(e.target.value);
     }
   }, quantities.map(function (quantity, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
@@ -2538,11 +2499,14 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable */
 
 
-function SizeSelector(props) {
-  return props.skus.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+function SizeSelector(_ref) {
+  var skus = _ref.skus,
+      size = _ref.size,
+      setSize = _ref.setSize;
+  return skus.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "size-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-    value: props.size,
+    value: size,
     disabled: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "out-of-stock"
@@ -2550,15 +2514,14 @@ function SizeSelector(props) {
     className: "size-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     required: true,
-    value: props.size,
+    value: size,
     onChange: function onChange(e) {
-      return props.setSize(e.target.value);
+      return setSize(e.target.value);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "",
-    selected: true,
-    hidden: true
-  }, "Select Size"), props.skus.map(function (sku, i) {
+    selected: true
+  }, "Select Size"), skus.map(function (sku, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
       value: sku.size,
       key: i
@@ -2585,14 +2548,15 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable */
 
 
-function Description(props) {
+function Description(_ref) {
+  var product = _ref.product;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "description"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: "product-slogan"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", null, props.product.slogan)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", null, product.slogan)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "product-description"
-  }, props.product.description ? props.product.description : null));
+  }, product.description ? product.description : null));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Description);
@@ -2614,12 +2578,13 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable */
 
 
-function Features(props) {
+function Features(_ref) {
+  var product = _ref.product;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "features-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "feature-list"
-  }, props.product.features ? props.product.features.map(function (feature) {
+  }, product.features ? product.features.map(function (feature) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
       className: "feature",
       key: feature.feature
@@ -2775,11 +2740,7 @@ function Gallery(_ref) {
     }
 
     setImages(imageArr);
-  }, [style]); // useEffect(() => {
-  //   if (images.length > 0) {
-  //     props.setImageUrl(images[index].url);
-  //   }
-  // }, [images])
+  }, [style]);
 
   var handleMouseMove = function handleMouseMove(e) {
     var view = document.querySelector('.zoomed-view');
@@ -2798,8 +2759,7 @@ function Gallery(_ref) {
   };
 
   var handleHover = function handleHover(e) {
-    var view = document.querySelector('.expanded-view'); // view.style.transform = 'scale(1.2)'
-
+    var view = document.querySelector('.expanded-view');
     view.style.backgroundPositionX = -e.nativeEvent.offsetX * 0.4 + 'px';
     view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
   };
@@ -2867,7 +2827,6 @@ function Gallery(_ref) {
       }
     }, "[ ]")));
   } else if (images.length > 0 && isZoomedView === true) {
-    // props.setImageUrl(images[index].url);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "gallery"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Thumbnails_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -2903,7 +2862,7 @@ function Gallery(_ref) {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "expand-button",
       onClick: function onClick() {
-        return setZoomedView(!isZoomedView);
+        return setExpandedView(true);
       }
     }, "[ ]")));
   } else {
@@ -2911,8 +2870,7 @@ function Gallery(_ref) {
   }
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Gallery); //<img className="gallery-image" src={image.url}/>
-//{images.map((image, i) => <img className="gallery-image" src={image.url} key={i}/>)}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Gallery);
 
 /***/ }),
 
@@ -3047,19 +3005,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-function getSkus(style) {
-  var skus = [];
-
-  for (var sku in style.skus) {
-    if (style.skus[sku].quantity > 0) {
-      skus.push(style.skus[sku]);
-    }
-  }
-
-  return skus;
-}
+ // function getSkus(style) {
+//   const skus = [];
+//     for (let sku in style.skus) {
+//       if (style.skus[sku].quantity > 0) {
+//         skus.push(style.skus[sku]);
+//       }
+//     }
+//   return skus;
+// }
 
 function Overview(_ref) {
   var productId = _ref.productId,
@@ -3100,7 +3054,20 @@ function Overview(_ref) {
     })["catch"](function (err) {
       return console.log(err);
     });
-  }, []); //conditional rendering for loading
+  }, []);
+
+  var getSkus = function getSkus(style) {
+    var skus = [];
+
+    for (var sku in style.skus) {
+      if (style.skus[sku].quantity > 0) {
+        skus.push(style.skus[sku]);
+      }
+    }
+
+    return skus;
+  }; //conditional rendering for loading
+
 
   return isExpandedView ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overview"
@@ -3163,17 +3130,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* eslint-disable */
 
 
-function Styles(props) {
+function Styles(_ref) {
+  var styles = _ref.styles,
+      style = _ref.style,
+      setStyle = _ref.setStyle;
+
   var handleStyleClick = function handleStyleClick(e) {
-    var _iterator = _createForOfIteratorHelper(props.styles),
+    var _iterator = _createForOfIteratorHelper(styles),
         _step;
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var style = _step.value;
+        var _style = _step.value;
 
-        if (style.style_id === Number(e.target.id)) {
-          props.setStyle(style);
+        if (_style.style_id === Number(e.target.id)) {
+          setStyle(_style);
           break;
         }
       }
@@ -3186,7 +3157,7 @@ function Styles(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "styles"
-  }, props.style.sale_price ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+  }, style.sale_price ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     style: {
       color: "red"
     }
@@ -3194,9 +3165,9 @@ function Styles(props) {
     style: {
       color: "gray"
     }
-  }, "$", props.style.original_price), "$", props.style.sale_price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "$", props.style.original_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "STYLE ", "<", " ", props.style.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "$", style.original_price), "$", style.sale_price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "$", style.original_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "STYLE ", "<", " ", style.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "style-thumbnails"
-  }, props.styles.map(function (style) {
+  }, styles.map(function (style) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "style-thumbnail-container",
       key: style.style_id

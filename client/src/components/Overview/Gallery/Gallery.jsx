@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Arrows from './Arrows.jsx';
 import Thumbnails from './Thumbnails.jsx';
 
-function Gallery({style, isExpandedView, setExpandedView}) {
+function Gallery({ style, isExpandedView, setExpandedView }) {
 
   const [images, setImages] = useState([]);
   const [index, setIndex] = useState(0);
@@ -17,12 +17,6 @@ function Gallery({style, isExpandedView, setExpandedView}) {
     }
     setImages(imageArr);
   }, [style])
-
-  // useEffect(() => {
-  //   if (images.length > 0) {
-  //     props.setImageUrl(images[index].url);
-  //   }
-  // }, [images])
 
   const handleMouseMove = (e) => {
     const view = document.querySelector('.zoomed-view');
@@ -42,7 +36,6 @@ function Gallery({style, isExpandedView, setExpandedView}) {
 
   const handleHover = (e) => {
     const view = document.querySelector('.expanded-view');
-    // view.style.transform = 'scale(1.2)'
     view.style.backgroundPositionX = -e.nativeEvent.offsetX * 0.4 + 'px';
     view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
   }
@@ -87,7 +80,6 @@ function Gallery({style, isExpandedView, setExpandedView}) {
       </div>
     )
   } else if (images.length > 0 && isZoomedView === true) {
-    // props.setImageUrl(images[index].url);
     return (
       <div className="gallery">
         <Thumbnails index={index} setIndex={setIndex} images={images} setZoomedView={setZoomedView} page={page} setPage={setPage}/>
@@ -101,7 +93,7 @@ function Gallery({style, isExpandedView, setExpandedView}) {
             }}>
           </div>
           <Arrows index={index} setIndex={setIndex} length={images.length} page={page} setPage={setPage} setZoomedView={setZoomedView}/>
-          <button className="expand-button" onClick={() => setZoomedView(!isZoomedView)}>[ ]</button>
+          <button className="expand-button" onClick={() => setExpandedView(true)}>[ ]</button>
           {/* <i className="fas-plus"></i> */}
         </div>
       </div>
@@ -114,6 +106,3 @@ function Gallery({style, isExpandedView, setExpandedView}) {
 }
 
 export default Gallery;
-
-//<img className="gallery-image" src={image.url}/>
-//{images.map((image, i) => <img className="gallery-image" src={image.url} key={i}/>)}

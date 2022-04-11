@@ -6,17 +6,17 @@ import Features from './Description/Features.jsx';
 import Cart from './Cart/Cart.jsx';
 import Styles from './Styles/Styles.jsx';
 
-function getSkus(style) {
-  const skus = [];
-    for (let sku in style.skus) {
-      if (style.skus[sku].quantity > 0) {
-        skus.push(style.skus[sku]);
-      }
-    }
-  return skus;
-}
+// function getSkus(style) {
+//   const skus = [];
+//     for (let sku in style.skus) {
+//       if (style.skus[sku].quantity > 0) {
+//         skus.push(style.skus[sku]);
+//       }
+//     }
+//   return skus;
+// }
 
-function Overview({productId, getRouteData}) {
+function Overview({ productId, getRouteData }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
@@ -36,6 +36,16 @@ function Overview({productId, getRouteData}) {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const getSkus = (style) => {
+    const skus = [];
+      for (let sku in style.skus) {
+        if (style.skus[sku].quantity > 0) {
+          skus.push(style.skus[sku]);
+        }
+      }
+    return skus;
+  }
 
   //conditional rendering for loading
   return isExpandedView

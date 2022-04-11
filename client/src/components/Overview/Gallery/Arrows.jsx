@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
-function Arrows({index, setIndex, length, page, setPage, setZoomedView}) {
+function Arrows({ index, setIndex, length, page, setPage, setZoomedView }) {
 
   const handlePrev = (e) => {
     e.stopPropagation();

@@ -4,28 +4,18 @@ import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 import axios from 'axios';
 
-function Cart(props) {
+function Cart({ style, skus }) {
 
-  const {skus} = props;
+  // const {skus} = props;
   const [size, setSize] = useState('');
   const [sku, setSku] = useState({});
   const [skuId, setSkuId] = useState('');
   const [quantity, setQuantity] = useState('1');
 
-  // useEffect(() => {
-  //   const skuArr = [];
-  //   for (let sku in props.style.skus) {
-  //     if (props.style.skus[sku].quantity > 0) {
-  //       skuArr.push(props.style.skus[sku]);
-  //     }
-  //   }
-  //   setSkus(skuArr);
-  // }, [props.style])
-
   useEffect(() => {
-    for (let sku in props.style.skus) {
-      if (props.style.skus[sku].size === size) {
-        setSku(props.style.skus[sku]);
+    for (let sku in style.skus) {
+      if (style.skus[sku].size === size) {
+        setSku(style.skus[sku]);
         setSkuId(sku);
         break;
       }

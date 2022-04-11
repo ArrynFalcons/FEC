@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
-const Thumbnails = ({index, setIndex, images, setZoomedView, page, setPage}) => {
+const Thumbnails = ({ index, setIndex, images, setZoomedView, page, setPage }) => {
 
   // const [page, setPage] = useState(0);
   const [thumbnails, setThumbnails] = useState([]);
