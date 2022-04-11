@@ -72,7 +72,7 @@ function Summary(props) {
   let cssProps = {};
   cssProps['--rating'] = avg;
   let foregroundstyle = { height: '10px', width: '100%', backgroundColor: '#F0F8FF' };
-  let marginbottom = {'margin-bottom': '20px'};
+  let marginbottom = {'marginBottom': '20px'};
   return (
     <div className="summary" title="reviews">
       <h1>Ratings and Reviews</h1>
