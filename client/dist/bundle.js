@@ -3358,6 +3358,7 @@ function OutfitCard(_ref) {
         var totalReviews = 0;
 
         for (var i = 0; i < Object.keys(reviews.data.ratings).length; i += 1) {
+          // eslint-disable-next-line max-len
           total += Number(Object.keys(reviews.data.ratings)[i]) * Number(Object.values(reviews.data.ratings)[i]);
           totalReviews += Number(Object.values(reviews.data.ratings)[i]);
         }
@@ -3545,7 +3546,7 @@ function ProductsCard(_ref) {
     style: {
       '--rating': "".concat(avgReview)
     }
-  }, avgReview ? "".concat(avgReview, "/5") : null))));
+  }, avgReview ? "".concat(avgReview) : null))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductsCard);

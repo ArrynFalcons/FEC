@@ -30,6 +30,7 @@ function OutfitCard({ product, setOutfits, getRouteData, dispatch, start }) {
           let total = 0;
           let totalReviews = 0;
           for (let i = 0; i < Object.keys(reviews.data.ratings).length; i += 1) {
+            // eslint-disable-next-line max-len
             total += (Number(Object.keys(reviews.data.ratings)[i]) * Number(Object.values(reviews.data.ratings)[i]));
             totalReviews += Number(Object.values(reviews.data.ratings)[i]);
           }

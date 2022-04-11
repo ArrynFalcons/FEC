@@ -9,7 +9,6 @@ import Questions from '../Questions/Questions.jsx';
 import RelatedItems from '../RelatedItems/RelatedItems.jsx';
 import Reviews from '../Reviews/Reviews.jsx';
 // import Summary from '../Reviews/comp/summary.jsx';
-
 const getRouteData = require('./Helpers.js').default;
 
 function App() {
