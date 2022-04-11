@@ -264,3 +264,37 @@ li:before {
   color: white;
   font-size: 30px;
 }
+
+/* Stars */
+
+.product-overview-stars {
+  --percent: calc(var(--rating)) / 5 * 100%);
+  --star-size: 20px;
+  --star-color: lightGray;
+  --star-background: rgb(0, 0, 0);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+
+.product-overview-stars:before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.category-stars-container {
+  display: flex;
+  width: 380px;
+  /* padding-right: 65px; */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.star-container {
+  padding-bottom: 10px;
+}
