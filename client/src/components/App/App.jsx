@@ -31,6 +31,12 @@ function App() {
 
   return (
     <div className="container" title="container">
+      <nav className="nav-container">
+        <div className="nav">
+          <h1 className="logo">Logo</h1>
+        </div>
+        {/* <h1 className="logo">Logo</h1> */}
+      </nav>
       <Overview getRouteData={getRouteData} productId={productId}/>
       <div className="related-items">
         <RelatedItems
