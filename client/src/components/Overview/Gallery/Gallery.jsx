@@ -61,7 +61,7 @@ function Gallery({ style, isExpandedView, setExpandedView }) {
             styleCollapsed();
             setExpandedView(false)
             setZoomedView(false);}}>
-            X
+            ✕
           </button>
         </div>
       </div>
@@ -74,7 +74,7 @@ function Gallery({ style, isExpandedView, setExpandedView }) {
         <div className="carousel-container" onClick={() => setZoomedView(!isZoomedView)}>
           {<img className="gallery-image carousel" src={images[index].url} key={index} width="765px" height="600px"/>}
           <Arrows index={index} setIndex={setIndex} length={images.length} page={page} setPage={setPage} setZoomedView={setZoomedView}/>
-          <button className="expand-button" onClick={() => setExpandedView(true)}>[ ]</button>
+          <button className="expand-button" onClick={() => setExpandedView(true)}>❐</button>
           {/* <i className="fas-plus"></i> */}
         </div>
       </div>
@@ -93,7 +93,7 @@ function Gallery({ style, isExpandedView, setExpandedView }) {
             }}>
           </div>
           <Arrows index={index} setIndex={setIndex} length={images.length} page={page} setPage={setPage} setZoomedView={setZoomedView}/>
-          <button className="expand-button" onClick={() => setExpandedView(true)}>[ ]</button>
+          <button className="expand-button" onClick={() => setExpandedView(true)}>❐</button>
           {/* <i className="fas-plus"></i> */}
         </div>
       </div>

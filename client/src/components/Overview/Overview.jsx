@@ -65,7 +65,7 @@ function Overview({ productId, getRouteData }) {
           <Styles styles={styles} style={style} setStyle={setStyle}/>
           <Cart style={style} skus={getSkus(style)}/>
         </div>
-        <Description product={product} />
+        <Description product={product}/>
         <Features product={product}/>
       </div>
     )

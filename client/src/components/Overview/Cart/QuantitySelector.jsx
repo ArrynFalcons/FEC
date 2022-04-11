@@ -19,15 +19,15 @@ function QuantitySelector({ sku, size, setQuantity }) {
   return Object.keys(sku).length > 0
     ? (
       <div className="quantity-selector">
-        <select name="quantity" id="quantity" onChange={(e) => setQuantity(e.target.value)}>
+        <select className="quantity-dropdown" name="quantity" id="quantity" onChange={(e) => setQuantity(e.target.value)}>
           {quantities.map((quantity, i) => <option value={quantity} key={i}>{quantity}</option>)}
         </select>
       </div>
     )
     : (
       <div className="quantity-selector">
-        <select name="quantity" id="quantity" disabled>
-          <option value="-">-</option>
+        <select className="quantity-dropdown" name="quantity" id="quantity" disabled>
+          <option value="-">Qty</option>
         </select>
       </div>
     )

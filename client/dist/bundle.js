@@ -2394,6 +2394,8 @@ function Cart(_ref) {
     onSubmit: function onSubmit(e) {
       return handleSubmit(e);
     }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "cart-dropdowns"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SizeSelector_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     skus: skus,
     size: size,
@@ -2402,9 +2404,10 @@ function Cart(_ref) {
     skus: skus,
     sku: sku,
     setQuantity: setQuantity
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: "add-to-cart",
     type: "submit",
-    value: "Add to Cart"
+    value: "Add to Bag"
   })));
 }
 
@@ -2465,6 +2468,7 @@ function QuantitySelector(_ref) {
   return Object.keys(sku).length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "quantity-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    className: "quantity-dropdown",
     name: "quantity",
     id: "quantity",
     onChange: function onChange(e) {
@@ -2478,12 +2482,13 @@ function QuantitySelector(_ref) {
   }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "quantity-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    className: "quantity-dropdown",
     name: "quantity",
     id: "quantity",
     disabled: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "-"
-  }, "-")));
+  }, "Qty")));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuantitySelector);
@@ -2512,6 +2517,7 @@ function SizeSelector(_ref) {
   return skus.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "size-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    className: "size-dropdown",
     value: size,
     disabled: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
@@ -2519,6 +2525,7 @@ function SizeSelector(_ref) {
   }, "Out of Stock"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "size-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    className: "size-dropdown",
     required: true,
     value: size,
     onChange: function onChange(e) {
@@ -2796,7 +2803,7 @@ function Gallery(_ref) {
         setExpandedView(false);
         setZoomedView(false);
       }
-    }, "X")));
+    }, "\u2715")));
   } else if (images.length > 0 && isZoomedView === false) {
     // props.setImageUrl(images[index].url);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2831,7 +2838,7 @@ function Gallery(_ref) {
       onClick: function onClick() {
         return setExpandedView(true);
       }
-    }, "[ ]")));
+    }, "\u2750")));
   } else if (images.length > 0 && isZoomedView === true) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "gallery"
@@ -2870,7 +2877,7 @@ function Gallery(_ref) {
       onClick: function onClick() {
         return setExpandedView(true);
       }
-    }, "[ ]")));
+    }, "\u2750")));
   } else {
     return null;
   }
@@ -3171,7 +3178,11 @@ function Styles(_ref) {
     style: {
       color: "gray"
     }
-  }, "$", style.original_price), "$", style.sale_price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "$", style.original_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "STYLE ", "<", " ", style.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "$", style.original_price), "$", style.sale_price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "style-price"
+  }, "$", style.original_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    className: "style-name"
+  }, "STYLE ", "<", " ", style.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "style-thumbnails"
   }, styles.map(function (style) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

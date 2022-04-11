@@ -35,9 +35,11 @@ function Cart({ style, skus }) {
   return (
     <div className="cart">
       <form onSubmit={(e) => handleSubmit(e)}>
-        <SizeSelector skus={skus} size={size} setSize={setSize}/>
-        <QuantitySelector skus={skus} sku={sku} setQuantity={setQuantity}/>
-        <input type="submit" value="Add to Cart"/>
+        <div className="cart-dropdowns">
+          <SizeSelector skus={skus} size={size} setSize={setSize}/>
+          <QuantitySelector skus={skus} sku={sku} setQuantity={setQuantity}/>
+        </div>
+        <input className="add-to-cart" type="submit" value="Add to Bag"/>
       </form>
     </div>
   );
