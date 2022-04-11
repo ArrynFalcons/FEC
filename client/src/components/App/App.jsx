@@ -33,7 +33,7 @@ function App() {
     <div className="container" title="container">
       <nav className="nav-container">
         <div className="nav">
-          <h1 className="logo">Logo</h1>
+          <h1 className="logo">Falco</h1>
         </div>
         {/* <h1 className="logo">Logo</h1> */}
       </nav>

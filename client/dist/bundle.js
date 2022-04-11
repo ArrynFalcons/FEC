@@ -2231,7 +2231,7 @@ function App() {
     className: "nav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "logo"
-  }, "Logo"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, "Falco"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     getRouteData: getRouteData,
     productId: productId
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
