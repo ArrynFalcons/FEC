@@ -1,3 +1,4 @@
+/* eslint-disable*/
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -40,32 +41,21 @@ function App() {
         widget,
         time: moment().format(),
       };
-      axios.post('/interactions', body)
-        .then((res) => {
-          // don't want to let the client know we're tracking their clicks
-          // console.log(res);
-        })
-        .catch((err) => {
-          // console.log(err);
-        });
+      // axios.post('/interactions', body);
+      // too many post requests on click will crash the app
+      // probably need to store in windowLocal storage
     };
   });
 
-  // useEffect(() => {
-  //   getRouteData('reviews', '', '', '', productId, 'meta')
-  //     .then((data) => {
-  //       const num = 1 * data.data.ratings['1'] + 2;
-  //       const div = rating
-
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error retrieving reviews: ', err);
-  //     });
-  // }, []);
-
   return (
     <div className="container" title="container">
-      <Overview getRouteData={getRouteData} productId={productId} />
+      <nav className="nav-container">
+        <div className="nav">
+          <h1 className="logo">Falco</h1>
+        </div>
+        {/* <h1 className="logo">Logo</h1> */}
+      </nav>
+      <Overview getRouteData={getRouteData} productId={productId}/>
       <div className="related-items">
         <RelatedItems
           getRouteData={getRouteData}
@@ -73,14 +63,12 @@ function App() {
           setProductId={setProductId}
         />
       </div>
-      {/* <div className="q-and-a">
-        <Questions />
-      </div> */}
       <div className="ratings-and-reviews">
         <Reviews grd={getRouteData} pid={productId} />
       </div>
     </div>
   );
+
 }
 
 export default App;
