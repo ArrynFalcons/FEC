@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 
 function ComparisonModal({ featuredProduct, product, setModal }) {
   const container = [];
-  const features = [...featuredProduct.features, ...product.features].filter((feature)=> {
+  const features = [...featuredProduct.features, ...product.features].filter((feature) => {
     if (!container.includes(feature.value)) {
       container.push(feature.value);
       return feature;
@@ -15,7 +15,7 @@ function ComparisonModal({ featuredProduct, product, setModal }) {
   });
 
   return (
-    <div className="comparisonModal overlay" onClick={ () => setModal(false)}>
+    <div className="comparisonModal overlay" onClick={ () => {setModal(false)}}>
       <pre>
         <span className="modalContentLeft">{`${featuredProduct.name}`}</span>
         <span className="modalContentRight">{`${product.name}`}</span>

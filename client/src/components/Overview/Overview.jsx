@@ -34,7 +34,7 @@ function Overview({productId, getRouteData}) {
         setStyle(res.data.results[0]);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [productId]);
 
   //conditional rendering for loading
   return (

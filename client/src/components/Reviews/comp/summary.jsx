@@ -69,71 +69,77 @@ function Summary(props) {
     Summary.averageRating = avg;
   }, [avg]);
 
+  let cssProps = {};
+  cssProps['--rating'] = avg;
+  let foregroundstyle = { height: '10px', width: '100%', backgroundColor: '#F0F8FF' };
+  let marginbottom = {'margin-bottom': '20px'};
   return (
     <div className="summary" title="reviews">
-      Ratings and Reviews
+      <h1>Ratings and Reviews</h1>
+      <div>
+        {total} Reviews
+      </div>
       <div title="summary">
         Average Rating:
         {' '}
         {Math.round(10 * avg) / 10}
         /5
       </div>
-      <div>
-        {total} people left a review.
-      </div>
+      <div className="Stars" style={cssProps} ></div>
       <div>5 Stars: </div>
       <div className="background-bar">
-        <div id="foreground5" className="foreground-bar" style={{ height: '30px', width: `${100 * count5 / total}%`, backgroundColor: '#90EE90' }} />
+        <div id="foreground5" className="foreground-bar" style={{ height: '30px', width: `${100 * count5 / total}%`, backgroundColor: 'black' }} />
       </div>
       <div>4 Stars: </div>
       <div className="background-bar">
-        <div id="foreground4" className="foreground-bar" style={{ height: '30px', width: `${100 * count4 / total}%`, backgroundColor: '#90EE90' }} />
+        <div id="foreground4" className="foreground-bar" style={{ height: '30px', width: `${100 * count4 / total}%`, backgroundColor: 'black' }} />
       </div>
       <div>3 Stars: </div>
       <div className="background-bar">
-        <div id="foreground3" className="foreground-bar" style={{ height: '30px', width: `${100 * count3 / total}%`, backgroundColor: '#90EE90' }} />
+        <div id="foreground3" className="foreground-bar" style={{ height: '30px', width: `${100 * count3 / total}%`, backgroundColor: 'black' }} />
       </div>
       <div>2 Stars: </div>
       <div className="background-bar">
-        <div id="foreground2" className="foreground-bar" style={{ height: '30px', width: `${100 * count2 / total}%`, backgroundColor: '#90EE90' }} />
+        <div id="foreground2" className="foreground-bar" style={{ height: '30px', width: `${100 * count2 / total}%`, backgroundColor: 'black' }} />
       </div>
-      <div>1 Star: </div>
-      <div className="background-bar">
-        <div id="foreground1" className="foreground-bar" style={{ height: '30px', width: `${100 * count1 / total}%`, backgroundColor: '#90EE90' }} />
+      <div >1 Star: </div>
+      <div style={marginbottom} className="background-bar">
+        <div id="foreground1" className="foreground-bar" style={{ height: '30px', width: `${100 * count1 / total}%`, backgroundColor: 'black' }} />
       </div>
-      <div>Average Recommendation: {Math.round(recommend * 100 /total)}% said yes.</div>
-      <div id="characteristics">Characteristics Summary as reported by users.
+      <br/>
+      <div style={marginbottom}>Average Recommendation: {Math.round(recommend * 100 /total)}% said yes.</div>
+      <div id="characteristics" style={marginbottom}>Characteristics
 
-        <div>Size
-          <div className="foreground-bar" style={{ height: '20px', width: '200px', backgroundColor: '#F0F8FF' }}>
+        <div style={marginbottom}>Size
+          <div className="foreground-bar" style={foregroundstyle}>
             <div style={{position: 'absolute', left: `${size * 40}px` }}>▼</div>
           </div>
           <div>
-            1: Too Small - 5: Too Large
+            Too Small ------ Perfect ------ Too Large
           </div>
         </div>
-        <div>Width
-          <div className="foreground-bar" style={{ height: '20px', width: '200px', backgroundColor: '#F0F8FF' }}>
+        <div style={marginbottom}>Width
+          <div className="foreground-bar" style={foregroundstyle}>
             <div style={{position: 'absolute', left: `${width * 40}px` }}>▼</div>
           </div>
           <div>
-            1: Too Narrow - 5: Too Wide
+            Too Narrow --- Just Right ----- Too Wide
           </div>
         </div>
-        <div>Comfort
-          <div className="foreground-bar" style={{ height: '20px', width: '200px', backgroundColor: '#F0F8FF' }}>
+        <div style={marginbottom}>Comfort
+          <div className="foreground-bar" style={foregroundstyle}>
             <div style={{position: 'absolute', left: `${comfort * 40}px` }}>▼</div>
           </div>
           <div>
-            1: Low - 5: High
+            Low ---------- Average ------------ High
           </div>
         </div>
-        <div>Quality
-          <div className="foreground-bar" style={{ height: '20px', width: '200px', backgroundColor: '#F0F8FF' }}>
+        <div style={marginbottom}>Quality
+          <div className="foreground-bar" style={foregroundstyle}>
             <div style={{position: 'absolute', left: `${quality * 40}px` }}>▼</div>
           </div>
           <div>
-            1: Poor - 5: High
+            Poor --------- Average ----------- High
           </div>
         </div>
 
