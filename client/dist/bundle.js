@@ -4249,7 +4249,6 @@ function ReviewList(props) {
 
   var grd = props.grd,
       pid = props.pid;
-  console.log('p', pid);
 
   var markAsHelpful = function markAsHelpful(id) {
     axios__WEBPACK_IMPORTED_MODULE_1___default().post('/helpfulreview', {
@@ -4286,8 +4285,16 @@ function ReviewList(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     pagination(1);
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    grd('reviews', 1, 5, '', pid, '') // (route, page, count, sort, Id, endParam)
+    .then(function (data) {
+      setReviews(data.data.results);
+    })["catch"](function (err) {
+      console.log('Error retrieving reviews: ', err);
+    });
+  }, [pid]);
   var liststyle = {
-    'list-style': 'none',
+    'listStyle': 'none',
     width: '800px'
   };
   var sortstyle1 = {
@@ -4306,10 +4313,11 @@ function ReviewList(props) {
     left: '100px'
   };
   var bigfont = {
-    'font-size': '20px'
+    'fontSize': '20px'
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "review-list"
+    className: "review-list",
+    title: "reviewlist"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: sortstyle2
   }, "Sort By:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
@@ -4581,7 +4589,7 @@ function Summary(props) {
     backgroundColor: '#F0F8FF'
   };
   var marginbottom = {
-    'margin-bottom': '20px'
+    'marginBottom': '20px'
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "summary",
