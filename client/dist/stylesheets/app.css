@@ -50,8 +50,8 @@ p, h1, h2, h3, h4, h5, h6 {
 .nav-container {
   grid-row: 1 / 2;
   margin-top: 5px;
-  border-bottom: 1.5px solid #414547;
-  border-left: 1.5px solid #414547;
+  border-bottom: 2.5px solid #414547;
+  border-left: 2.5px solid #414547;
   padding: 10px;
   padding-top: 5px;
   padding-right: 0px;
