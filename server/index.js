@@ -92,7 +92,7 @@ app.post('/interactions', (req, res) => {
       // console.log(response.data);
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
     })
 });
 

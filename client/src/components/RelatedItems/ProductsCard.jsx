@@ -47,7 +47,7 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
           ) : (
             <span>{`$${product.default_price}`}</span>
           )}
-          {/* {product.rating} */}
+          {/* <span className="stars" style={{ '--rating': 2.3 }}>{2.3}</span> */}
         </div>
       </div>
     </div>

@@ -40,14 +40,9 @@ function App() {
         widget,
         time: moment().format(),
       };
-      axios.post('/interactions', body)
-        .then((res) => {
-          // don't want to let the client know we're tracking their clicks
-          // console.log(res);
-        })
-        .catch((err) => {
-          // console.log(err);
-        });
+      // axios.post('/interactions', body);
+      // too many post requests on click will crash the app
+      // probably need to store in windowLocal storage
     };
   });
 
