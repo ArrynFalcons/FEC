@@ -11,7 +11,6 @@ function ReviewList(props) {
   const [report, setReport] = useState(false);
   const [activekey, setActiveKey] = useState('');
   const { grd, pid } = props;
-  console.log('p', pid)
   const markAsHelpful = (id) => {
     axios.post('/helpfulreview', { id })
       .then((response) => {
@@ -45,12 +44,12 @@ function ReviewList(props) {
   useEffect(() => {
     pagination(1);
   }, []);
-  let liststyle = {'list-style': 'none', width: '800px'};
+  let liststyle = {'listStyle': 'none', width: '800px'};
   let sortstyle1 = {position: 'absolute', left: '700px'};
   let sortstyle2 = {position: 'absolute', left: '630px'};
   let floatstyle = {float: 'left'};
   let absoluteleft = {position: 'absolute', left: '100px'};
-  let bigfont = {'font-size': '20px'};
+  let bigfont = {'fontSize': '20px'};
   return (
     <div className="review-list">
       <div style={sortstyle2}>Sort By:</div>
