@@ -67,7 +67,7 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
             <span>{`$${product.default_price}`}</span>
           )}
           <span className="product-stars" style={{ '--rating': `${avgReview}` }}>
-            {avgReview ? `${avgReview}` : null}
+            {avgReview ? `${avgReview}/5` : null}
           </span>
         </div>
       </div>

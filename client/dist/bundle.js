@@ -3739,7 +3739,7 @@ function ProductsCard(_ref) {
     style: {
       '--rating': "".concat(avgReview)
     }
-  }, avgReview ? "".concat(avgReview) : null))));
+  }, avgReview ? "".concat(avgReview, "/5") : null))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductsCard);
