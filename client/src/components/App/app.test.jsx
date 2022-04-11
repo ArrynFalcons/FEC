@@ -6,13 +6,13 @@ import App from './App.jsx';
 
 test('loads App and shows the components', async () => {
   render(<App />);
-  expect(screen.getByTitle('container')).toHaveTextContent('Reviews');
+  expect(screen.getByTitle('container')).toHaveTextContent('STYLE');
 });
 test('loads App and shows the components', async () => {
   render(<App />);
-  expect(screen.getByTitle('container')).toHaveTextContent('Cart');
+  expect(screen.getByTitle('container')).toHaveTextContent('COMPLETE THE LOOK');
 });
 test('loads App and shows the components', async () => {
   render(<App />);
-  expect(screen.getByTitle('container')).toHaveTextContent('RELATED PRODUCTS');
+  expect(screen.getByTitle('container')).toHaveTextContent('Ratings and Reviews');
 });

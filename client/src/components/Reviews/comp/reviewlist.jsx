@@ -52,7 +52,7 @@ function ReviewList(props) {
   let absoluteleft = {position: 'absolute', left: '100px'};
   let bigfont = {'font-size': '20px'};
   return (
-    <div className="review-list">
+    <div className="review-list" title="reviewlist">
       <div style={sortstyle2}>Sort By:</div>
       <label>.</label>
       <select style={sortstyle1} id="reviewlist" onChange={(e) => {pagination(1, 1000, `${e.target.value}`)}}>
