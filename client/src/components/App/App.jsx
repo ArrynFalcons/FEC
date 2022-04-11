@@ -2,6 +2,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import moment from 'moment';
 // import { getRouteData } from './Helpers.js';
 import Overview from '../Overview/Overview.jsx';
 import Questions from '../Questions/Questions.jsx';
@@ -23,9 +25,25 @@ function App() {
   const [productId, setProductId] = useState('65635');
   // const [avgRating, setAvgRating] = useState(0);
 
+  // sends User Click info to data scientists
   useEffect(() => {
     window.onclick = (event) => {
-      // console.log(event.target);
+      let widget = '';
+      if (event.pageY <= 900) {
+        widget = 'Overview';
+      } else if (event.pageY > 900 && event.pageY <= 1700) {
+        widget = 'Related Products';
+      } else {
+        widget = 'Reviews and Ratings';
+      }
+      const body = {
+        element: event.target.outerHTML,
+        widget,
+        time: moment().format(),
+      };
+      // axios.post('/interactions', body);
+      // too many post requests on click will crash the app
+      // probably need to store in windowLocal storage
     };
   });
 
@@ -46,7 +64,7 @@ function App() {
         />
       </div>
       <div className="ratings-and-reviews">
-        <Reviews grd={getRouteData} productId={productId} />
+        <Reviews grd={getRouteData} pid={productId} />
       </div>
     </div>
   );

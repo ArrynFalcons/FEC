@@ -6,38 +6,13 @@ import ReviewList from './comp/ReviewList.jsx';
 import NewReview from './comp/NewReview.jsx';
 
 function Reviews(props) {
-  const getRouteData = (route, page, count, sort, Id, endParam) => {
-    const params = {
-      page,
-      count,
-      sort,
-      product_id: Id,
-    };
-    if (route === 'products') {
-      return (Id ? axios.get(`/products/${Id}/${endParam}`)
-        : axios.get('/products', { params }));
-    }
-    if (route === 'qa/questions') {
-      return (endParam ? axios.get(`/qa/questions/${Id}/${endParam}`)
-        : axios.get('/qa/questions', { params }));
-    }
-    return axios.get(`/reviews/${endParam}`, { params });
-  };
-
-  // example of how to use helper function
-  // getRouteData('products', 1, 10, '', '65651', '')
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  const { grd, pid } = props;
 
   return (
     <div className="ratings-container">
-      <Summary grd={getRouteData} />
-      <ReviewList grd={getRouteData} />
-      <NewReview grd={getRouteData} />
+      <NewReview pid={pid} grd={grd} />
+      <Summary pid={pid} grd={grd} />
+      <ReviewList pid={pid} grd={grd} />
     </div>
   );
 }

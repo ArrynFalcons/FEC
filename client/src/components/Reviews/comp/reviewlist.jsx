@@ -10,7 +10,8 @@ function ReviewList(props) {
   const [count, setCount] = useState(0);
   const [report, setReport] = useState(false);
   const [activekey, setActiveKey] = useState('');
-  const { grd } = props;
+  const { grd, pid } = props;
+  console.log('p', pid)
   const markAsHelpful = (id) => {
     axios.post('/helpfulreview', { id })
       .then((response) => {
@@ -33,7 +34,7 @@ function ReviewList(props) {
   const pagination = (page, amount, sorter) => {
     var total = amount || 5;
     var sort = sorter || '';
-    grd('reviews', page, total, sort, '65635', '') // (route, page, count, sort, Id, endParam)
+    grd('reviews', page, total, sort, pid, '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
         setReviews(data.data.results);
       })
@@ -44,45 +45,47 @@ function ReviewList(props) {
   useEffect(() => {
     pagination(1);
   }, []);
+  let liststyle = {'list-style': 'none', width: '800px'};
+  let sortstyle1 = {position: 'absolute', left: '700px'};
+  let sortstyle2 = {position: 'absolute', left: '630px'};
+  let floatstyle = {float: 'left'};
+  let absoluteleft = {position: 'absolute', left: '100px'};
+  let bigfont = {'font-size': '20px'};
   return (
     <div className="review-list">
-      <label> Sort by:</label>
-      <select id="reviewlist" onChange={(e) => {pagination(1, 1000, `${e.target.value}`)}}>
+      <div style={sortstyle2}>Sort By:</div>
+      <label>.</label>
+      <select style={sortstyle1} id="reviewlist" onChange={(e) => {pagination(1, 1000, `${e.target.value}`)}}>
         <option value="relevant">Relevant</option>
         <option value="newest">Newest</option>
         <option value="helpful">Helpful</option>
       </select>
 
-      <ul>
+      <ul style={liststyle}>
         {reviews.map((review) => {
           let cssProps = {};
           cssProps['--rating'] = review.rating;
+          cssProps.position = 'absolute';
+          cssProps.left = '500px';
           return (
-            <li key={`${review.review_id}`}>
-              <div className="tile">
-                <div className="Stars" style={cssProps} ></div>
-                <div>
-                  Rating:
-                  {' '}
-                  {review.rating}
-                </div>
-                <div>
-                  Title:
-                  {' '}
-                  {review.summary}
+            <li className="tile" key={`${review.review_id}`}>
+              <div className="margin10">
+                <div className="Stars" style={cssProps}></div>
+                <div style={bigfont}>
+                  {` "${review.summary}" `}
                 </div>
                 <div>
                   Name:
-                  {' '}
-                  {review.reviewer_name}
+                  {` ${review.reviewer_name} `}
                 </div>
                 <div>
                   Reviewed on:
                   {' '}
                   {moment(review.date).format('MMMM Do YYYY')}
                 </div>
-                <div className="reviewbody">
-                  {review.body}
+                <br/>
+                <div style={bigfont} className="reviewbody">
+                  {`"${review.body}"`}
                 </div>
                 {/* <style dangerouslySetInnerHTML={{_html: `.reviewbody {color:blue}`}}/> */}
                 <div className="inline-block">
@@ -96,7 +99,6 @@ function ReviewList(props) {
                     // onMouseOut={e=>console.log(e.target.currentSrc)}
                       alt="reviewimages"
                       height="200"
-                      width="200"
                     />
                   ))}
                 </div>
@@ -106,10 +108,9 @@ function ReviewList(props) {
                 </div>
                 <div>
                   {review.helpfulness}
-                  people found this review helpful.
+                  people found this review helpful. Did you it helpful?
                 </div>
                 <div>
-                  Did you find this review helpful?
                   <button
                     type="submit"
                     value={`${review.review_id}`}
