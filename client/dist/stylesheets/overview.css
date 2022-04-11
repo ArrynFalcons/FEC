@@ -1,29 +1,37 @@
-/* Overview grid setup */
+/* Overview */
 
 .overview {
   display: grid;
   grid-template-rows: 3fr 1fr;
   grid-template-columns: 3fr 1.5fr;
-  grid-template-areas:
+  /* grid-template-areas:
     "gallery main"
-    "description features";
+    "description features"; */
   gap: 50px 0px;
 }
 
 .gallery {
-  grid-area: gallery;
+  grid-area: 1 / 1 / 2 / 2;
+  /* grid-area: gallery; */
 }
 
 .main {
-  grid-area: main;
+  grid-area: 1 / 2 / 2 / 3;
+  /* grid-area: main; */
+  /* border-right: 1.5px solid black; */
 }
 
 .description {
-  grid-area: description;
+  /* grid-area: description; */
+  grid-area: 2 / 1 / 3 / 2;
+  padding: 50px;
+  padding-top: 0px;
 }
 
 .features-container {
-  grid-area: features;
+  /* grid-area: features; */
+  grid-area: 2 / 2 / 3 / 3;
+  /* border-right: 1.5px solid black; */
 }
 
 h1 {
@@ -44,6 +52,25 @@ h3 {
   opacity: 80%;
 }
 
+p {
+  font-size: 18px;
+}
+
+ul {
+  /* list-style: square; */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font-size: 18px;
+}
+
+li:before {
+  content: '❟ ';
+}
+
 /* Styles */
 
 .style-thumbnails {
@@ -54,10 +81,23 @@ h3 {
 
 .style-thumbnail-container {
   flex-basis: 25%;
+  margin-bottom: 30px;
 }
 
 .style-thumbnail {
   border-radius: 50%;
+}
+
+.style-price {
+  border-bottom: 3px solid #EFEFEF;
+  padding-bottom: 20px;
+}
+
+.style-name {
+  padding-top: 20px;
+  /* border-top: 1px solid black;
+  margin-top: 25px; */
+  padding-bottom: 15px;
 }
 
 /* Gallery */
@@ -153,11 +193,74 @@ h3 {
   list-style-type: >&#10003;
 } */
 
-/* .gallery-image:hover {
-  cursor: zoom-in;
-} */
-
 .expand {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.expand-button {
+  position: absolute;
   width: 60px;
   height: 50px;
+  bottom: 15px;
+  right: 15px;
+  z-index: 3;
+}
+
+.expanded-view {
+  position: relative
+}
+
+/* .expanded-view:hover {
+  -ms-zoom-animation: ;
+} */
+
+.exit-button {
+  position: absolute;
+  width: 60px;
+  height: 50px;
+  z-index: 2;
+  top: 15px;
+  right: 15px;
+}
+/*
+.product-description {
+  margin-top:100px;
+} */
+
+.cart-dropdowns {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.size-dropdown {
+  width: 175px;
+  height: 50px;
+  padding: 5px;
+  font-family: 'Bebas Neue', cursive;
+  /* font-family: 'PT Serif', serif; */
+  font-size: 20px;
+}
+
+.quantity-dropdown {
+  width: 175px;
+  height: 50px;
+  padding: 5px;
+  /* font-family: 'PT Serif', serif; */
+  font-family: 'Bebas Neue', cursive;
+  font-size: 20px;
+}
+
+.add-to-cart {
+  width: 380px;
+  height: 50px;
+  padding: 5px;
+  font-family: 'Bebas Neue', cursive;
+  /* font-family: 'PT Serif', serif; */
+  background-color: #333333;
+  color: white;
+  font-size: 30px;
 }

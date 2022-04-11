@@ -1,30 +1,19 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
-const Thumbnails = (props) => {
+const Thumbnails = ({ index, setIndex, images, setZoomedView, page, setPage }) => {
 
-  const [page, setPage] = useState(0);
+  // const [page, setPage] = useState(0);
   const [thumbnails, setThumbnails] = useState([]);
 
   useEffect(() => {
-    const imagesCopy = props.images.slice();
+    const imagesCopy = images.slice();
     const thumbnailPages = [];
     while (imagesCopy.length > 0) {
       thumbnailPages.push(imagesCopy.splice(0, 6));
     }
     setThumbnails(thumbnailPages);
-  }, [props.images]);
-
-  // const handleSelected = (i) => {
-  //   if (i === props.index && i === thumbnails[page].length - 1) {
-  //     props.setSelected('last');
-  //   } else if (i === 0) {
-  //     props.setSelected('first');
-  //   }
-  //   else {
-  //     props.setSelected('');
-  //   }
-  // }
+  }, [images]);
 
   return thumbnails.length > 0 ? (
     <div className="gallery-thumbnails">
@@ -33,12 +22,14 @@ const Thumbnails = (props) => {
         : <button className="thumbnail-arrow" onClick={() => setPage(page - 1)}>&and;</button>
       }
       {thumbnails[page].map((image, i) => {
-        // handleSelected(i);
         return (
-          <div className={i === props.index
+          <div className={index === (page * 6) + i
             ? "gallery-thumbnail-container selected"
             : "gallery-thumbnail-container"} key={i}>
-            <img className="gallery-image" src={image.thumbnail_url} width="60px" height="60px" onClick={() => {props.setIndex(i);}}/>
+            <img className="gallery-image" src={image.thumbnail_url} width="60px" height="60px" onClick={() => {
+              setIndex((page * 6) + i);
+              setZoomedView(false);
+            }}/>
           </div>
         )
       })}
