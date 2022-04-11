@@ -56,18 +56,18 @@ p {
   font-size: 18px;
 }
 
-ul {
+.feature-list {
   /* list-style: square; */
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-li {
+.feature {
   font-size: 18px;
 }
 
-li:before {
+.feature:before {
   content: '❟ ';
 }
 
@@ -98,6 +98,17 @@ li:before {
   /* border-top: 1px solid black;
   margin-top: 25px; */
   padding-bottom: 15px;
+}
+
+.style-unselected {
+  width: 60px;
+  height: 67px;
+}
+
+.style-selected {
+  width: 60px;
+  height: 67px;
+  border-bottom: 3px double #333333;
 }
 
 /* Gallery */

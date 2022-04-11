@@ -3,7 +3,10 @@ import React, { useState, useEffect } from 'react';
 
 function Styles({ styles, style, setStyle }) {
 
-  const handleStyleClick = (e) => {
+  const [selected, setSelected] = useState(0);
+
+  const handleStyleClick = (e, i) => {
+    setSelected(i);
     for (let style of styles) {
       if (style.style_id === Number(e.target.id)) {
         setStyle(style);
@@ -19,9 +22,11 @@ function Styles({ styles, style, setStyle }) {
         : <h2 className="style-price">${style.original_price}</h2>}
       <h3 className="style-name">STYLE {"<"} {style.name}</h3>
       <div className="style-thumbnails">
-        {styles.map((style) =>
+        {styles.map((style, i) =>
           <div className="style-thumbnail-container" key={style.style_id}>
-            <img className="style-thumbnail" id={style.style_id} src={style.photos[0].thumbnail_url} width="60" height="60" onClick={(e) => handleStyleClick(e)}/>
+            <div className={i === selected ? "style-selected" : "style-unselected"}>
+              <img className="style-thumbnail" id={style.style_id} src={style.photos[0].thumbnail_url} width="60" height="60" onClick={(e) => handleStyleClick(e, i)}/>
+            </div>
           </div>
         )}
       </div>
