@@ -1,10 +1,11 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
-function Arrows({index, setIndex, length, page, setPage}) {
+function Arrows({index, setIndex, length, page, setPage, setZoomedView}) {
 
   const handlePrev = (e) => {
     e.stopPropagation();
+    setZoomedView(false);
     if (index === page * 6) {
       setPage(page - 1);
     }
@@ -13,6 +14,7 @@ function Arrows({index, setIndex, length, page, setPage}) {
 
   const handleNext = (e) => {
     e.stopPropagation();
+    setZoomedView(false);
     if (index === (page + 1) * 6 - 1) {
       setPage(page + 1);
     }

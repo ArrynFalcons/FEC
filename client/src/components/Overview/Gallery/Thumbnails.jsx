@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
-const Thumbnails = ({index, setIndex, images, setExpandedView, page, setPage}) => {
+const Thumbnails = ({index, setIndex, images, setZoomedView, page, setPage}) => {
 
   // const [page, setPage] = useState(0);
   const [thumbnails, setThumbnails] = useState([]);
@@ -28,7 +28,7 @@ const Thumbnails = ({index, setIndex, images, setExpandedView, page, setPage}) =
             : "gallery-thumbnail-container"} key={i}>
             <img className="gallery-image" src={image.thumbnail_url} width="60px" height="60px" onClick={() => {
               setIndex((page * 6) + i);
-              setExpandedView(false);
+              setZoomedView(false);
             }}/>
           </div>
         )

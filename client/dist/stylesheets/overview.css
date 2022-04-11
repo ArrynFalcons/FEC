@@ -4,26 +4,30 @@
   display: grid;
   grid-template-rows: 3fr 1fr;
   grid-template-columns: 3fr 1.5fr;
-  grid-template-areas:
+  /* grid-template-areas:
     "gallery main"
-    "description features";
+    "description features"; */
   gap: 50px 0px;
 }
 
 .gallery {
-  grid-area: gallery;
+  grid-area: 1 / 1 / 2 / 2;
+  /* grid-area: gallery; */
 }
 
 .main {
-  grid-area: main;
+  grid-area: 1 / 2 / 2 / 3;
+  /* grid-area: main; */
 }
 
 .description {
-  grid-area: description;
+  /* grid-area: description; */
+  grid-area: 2 / 1 / 3 / 2;
 }
 
 .features-container {
-  grid-area: features;
+  /* grid-area: features; */
+  grid-area: 2 / 2 / 3 / 3;
 }
 
 h1 {
@@ -167,10 +171,20 @@ h3 {
   right: 15px;
   z-index: 3;
 }
-/*
+
 .expanded-view {
-  width: 765px;
-  height: 600px;
+  position: relative
+}
+
+/* .expanded-view:hover {
+  -ms-zoom-animation: ;
 } */
 
-
+.exit-button {
+  position: absolute;
+  width: 60px;
+  height: 50px;
+  z-index: 2;
+  top: 15px;
+  right: 15px;
+}

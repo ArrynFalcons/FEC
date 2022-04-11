@@ -16,10 +16,11 @@ function getSkus(style) {
   return skus;
 }
 
-function Overview({productId, getRouteData, setAppView, setImageUrl}) {
+function Overview({productId, getRouteData}) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
+  const [isExpandedView, setExpandedView] = useState(false);
 
   //test id 65722
   //default id 65635
@@ -37,19 +38,27 @@ function Overview({productId, getRouteData, setAppView, setImageUrl}) {
   }, []);
 
   //conditional rendering for loading
-  return (
-    <div className="overview">
-      <Gallery style={style} setAppView={setAppView} setImageUrl={setImageUrl}/>
-      <div className="main">
-        <h2 className="product-category">{product.category}</h2>
-        <h1 className="product-title">{product.name}</h1>
-        <Styles styles={styles} style={style} setStyle={setStyle}/>
-        <Cart style={style} skus={getSkus(style)}/>
+  return isExpandedView
+    ? (
+      <div className="overview">
+        <Gallery style={style} isExpandedView={isExpandedView} setExpandedView={setExpandedView}/>
+        <Description product={product} />
+        <Features product={product}/>
       </div>
-      <Description product={product} />
-      <Features product={product}/>
-    </div>
-  );
+    )
+    : (
+      <div className="overview">
+        <Gallery style={style} isExpandedView={isExpandedView} setExpandedView={setExpandedView}/>
+        <div className="main">
+          <h2 className="product-category">{product.category}</h2>
+          <h1 className="product-title">{product.name}</h1>
+          <Styles styles={styles} style={style} setStyle={setStyle}/>
+          <Cart style={style} skus={getSkus(style)}/>
+        </div>
+        <Description product={product} />
+        <Features product={product}/>
+      </div>
+    )
 }
 
 export default Overview;

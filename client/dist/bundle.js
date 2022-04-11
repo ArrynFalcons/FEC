@@ -2215,74 +2215,67 @@ function App() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('65635'),
       _useState2 = _slicedToArray(_useState, 2),
       productId = _useState2[0],
-      setProductId = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('default'),
-      _useState4 = _slicedToArray(_useState3, 2),
-      appView = _useState4[0],
-      setAppView = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      imageUrl = _useState6[0],
-      setImageUrl = _useState6[1]; // const [avgRating, setAvgRating] = useState(0);
+      setProductId = _useState2[1]; // const [appView, setAppView] = useState('default');
+  // const [imageUrl, setImageUrl] = useState('');
+  // const [avgRating, setAvgRating] = useState(0);
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.onclick = function (event) {// console.log(event.target);
     };
-  });
+  }); // const handleMouseMove = (event) => {
+  //   const view = document.querySelector('.expanded-view');
+  //   view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
+  //   view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
+  // }
 
-  var handleMouseMove = function handleMouseMove(event) {
-    var view = document.querySelector('.expanded-view');
-    view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
-    view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
-  };
-
-  if (appView === 'default') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "container",
-      title: "container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      getRouteData: getRouteData,
-      productId: productId,
-      setAppView: setAppView,
-      setImageUrl: setImageUrl
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "related-items"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      getRouteData: getRouteData,
-      productId: productId,
-      setProductId: setProductId
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "ratings-and-reviews"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      grd: getRouteData,
-      productId: productId
-    })));
-  } else {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "carousel-container",
-      onClick: function onClick() {
-        return setAppView('default');
-      },
-      onMouseMove: function onMouseMove(event) {
-        return handleMouseMove(event);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "expanded-view",
-      style: {
-        backgroundImage: "url(".concat(imageUrl, ")"),
-        width: 800,
-        height: 800
-      }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "exit-button",
-      onClick: function onClick() {
-        return setAppView('default');
-      }
-    }, "X"));
-  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container",
+    title: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    getRouteData: getRouteData,
+    productId: productId
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "related-items"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    getRouteData: getRouteData,
+    productId: productId,
+    setProductId: setProductId
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ratings-and-reviews"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    grd: getRouteData,
+    productId: productId
+  }))); // if (appView === 'default') {
+  //   return (
+  //     <div className="container" title="container">
+  //       <Overview getRouteData={getRouteData} productId={productId} setAppView={setAppView} setImageUrl={setImageUrl}/>
+  //       <div className="related-items">
+  //         <RelatedItems
+  //           getRouteData={getRouteData}
+  //           productId={productId}
+  //           setProductId={setProductId}
+  //         />
+  //       </div>
+  //       <div className="ratings-and-reviews">
+  //         <Reviews grd={getRouteData} productId={productId} />
+  //       </div>
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div className="carousel-container" onClick={() => setAppView('default')} onMouseMove={(event) => handleMouseMove(event)}>
+  //       <div className="expanded-view"
+  //         style={{
+  //           backgroundImage: `url(${imageUrl})`,
+  //           width: 800,
+  //           height: 800
+  //         }}>
+  //       </div>
+  //       <button className="exit-button" onClick={() => setAppView('default')}>X</button>
+  //     </div>
+  //   );
+  // }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -2662,10 +2655,12 @@ function Arrows(_ref) {
       setIndex = _ref.setIndex,
       length = _ref.length,
       page = _ref.page,
-      setPage = _ref.setPage;
+      setPage = _ref.setPage,
+      setZoomedView = _ref.setZoomedView;
 
   var handlePrev = function handlePrev(e) {
     e.stopPropagation();
+    setZoomedView(false);
 
     if (index === page * 6) {
       setPage(page - 1);
@@ -2676,6 +2671,7 @@ function Arrows(_ref) {
 
   var handleNext = function handleNext(e) {
     e.stopPropagation();
+    setZoomedView(false);
 
     if (index === (page + 1) * 6 - 1) {
       setPage(page + 1);
@@ -2746,7 +2742,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Gallery(props) {
+function Gallery(_ref) {
+  var style = _ref.style,
+      isExpandedView = _ref.isExpandedView,
+      setExpandedView = _ref.setExpandedView;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       images = _useState2[0],
@@ -2757,38 +2757,81 @@ function Gallery(props) {
       index = _useState4[0],
       setIndex = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      isExpandedView = _useState6[0],
-      setExpandedView = _useState6[1];
+      page = _useState6[0],
+      setPage = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      page = _useState8[0],
-      setPage = _useState8[1];
+      isZoomedView = _useState8[0],
+      setZoomedView = _useState8[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var imageArr = [];
 
-    for (var photo in props.style.photos) {
-      imageArr.push(props.style.photos[photo]);
+    for (var photo in style.photos) {
+      imageArr.push(style.photos[photo]);
     }
 
     setImages(imageArr);
-  }, [props.style]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (images.length > 0) {
-      props.setImageUrl(images[index].url);
-    }
-  }, [images]);
+  }, [style]); // useEffect(() => {
+  //   if (images.length > 0) {
+  //     props.setImageUrl(images[index].url);
+  //   }
+  // }, [images])
 
   var handleMouseMove = function handleMouseMove(e) {
-    var view = document.querySelector('.expanded-view');
+    var view = document.querySelector('.zoomed-view');
     view.style.backgroundPositionX = -e.nativeEvent.offsetX + 'px';
     view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
   };
 
-  if (images.length > 0 && isExpandedView === false) {
+  var styleExpanded = function styleExpanded() {
+    var overview = document.querySelector('.gallery');
+    overview.style.gridArea = '1 / 1 / 2 / 3';
+  };
+
+  var styleCollapsed = function styleCollapsed() {
+    var overview = document.querySelector('.gallery');
+    overview.style.gridArea = '1 / 1 / 2 / 2';
+  };
+
+  var handleHover = function handleHover(e) {
+    var view = document.querySelector('.expanded-view'); // view.style.transform = 'scale(1.2)'
+
+    view.style.backgroundPositionX = -e.nativeEvent.offsetX * 0.4 + 'px';
+    view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
+  };
+
+  if (isExpandedView) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "gallery"
+    }, styleExpanded(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "expanded-view",
+      style: {
+        backgroundImage: "url(".concat(images[index].url, ")"),
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: 600
+      },
+      onMouseMove: function onMouseMove(e) {
+        return handleHover(e);
+      },
+      onClick: function onClick() {
+        styleCollapsed();
+        setExpandedView(false);
+        setZoomedView(false);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "exit-button",
+      onClick: function onClick() {
+        styleCollapsed();
+        setExpandedView(false);
+        setZoomedView(false);
+      }
+    }, "X")));
+  } else if (images.length > 0 && isZoomedView === false) {
     // props.setImageUrl(images[index].url);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "gallery"
@@ -2796,13 +2839,13 @@ function Gallery(props) {
       index: index,
       setIndex: setIndex,
       images: images,
-      setExpandedView: setExpandedView,
+      setZoomedView: setZoomedView,
       page: page,
       setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "carousel-container",
       onClick: function onClick() {
-        return setExpandedView(!isExpandedView);
+        return setZoomedView(!isZoomedView);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       className: "gallery-image carousel",
@@ -2815,14 +2858,15 @@ function Gallery(props) {
       setIndex: setIndex,
       length: images.length,
       page: page,
-      setPage: setPage
+      setPage: setPage,
+      setZoomedView: setZoomedView
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "expand-button",
       onClick: function onClick() {
-        return props.setAppView('expanded');
+        return setExpandedView(true);
       }
     }, "[ ]")));
-  } else if (images.length > 0 && isExpandedView === true) {
+  } else if (images.length > 0 && isZoomedView === true) {
     // props.setImageUrl(images[index].url);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "gallery"
@@ -2830,21 +2874,22 @@ function Gallery(props) {
       index: index,
       setIndex: setIndex,
       images: images,
-      setExpandedView: setExpandedView,
+      setZoomedView: setZoomedView,
       page: page,
       setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "carousel-container",
       onClick: function onClick() {
-        return setExpandedView(!isExpandedView);
+        return setZoomedView(!isZoomedView);
       },
       onMouseMove: function onMouseMove(e) {
         return handleMouseMove(e);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "expanded-view",
+      className: "zoomed-view",
       style: {
         backgroundImage: "url(".concat(images[index].url, ")"),
+        backgroundRepeat: 'no-repeat',
         width: 765,
         height: 600
       }
@@ -2853,11 +2898,12 @@ function Gallery(props) {
       setIndex: setIndex,
       length: images.length,
       page: page,
-      setPage: setPage
+      setPage: setPage,
+      setZoomedView: setZoomedView
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "expand-button",
       onClick: function onClick() {
-        return setExpandedView(!isExpandedView);
+        return setZoomedView(!isZoomedView);
       }
     }, "[ ]")));
   } else {
@@ -2901,7 +2947,7 @@ var Thumbnails = function Thumbnails(_ref) {
   var index = _ref.index,
       setIndex = _ref.setIndex,
       images = _ref.images,
-      setExpandedView = _ref.setExpandedView,
+      setZoomedView = _ref.setZoomedView,
       page = _ref.page,
       setPage = _ref.setPage;
 
@@ -2945,7 +2991,7 @@ var Thumbnails = function Thumbnails(_ref) {
       height: "60px",
       onClick: function onClick() {
         setIndex(page * 6 + i);
-        setExpandedView(false);
+        setZoomedView(false);
       }
     }));
   }), page === thumbnails.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -3017,9 +3063,7 @@ function getSkus(style) {
 
 function Overview(_ref) {
   var productId = _ref.productId,
-      getRouteData = _ref.getRouteData,
-      setAppView = _ref.setAppView,
-      setImageUrl = _ref.setImageUrl;
+      getRouteData = _ref.getRouteData;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3034,7 +3078,12 @@ function Overview(_ref) {
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState6 = _slicedToArray(_useState5, 2),
       style = _useState6[0],
-      setStyle = _useState6[1]; //test id 65722
+      setStyle = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      isExpandedView = _useState8[0],
+      setExpandedView = _useState8[1]; //test id 65722
   //default id 65635
   //65632
 
@@ -3053,12 +3102,22 @@ function Overview(_ref) {
     });
   }, []); //conditional rendering for loading
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return isExpandedView ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overview"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Gallery_Gallery_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     style: style,
-    setAppView: setAppView,
-    setImageUrl: setImageUrl
+    isExpandedView: isExpandedView,
+    setExpandedView: setExpandedView
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Description_Description_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    product: product
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Description_Features_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    product: product
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "overview"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Gallery_Gallery_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    style: style,
+    isExpandedView: isExpandedView,
+    setExpandedView: setExpandedView
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "main"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {

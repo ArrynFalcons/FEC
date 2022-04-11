@@ -21,8 +21,8 @@ function App() {
   }, []);
 
   const [productId, setProductId] = useState('65635');
-  const [appView, setAppView] = useState('default');
-  const [imageUrl, setImageUrl] = useState('');
+  // const [appView, setAppView] = useState('default');
+  // const [imageUrl, setImageUrl] = useState('');
   // const [avgRating, setAvgRating] = useState(0);
 
   useEffect(() => {
@@ -31,42 +31,58 @@ function App() {
     };
   });
 
-  const handleMouseMove = (event) => {
-    const view = document.querySelector('.expanded-view');
-    view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
-    view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
-  }
+  // const handleMouseMove = (event) => {
+  //   const view = document.querySelector('.expanded-view');
+  //   view.style.backgroundPositionX = -event.nativeEvent.offsetX + 'px';
+  //   view.style.backgroundPositionY = -event.nativeEvent.offsetY + 'px';
+  // }
 
-  if (appView === 'default') {
-    return (
-      <div className="container" title="container">
-        <Overview getRouteData={getRouteData} productId={productId} setAppView={setAppView} setImageUrl={setImageUrl}/>
-        <div className="related-items">
-          <RelatedItems
-            getRouteData={getRouteData}
-            productId={productId}
-            setProductId={setProductId}
-          />
-        </div>
-        <div className="ratings-and-reviews">
-          <Reviews grd={getRouteData} productId={productId} />
-        </div>
+  return (
+    <div className="container" title="container">
+      <Overview getRouteData={getRouteData} productId={productId}/>
+      <div className="related-items">
+        <RelatedItems
+          getRouteData={getRouteData}
+          productId={productId}
+          setProductId={setProductId}
+        />
       </div>
-    );
-  } else {
-    return (
-      <div className="carousel-container" onClick={() => setAppView('default')} onMouseMove={(event) => handleMouseMove(event)}>
-        <div className="expanded-view"
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-            width: 800,
-            height: 800
-          }}>
-        </div>
-        <button className="exit-button" onClick={() => setAppView('default')}>X</button>
+      <div className="ratings-and-reviews">
+        <Reviews grd={getRouteData} productId={productId} />
       </div>
-    );
-  }
+    </div>
+  );
+
+  // if (appView === 'default') {
+  //   return (
+  //     <div className="container" title="container">
+  //       <Overview getRouteData={getRouteData} productId={productId} setAppView={setAppView} setImageUrl={setImageUrl}/>
+  //       <div className="related-items">
+  //         <RelatedItems
+  //           getRouteData={getRouteData}
+  //           productId={productId}
+  //           setProductId={setProductId}
+  //         />
+  //       </div>
+  //       <div className="ratings-and-reviews">
+  //         <Reviews grd={getRouteData} productId={productId} />
+  //       </div>
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div className="carousel-container" onClick={() => setAppView('default')} onMouseMove={(event) => handleMouseMove(event)}>
+  //       <div className="expanded-view"
+  //         style={{
+  //           backgroundImage: `url(${imageUrl})`,
+  //           width: 800,
+  //           height: 800
+  //         }}>
+  //       </div>
+  //       <button className="exit-button" onClick={() => setAppView('default')}>X</button>
+  //     </div>
+  //   );
+  // }
 }
 
 export default App;
