@@ -16,23 +16,25 @@ function reducer(state, action) {
       throw new Error();
   }
 }
-function RelatedProductsList({ products, featured, getRouteData, setProductId }) {
-  const [state, dispatch] = useReducer(reducer, { start: 0, next: 3 });
+function RelatedProductsList({ products, currentProduct, getRouteData, setProductId }) {
+  const [state, dispatch] = useReducer(reducer, { start: 0, next: 5 });
   const [featuredProduct, setFeaturedProduct] = useState([]);
 
   useEffect(() => {
-    getRouteData('products', 1, 1, '', featured, '')
+    getRouteData('products', 1, 1, '', currentProduct, '')
       .then((data) => {
         setFeaturedProduct(data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    state.start = 0;
+    state.next = 5;
+  }, [currentProduct]);
 
   return (
     <div>
-      <h2>COMPLETE THE LOOK</h2>
+      <h1>COMPLETE THE LOOK</h1>
       <div className="relatedProducts">
         {state.start === 0 ? null : (
           <h2 className="product-arrows" onClick={() => { dispatch({ type: 'previous' }); }}>◀︎</h2>)}
@@ -47,7 +49,7 @@ function RelatedProductsList({ products, featured, getRouteData, setProductId })
           />
         ))}
 
-        {state.next === products.length ? null : (
+        {state.next >= products.length ? null : (
           <h2 className="product-arrows" onClick={() => { dispatch({ type: 'next' }); }}>►</h2>)}
       </div>
     </div>

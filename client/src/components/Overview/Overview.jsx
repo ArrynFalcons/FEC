@@ -16,7 +16,7 @@ import Styles from './Styles/Styles.jsx';
 //   return skus;
 // }
 
-function Overview({ productId, getRouteData }) {
+function Overview({ productId, getRouteData, setCurrentStyle }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
@@ -62,7 +62,7 @@ function Overview({ productId, getRouteData }) {
         <div className="main">
           <h2 className="product-category">{product.category}</h2>
           <h1 className="product-title">{product.name}</h1>
-          <Styles styles={styles} style={style} setStyle={setStyle}/>
+          <Styles styles={styles} style={style} setStyle={setStyle} setCurrentStyle={setCurrentStyle}/>
           <Cart style={style} skus={getSkus(style)}/>
         </div>
         <Description product={product}/>
