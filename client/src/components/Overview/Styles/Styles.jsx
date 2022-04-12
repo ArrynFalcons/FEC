@@ -1,12 +1,13 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
-function Styles({ styles, style, setStyle }) {
+function Styles({ styles, style, setStyle, setCurrentStyle }) {
 
   const handleStyleClick = (e) => {
     for (let style of styles) {
       if (style.style_id === Number(e.target.id)) {
         setStyle(style);
+        setCurrentStyle(style);
         break;
       }
     }

@@ -7,21 +7,19 @@
 import React, { useState, useEffect } from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
 
-function OutfitCard({ product, setOutfits, getRouteData, dispatch, start }) {
+function OutfitCard({ product, setOutfits, getRouteData, dispatch, start, currentStyle }) {
   const [photo, setPhoto] = useState([]);
   const [sale, setSale] = useState(null);
   const [avgReview, setReview] = useState(null);
 
   useEffect(() => {
-    getRouteData('products', 1, 5, '', product.id, 'styles')
-      .then((data) => {
-        setPhoto(data.data.results[0].photos[0].thumbnail_url);
-        setSale(data.data.results[0].sale_price);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    const backupPhoto = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
+
+    product.style.photos[0].thumbnail_url ? (
+      setPhoto(product.style.photos[0].thumbnail_url)
+    ) : (setPhoto(backupPhoto));
+    setSale(product.style.sale_price);
+  }, [currentStyle]);
 
   useEffect(() => {
     getRouteData('reviews', '', '', '', product.id, 'meta')
@@ -58,19 +56,22 @@ function OutfitCard({ product, setOutfits, getRouteData, dispatch, start }) {
       <div className="productCard">
         <h2 className="cardIcon overlay" onClick={() => { deleteFromLocalStorage(product); }}>x</h2>
         <img className="thumbnail" src={photo} alt="stock clothing item" />
-        <span>{product.category}</span>
-        <span>{product.name}</span>
-        {sale ? (
-          <span>
-            <span style={{ textDecoration: 'line-through', color: 'gray' }}>{`$${product.default_price}`}</span>
-            <span style={{ color: 'red' }}>{`$${sale}`}</span>
+        <div className="card-contents">
+          <span>{product.category}</span>
+          <span>{product.style.name}</span>
+          <span>{product.name}</span>
+          {sale ? (
+            <span>
+              <span style={{ textDecoration: 'line-through', color: 'gray' }}>{`$${product.default_price}`}</span>
+              <span style={{ color: 'red' }}>{`$${sale}`}</span>
+            </span>
+          ) : (
+            <span>{`$${product.default_price}`}</span>
+          )}
+          <span className="product-stars" style={{ '--rating': `${avgReview}` }}>
+            {avgReview ? `${avgReview}/5` : null}
           </span>
-        ) : (
-          <span>{`$${product.default_price}`}</span>
-        )}
-        <span className="product-stars" style={{ '--rating': `${avgReview}` }}>
-          {avgReview ? `${avgReview}/5` : null}
-        </span>
+        </div>
       </div>
     </div>
   );

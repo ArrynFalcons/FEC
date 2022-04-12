@@ -13,10 +13,24 @@
   flex-direction: column;
   border: 2px solid;
   border-color: gray;
-  padding: 5px;
   height: 300px;
   width: 200px;
   cursor: pointer;
+}
+
+.product-card-contents {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding-left: 5px;
+}
+
+.card-contents {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  font-size: small;
+  padding-left: 5px;
 }
 
 .staticCard {
@@ -62,9 +76,9 @@
   position: absolute;
   flex-direction: column;
   height: 250px;
-  width: auto;
+  width: 400px;
   text-align: center;
-  background-color: beige;
+  background-color: #F8F8F8;
   padding: 10px;
   gap: 15px;
   z-index: 2;
@@ -125,9 +139,4 @@
   background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-* {
-  position: relative;
-  box-sizing: border-box;
 }
