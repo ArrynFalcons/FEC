@@ -20,6 +20,13 @@ function ReviewList(props) {
         console.log(error);
       });
   };
+  const setReportF = () => {
+    if (report) {
+      setReport(false);
+    } else {
+      setReport(true);
+    }
+  }
   const reportReview = (id) => {
     axios.post('/reportreview', { id })
       .then((response) => {
@@ -29,10 +36,10 @@ function ReviewList(props) {
         console.log(error);
       });
   };
-  //Changes the sort order of reviews to be based on "newest", "helpful", or "relevant"
+  // Changes the sort order of reviews to be based on "newest", "helpful", or "relevant"
   const pagination = (page, amount, sorter) => {
-    var total = amount || 5;
-    var sort = sorter || '';
+    const total = amount || 5;
+    const sort = sorter || '';
     grd('reviews', page, total, sort, pid, '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
         setReviews(data.data.results);
@@ -53,17 +60,66 @@ function ReviewList(props) {
         console.log('Error retrieving reviews: ', err);
       });
   }, [pid]);
-  let liststyle = {'listStyle': 'none', width: '800px'};
-  let sortstyle1 = {position: 'absolute', left: '700px'};
-  let sortstyle2 = {position: 'absolute', left: '630px'};
-  let floatstyle = {float: 'left'};
-  let absoluteleft = {position: 'absolute', left: '100px'};
-  let bigfont = {'fontSize': '20px'};
+  const liststyle = { listStyle: 'none', width: '800px' };
+  const sortstyle1 = { position: 'absolute', left: '700px' };
+  const sortstyle2 = { position: 'absolute', left: '630px' };
+  const floatstyle = { float: 'left' };
+  const absoluteleft = { position: 'absolute', left: '100px' };
+  const bigfont = { fontSize: '20px' };
+  const buttonStyle = {
+    marginLeft: '5px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9', /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+  };
+  const buttonStyleFloat = {
+    float: 'left',
+    marginLeft: '5px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9', /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+  };
+  const buttonStyleRight = {
+    marginLeft: '10px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9', /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+  };
+  const buttonStyleR = {
+    marginLeft: '550px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9', /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+  };
   return (
     <div className="review-list" title="reviewlist">
       <div style={sortstyle2}>Sort By:</div>
       <label>.</label>
-      <select style={sortstyle1} id="reviewlist" onChange={(e) => {pagination(1, 1000, `${e.target.value}`)}}>
+      <select style={sortstyle1} id="reviewlist" onChange={(e) => { pagination(1, 1000, `${e.target.value}`); }}>
         <option value="relevant">Relevant</option>
         <option value="newest">Newest</option>
         <option value="helpful">Helpful</option>
@@ -71,28 +127,25 @@ function ReviewList(props) {
 
       <ul style={liststyle}>
         {reviews.map((review) => {
-          let cssProps = {};
+          const cssProps = {};
           cssProps['--rating'] = review.rating;
           cssProps.position = 'absolute';
-          cssProps.left = '500px';
+          cssProps.left = '550px';
           return (
             <li className="tile" key={`${review.review_id}`}>
               <div className="margin10">
-                <div className="Stars" style={cssProps}></div>
-                <div style={bigfont}>
-                  {` "${review.summary}" `}
-                </div>
+                <div className="Stars" style={cssProps} />
                 <div>
-                  Name:
                   {` ${review.reviewer_name} `}
                 </div>
-                <div>
-                  Reviewed on:
+                {/* <div>
                   {' '}
                   {moment(review.date).format('MMMM Do YYYY')}
+                </div> */}
+                <div style={bigfont}>
+                  <strong>{` "${review.summary}" `}</strong>
                 </div>
-                <br/>
-                <div style={bigfont} className="reviewbody">
+                <div className="reviewbody">
                   {`"${review.body}"`}
                 </div>
                 {/* <style dangerouslySetInnerHTML={{_html: `.reviewbody {color:blue}`}}/> */}
@@ -101,26 +154,28 @@ function ReviewList(props) {
                     <img
                       src={`${photo.url}`}
                       value={photo.url}
-                      style={{ display: 'inline-block' }}
+                      style={{ zIndex: '5', display: 'inline-block', border: '1px solid', marginLeft: '10px' }}
                       className="zoom"
                       // onMouseOver={(e) => console.log(e.target.currentSrc)}
                     // onMouseOut={e=>console.log(e.target.currentSrc)}
                       alt="reviewimages"
-                      height="200"
+                      height="100"
+                      width="100"
                     />
                   ))}
                 </div>
-                <div style={{ color: 'blue' }}>
-                  Recommend?
-                  {review.recommend ? ' Yes' : ' No'}
+                {review.recommend ?
+                <div style={{float:'left'}}>Recommend: Yes.
                 </div>
-                <div>
-                  {review.helpfulness}
-                  people found this review helpful. Did you it helpful?
+                : null}
+                <div style={{float:'left'}}>
+                  {`${review.helpfulness} `}
+                  ⬆ Helpful?
                 </div>
                 <div>
                   <button
                     type="submit"
+                    style={buttonStyleFloat}
                     value={`${review.review_id}`}
                     onClick={(e) => {
                       markAsHelpful(e.target.value);
@@ -131,13 +186,14 @@ function ReviewList(props) {
                   </button>
                   <button
                     type="submit"
+                    style={buttonStyleRight}
                     value={`${review.reviewer_name}`}
                     onClick={(e) => {
-                      setReport(true);
+                      setReportF();
                       setActiveKey(e.target.value);
                     }}
                   >
-                    No
+                    Report
                   </button>
                 </div>
                 {report && activekey === review.reviewer_name
@@ -146,22 +202,24 @@ function ReviewList(props) {
                       <textarea
                         rows="4"
                         cols="50"
-                        placeholder="If you wish to report this review, please use this form and submit your feedback. Thank you for keeping this site safe for all users"
+                        style={{left: '150px'}}
+                        placeholder="If you wish to report this review, please use this form and submit your feedback."
                       />
-                      <button type="submit" value={`${review.review_id}`} onClick={(e) => { reportReview(e.target.value); }}>Submit</button>
+                      <br/>
+                      <button type="submit" style={buttonStyleR} value={`${review.review_id}`} onClick={(e) => { reportReview(e.target.value); }}>Submit</button>
                     </>
                   ) : null}
               </div>
             </li>
-          )
+          );
         })}
       </ul>
       <div>
-        <button onClick={() => { pagination(1); }}>1</button>
-        <button onClick={() => { pagination(2); }}>2</button>
-        <button onClick={() => { pagination(3); }}>3</button>
-        <button onClick={() => { pagination(4); }}>4</button>
-        <button onClick={() => { pagination(5); }}>5</button>
+        <button style={buttonStyle} onClick={() => { pagination(1); }}>1</button>
+        <button style={buttonStyle} onClick={() => { pagination(2); }}>2</button>
+        <button style={buttonStyle} onClick={() => { pagination(3); }}>3</button>
+        <button style={buttonStyle} onClick={() => { pagination(4); }}>4</button>
+        <button style={buttonStyle} onClick={() => { pagination(5); }}>5</button>
       </div>
     </div>
   );

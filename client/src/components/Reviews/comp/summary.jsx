@@ -15,10 +15,11 @@ function Summary(props) {
   const [comfort, setcomfort] = useState('');
   const [quality, setquality] = useState('');
   const [size, setsize] = useState('');
-  const { grd } = props;
+  const { pid, grd } = props;
 
   useEffect(() => {
-    grd('reviews', '', '3000', '', '65635', '') // (route, page, count, sort, Id, endParam)
+    console.log('pid', pid);
+    grd('reviews', '', '3000', '', pid, '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
         let [sum, total, one, two, three, four, five, recommend] = [0, 0, 0, 0, 0, 0, 0, 0];
         data.data.results.forEach((obj) => {
@@ -74,7 +75,9 @@ function Summary(props) {
   let foregroundstyle = { height: '10px', width: '100%', backgroundColor: '#F0F8FF' };
   let marginbottom = {'marginBottom': '20px'};
   return (
-    <div className="summary" title="reviews">
+    <>
+
+    <div className="summary1" title="reviews">
       <h1>Ratings and Reviews</h1>
       <div>
         {total} Reviews
@@ -106,45 +109,80 @@ function Summary(props) {
       <div style={marginbottom} className="background-bar">
         <div id="foreground1" className="foreground-bar" style={{ height: '30px', width: `${100 * count1 / total}%`, backgroundColor: 'black' }} />
       </div>
-      <br/>
-      <div style={marginbottom}>Average Recommendation: {Math.round(recommend * 100 /total)}% said yes.</div>
-      <div id="characteristics" style={marginbottom}>Characteristics
-
-        <div style={marginbottom}>Size
-          <div className="foreground-bar" style={foregroundstyle}>
-            <div style={{position: 'absolute', left: `${size * 40}px` }}>▼</div>
-          </div>
-          <div>
-            Too Small ------ Perfect ------ Too Large
-          </div>
-        </div>
-        <div style={marginbottom}>Width
-          <div className="foreground-bar" style={foregroundstyle}>
-            <div style={{position: 'absolute', left: `${width * 40}px` }}>▼</div>
-          </div>
-          <div>
-            Too Narrow --- Just Right ----- Too Wide
-          </div>
-        </div>
-        <div style={marginbottom}>Comfort
-          <div className="foreground-bar" style={foregroundstyle}>
-            <div style={{position: 'absolute', left: `${comfort * 40}px` }}>▼</div>
-          </div>
-          <div>
-            Low ---------- Average ------------ High
-          </div>
-        </div>
-        <div style={marginbottom}>Quality
-          <div className="foreground-bar" style={foregroundstyle}>
-            <div style={{position: 'absolute', left: `${quality * 40}px` }}>▼</div>
-          </div>
-          <div>
-            Poor --------- Average ----------- High
-          </div>
-        </div>
-
       </div>
-    </div>
+
+      <div className="summary2">
+        <div style={marginbottom}>Average Recommendation: {Math.round(recommend * 100 /total)}% said yes.</div>
+        <div id="characteristics" style={marginbottom}>Characteristics
+          <div style={marginbottom}>Size
+            <div className="foreground-bar" style={foregroundstyle}>
+              <div style={{position: 'absolute', left: `${size * 40}px` }}>▼</div>
+            </div>
+            <div style={{display:'flex', justifyContent: 'space-between'}}>
+              <div>
+                Too Small
+              </div>
+              <div>
+                Perfect
+              </div>
+              <div>
+                Too Large
+              </div>
+            </div>
+          </div>
+          <div style={marginbottom}>Width
+            <div className="foreground-bar" style={foregroundstyle}>
+              <div style={{position: 'absolute', left: `${width * 40}px` }}>▼</div>
+            </div>
+            <div style={{display:'flex', justifyContent: 'space-between'}}>
+              <div>
+                Too Narrow
+              </div>
+              <div>
+                Just Right
+              </div>
+              <div>
+                Too Wide
+              </div>
+            </div>
+          </div>
+          <div style={marginbottom}>Comfort
+            <div className="foreground-bar" style={foregroundstyle}>
+              <div style={{position: 'absolute', left: `${comfort * 40}px` }}>▼</div>
+            </div>
+            <div style={{display:'flex', justifyContent: 'space-between'}}>
+              <div>
+                Low
+              </div>
+              <div>
+                Average
+              </div>
+              <div>
+                High
+              </div>
+            </div>
+          </div>
+          <div style={marginbottom}>Quality
+            <div className="foreground-bar" style={foregroundstyle}>
+              <div style={{position: 'absolute', left: `${quality * 40}px` }}>▼</div>
+            </div>
+            <div style={{display:'flex', justifyContent: 'space-between'}}>
+              <div>
+                Poor
+              </div>
+              <div>
+                Average
+              </div>
+              <div>
+                High
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </>
+
   );
 }
 
