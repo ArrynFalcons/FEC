@@ -4125,7 +4125,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function NewReview(props) {
-  var grd = props.grd;
+  var grd = props.grd,
+      pid = props.pid;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -4142,17 +4143,32 @@ function NewReview(props) {
       metadata = _useState6[0],
       setmetadata = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       newrating = _useState8[0],
       setnewrating = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('#A9A9A9'),
+      _useState10 = _slicedToArray(_useState9, 2),
+      yes = _useState10[0],
+      setYes = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('#A9A9A9'),
+      _useState12 = _slicedToArray(_useState11, 2),
+      no = _useState12[0],
+      setNo = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('#A9A9A9'),
+      _useState14 = _slicedToArray(_useState13, 2),
+      submit = _useState14[0],
+      setSubmit = _useState14[1];
 
   var openReviewBox = function openReviewBox() {
     setreviewstate(true);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    grd('reviews', '', '', '', '65635', 'meta').then(function (data) {
+    grd('reviews', '', '', '', pid, 'meta').then(function (data) {
       setmetadata(data.data);
       var bodyparamscopy = bodyparams;
       bodyparamscopy.product_id = Number(data.data.product_id);
@@ -4166,11 +4182,29 @@ function NewReview(props) {
       setbodyparams(bodyparamscopy);
     })["catch"](function (err) {
       console.log('Error retrieving reviews: ', err);
-    });
-  }, []);
+    }); // cleanup task here
+
+    return function () {
+      setmetadata({});
+    };
+  }, [pid]);
 
   var ratingHelper = function ratingHelper(rating) {
     setnewrating(rating);
+  };
+
+  var switchColor = function switchColor(button) {
+    if (button === 'Yes') {
+      setYes('#4CAF50');
+      setNo('#A9A9A9');
+    } else if (button === 'No') {
+      setYes('#A9A9A9');
+      setNo('#4CAF50');
+    } else {
+      setSubmit('#4CAF50');
+    }
+
+    ;
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -4226,18 +4260,66 @@ function NewReview(props) {
   */
 
   var cssProps = {};
-  cssProps['--rating'] = newrating; //  cssProps['z-index'] = 10;
-
+  cssProps['--rating'] = newrating;
+  cssProps['zIndex'] = '1';
+  cssProps['position'] = 'absolute';
+  cssProps['left'] = '0px';
+  cssProps['top'] = '17px';
   var cssFloaters = {
     "float": 'left',
-    width: '42px'
+    width: '42px',
+    'zIndex': '2'
   };
   var cssFloaters1 = {
     "float": 'left',
     width: '45px',
-    marginLeft: '15px'
+    marginLeft: '15px',
+    'zIndex': '2'
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Leave a New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  var buttonStyleYes = {
+    marginLeft: '5px',
+    backgroundColor: yes,
+
+    /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '5px 5px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'
+  };
+  var buttonStyleNo = {
+    marginLeft: '5px',
+    backgroundColor: no,
+
+    /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '5px 5px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'
+  };
+  var buttonStyleSubmit = {
+    marginLeft: '5px',
+    backgroundColor: submit,
+
+    /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '5px 5px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      left: '10px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Leave a New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
     onChange: function onChange(e) {
       setnewrating;
@@ -4248,6 +4330,9 @@ function NewReview(props) {
     placeholder: "Name"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
+    style: {
+      marginLeft: '5px'
+    },
     onChange: function onChange(e) {
       var bodyparamscopy = bodyparams;
       bodyparamscopy.email = "".concat(e.target.value);
@@ -4291,16 +4376,24 @@ function NewReview(props) {
   }, "5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "Stars",
     style: cssProps
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Do you recommend this product?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      marginBottom: '5px'
+    }
+  }, "Do you recommend this product?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",
+    style: buttonStyleYes,
     onClick: function onClick() {
+      switchColor('Yes');
       var bodyparamscopy = bodyparams;
       bodyparamscopy.recommend = true;
       setbodyparams(bodyparamscopy);
     }
   }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",
+    style: buttonStyleNo,
     onClick: function onClick() {
+      switchColor('No');
       var bodyparamscopy = bodyparams;
       bodyparamscopy.recommend = false;
       setbodyparams(bodyparamscopy);
@@ -4332,9 +4425,16 @@ function NewReview(props) {
       setbodyparams(bodyparamscopy);
     },
     placeholder: "Add comma separated URLs to include images"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: '620px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",
+    style: buttonStyleSubmit,
     onClick: function onClick() {
+      switchColor('submit');
       console.log('Body params are being sent to server!', bodyparams);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/reviews', bodyparams).then(function (response) {
         console.log(response);
@@ -4342,7 +4442,7 @@ function NewReview(props) {
         console.log(error);
       });
     }
-  }, "Submit"));
+  }, "Submit")));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewReview);
@@ -4417,6 +4517,14 @@ function ReviewList(props) {
     });
   };
 
+  var setReportF = function setReportF() {
+    if (report) {
+      setReport(false);
+    } else {
+      setReport(true);
+    }
+  };
+
   var reportReview = function reportReview(id) {
     axios__WEBPACK_IMPORTED_MODULE_1___default().post('/reportreview', {
       id: id
@@ -4425,7 +4533,7 @@ function ReviewList(props) {
     })["catch"](function (error) {
       console.log(error);
     });
-  }; //Changes the sort order of reviews to be based on "newest", "helpful", or "relevant"
+  }; // Changes the sort order of reviews to be based on "newest", "helpful", or "relevant"
 
 
   var pagination = function pagination(page, amount, sorter) {
@@ -4451,7 +4559,7 @@ function ReviewList(props) {
     });
   }, [pid]);
   var liststyle = {
-    'listStyle': 'none',
+    listStyle: 'none',
     width: '800px'
   };
   var sortstyle1 = {
@@ -4470,7 +4578,64 @@ function ReviewList(props) {
     left: '100px'
   };
   var bigfont = {
-    'fontSize': '20px'
+    fontSize: '20px'
+  };
+  var buttonStyle = {
+    marginLeft: '5px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9',
+
+    /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'
+  };
+  var buttonStyleFloat = {
+    "float": 'left',
+    marginLeft: '5px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9',
+
+    /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'
+  };
+  var buttonStyleRight = {
+    marginLeft: '10px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9',
+
+    /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'
+  };
+  var buttonStyleR = {
+    marginLeft: '550px',
+    marginBottom: '5px',
+    backgroundColor: '#A9A9A9',
+
+    /* Green */
+    border: 'none',
+    color: 'white',
+    padding: '3px 10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "review-list",
@@ -4495,7 +4660,7 @@ function ReviewList(props) {
     var cssProps = {};
     cssProps['--rating'] = review.rating;
     cssProps.position = 'absolute';
-    cssProps.left = '500px';
+    cssProps.left = '550px';
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
       className: "tile",
       key: "".concat(review.review_id)
@@ -4504,71 +4669,90 @@ function ReviewList(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "Stars",
       style: cssProps
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " ".concat(review.reviewer_name, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       style: bigfont
-    }, " \"".concat(review.summary, "\" ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Name:", " ".concat(review.reviewer_name, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Reviewed on:", ' ', moment__WEBPACK_IMPORTED_MODULE_2___default()(review.date).format('MMMM Do YYYY')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      style: bigfont,
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, " \"".concat(review.summary, "\" "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "reviewbody"
     }, "\"".concat(review.body, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "inline-block"
     }, review.photos.map(function (photo) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: "".concat(photo.url),
+        key: "".concat(photo.url),
         value: photo.url,
         style: {
-          display: 'inline-block'
+          zIndex: '5',
+          display: 'inline-block',
+          border: '1px solid',
+          marginLeft: '10px'
         },
         className: "zoom" // onMouseOver={(e) => console.log(e.target.currentSrc)}
         // onMouseOut={e=>console.log(e.target.currentSrc)}
         ,
         alt: "reviewimages",
-        height: "200"
+        height: "100",
+        width: "100"
       });
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    })), review.recommend ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       style: {
-        color: 'blue'
+        "float": 'left'
       }
-    }, "Recommend?", review.recommend ? ' Yes' : ' No'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, review.helpfulness, "people found this review helpful. Did you it helpful?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, "Recommend: Yes.") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      style: {
+        "float": 'left'
+      }
+    }, "".concat(review.helpfulness, " "), "\u2B06 Helpful?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       type: "submit",
+      style: buttonStyleFloat,
       value: "".concat(review.review_id),
       onClick: function onClick(e) {
         markAsHelpful(e.target.value);
       }
     }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       type: "submit",
+      style: buttonStyleRight,
       value: "".concat(review.reviewer_name),
       onClick: function onClick(e) {
-        setReport(true);
+        setReportF();
         setActiveKey(e.target.value);
       }
-    }, "No")), report && activekey === review.reviewer_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    }, "Report")), report && activekey === review.reviewer_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
       rows: "4",
       cols: "50",
-      placeholder: "If you wish to report this review, please use this form and submit your feedback. Thank you for keeping this site safe for all users"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      style: {
+        left: '150px'
+      },
+      placeholder: "If you wish to report this review, please use this form and submit your feedback."
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       type: "submit",
+      style: buttonStyleR,
       value: "".concat(review.review_id),
       onClick: function onClick(e) {
         reportReview(e.target.value);
       }
     }, "Submit")) : null));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: buttonStyle,
     onClick: function onClick() {
       pagination(1);
     }
   }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: buttonStyle,
     onClick: function onClick() {
       pagination(2);
     }
   }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: buttonStyle,
     onClick: function onClick() {
       pagination(3);
     }
   }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: buttonStyle,
     onClick: function onClick() {
       pagination(4);
     }
   }, "4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: buttonStyle,
     onClick: function onClick() {
       pagination(5);
     }
