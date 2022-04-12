@@ -14,7 +14,7 @@ const SizeSelector = forwardRef(({ skus, size, setSize }, ref) => {
     : (
       <div className="size-selector">
         <select className="size-dropdown" value={size} onChange={(e) => setSize(e.target.value)}>
-          <option value="" selected>Select Size</option>
+          <option value="select" >Select Size</option>
           {skus.map((sku, i) => <option value={sku.size} key={i}>{sku.size}</option>)}
         </select>
         <div className="select-size-message" hidden ref={ref}>

@@ -2391,11 +2391,13 @@ function Cart(_ref) {
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
       filled = _useState10[0],
-      setFilled = _useState10[1];
+      setFilled = _useState10[1]; // const [defaultQty, setResetQty] = useState(false);
+
 
   var toShake = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var message = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var cartAdd = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var cartAdd = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); // const qtyToDefault = useRef(null);
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     size.length > 0 ? setFilled(true) : setFilled(false);
 
@@ -2427,13 +2429,21 @@ function Cart(_ref) {
       axios__WEBPACK_IMPORTED_MODULE_3___default().post('/cart', {
         sku_id: Number(skuId)
       }).then(function (res) {
-        return console.log('success posting');
+        setTimeout(function () {
+          cartAdd.current.setAttribute("value", "Added to Bag");
+        }, 0);
+        setSize('');
+        setSku({});
+        setSkuId('');
+        setQuantity('1');
+        setTimeout(function () {
+          cartAdd.current.setAttribute("value", "Add to Bag");
+        }, 2000);
       })["catch"](function (err) {
         return console.log(err);
       });
-    }
+    } // axios.get('/cart').then((res) => console.log('get successful on front end'))
 
-    cartAdd.current.setAttribute("value", "Added to Bag"); //axios.get('/cart').then((res) => console.log('get successful on front end'))
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2493,7 +2503,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable */
 
 
-function QuantitySelector(_ref) {
+var QuantitySelector = function QuantitySelector(_ref) {
   var sku = _ref.sku,
       size = _ref.size,
       setQuantity = _ref.setQuantity;
@@ -2540,7 +2550,7 @@ function QuantitySelector(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "-"
   }, "Qty")));
-}
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuantitySelector);
 
@@ -2581,8 +2591,7 @@ var SizeSelector = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef
       return setSize(e.target.value);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: "",
-    selected: true
+    value: "select"
   }, "Select Size"), skus.map(function (sku, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
       value: sku.size,

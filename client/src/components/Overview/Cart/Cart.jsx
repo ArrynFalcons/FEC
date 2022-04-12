@@ -12,9 +12,11 @@ function Cart({ style, skus }) {
   const [skuId, setSkuId] = useState('');
   const [quantity, setQuantity] = useState('1');
   const [filled, setFilled] = useState(false);
+  // const [defaultQty, setResetQty] = useState(false);
   const toShake = useRef(null);
   const message = useRef(null);
   const cartAdd = useRef(null);
+  // const qtyToDefault = useRef(null);
 
   useEffect(() => {
     size.length > 0 ? setFilled(true) : setFilled(false);
@@ -43,11 +45,21 @@ function Cart({ style, skus }) {
     }
     for (let i = 0; i < Number(quantity); i++) {
       axios.post('/cart', { sku_id: Number(skuId) })
-        .then((res) => console.log('success posting'))
+        .then((res) => {
+          setTimeout(() => {
+            cartAdd.current.setAttribute("value", "Added to Bag");
+          }, 0);
+          setSize('');
+          setSku({});
+          setSkuId('');
+          setQuantity('1');
+          setTimeout(() => {
+            cartAdd.current.setAttribute("value", "Add to Bag");
+          }, 2000);
+        })
         .catch((err) => console.log(err));
     }
-    cartAdd.current.setAttribute("value", "Added to Bag");
-    //axios.get('/cart').then((res) => console.log('get successful on front end'))
+    // axios.get('/cart').then((res) => console.log('get successful on front end'))
   }
 
   return (
