@@ -3801,7 +3801,7 @@ function RelatedItems(_ref) {
     getRouteData('products', 1, 10, '', currentProduct, 'related').then(function (data) {
       var checkDuplicates = [];
       data.data.forEach(function (id) {
-        if (!checkDuplicates.includes(id)) {
+        if (!checkDuplicates.includes(id) && id !== productId) {
           checkDuplicates.push(id);
         }
       });

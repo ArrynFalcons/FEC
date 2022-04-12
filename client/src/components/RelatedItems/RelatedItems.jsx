@@ -19,7 +19,7 @@ function RelatedItems({ getRouteData, productId, setProductId, currentStyle }) {
       .then((data) => {
         const checkDuplicates = [];
         data.data.forEach((id) => {
-          if (!checkDuplicates.includes(id)) {
+          if (!checkDuplicates.includes(id) && id !== productId) {
             checkDuplicates.push(id);
           }
         });
