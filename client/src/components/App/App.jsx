@@ -19,24 +19,24 @@ function App() {
   const params = useParams()
   // sends User Click info to data scientists
   useEffect(() => {
-    window.onclick = (event) => {
-      let widget = '';
-      if (event.pageY <= 900) {
-        widget = 'Overview';
-      } else if (event.pageY > 900 && event.pageY <= 1700) {
-        widget = 'Related Products';
-      } else {
-        widget = 'Reviews and Ratings';
-      }
-      const body = {
-        element: event.target.outerHTML,
-        widget,
-        time: moment().format(),
-      };
+    // window.onclick = (event) => {
+    //   let widget = '';
+    //   if (event.pageY <= 900) {
+    //     widget = 'Overview';
+    //   } else if (event.pageY > 900 && event.pageY <= 1700) {
+    //     widget = 'Related Products';
+    //   } else {
+    //     widget = 'Reviews and Ratings';
+    //   }
+    //   const body = {
+    //     element: event.target.outerHTML,
+    //     widget,
+    //     time: moment().format(),
+    //   };
       // axios.post('/interactions', body);
       // too many post requests on click will crash the app
       // probably need to store in windowLocal storage
-    };
+    // };
   }, []);
 
   useEffect(() => {

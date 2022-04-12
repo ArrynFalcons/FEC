@@ -2224,26 +2224,24 @@ function App() {
 
   var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)(); // sends User Click info to data scientists
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    window.onclick = function (event) {
-      var widget = '';
-
-      if (event.pageY <= 900) {
-        widget = 'Overview';
-      } else if (event.pageY > 900 && event.pageY <= 1700) {
-        widget = 'Related Products';
-      } else {
-        widget = 'Reviews and Ratings';
-      }
-
-      var body = {
-        element: event.target.outerHTML,
-        widget: widget,
-        time: moment__WEBPACK_IMPORTED_MODULE_2___default()().format()
-      }; // axios.post('/interactions', body);
-      // too many post requests on click will crash the app
-      // probably need to store in windowLocal storage
-    };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {// window.onclick = (event) => {
+    //   let widget = '';
+    //   if (event.pageY <= 900) {
+    //     widget = 'Overview';
+    //   } else if (event.pageY > 900 && event.pageY <= 1700) {
+    //     widget = 'Related Products';
+    //   } else {
+    //     widget = 'Reviews and Ratings';
+    //   }
+    //   const body = {
+    //     element: event.target.outerHTML,
+    //     widget,
+    //     time: moment().format(),
+    //   };
+    // axios.post('/interactions', body);
+    // too many post requests on click will crash the app
+    // probably need to store in windowLocal storage
+    // };
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     Object.keys(params).length ? setProductId(params.Id) : null;
