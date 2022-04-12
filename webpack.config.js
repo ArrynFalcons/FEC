@@ -8,8 +8,12 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
+    publicPath: '/',
   },
   devtool: 'source-map',
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {

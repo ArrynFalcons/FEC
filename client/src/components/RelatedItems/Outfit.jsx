@@ -17,8 +17,8 @@ function reducer(state, action) {
       throw new Error();
   }
 }
-function outfit({ currentProduct, getRouteData }) {
-  const [state, dispatch] = useReducer(reducer, { start: 0, next: 2 });
+function outfit({ currentProduct, getRouteData, currentStyle }) {
+  const [state, dispatch] = useReducer(reducer, { start: 0, next: 4 });
   const [outfits, setOutfits] = useState([]);
   const [addedProducts, setAddedProducts] = useState([]);
 
@@ -38,6 +38,7 @@ function outfit({ currentProduct, getRouteData }) {
   }, [setOutfits]);
 
   const saveToLocalStorage = (addedProduct) => {
+    addedProduct.style = currentStyle;
     if (!localStorage.getItem('addedProducts')) {
       localStorage.setItem('addedProducts', JSON.stringify([addedProduct]));
     }
@@ -50,14 +51,14 @@ function outfit({ currentProduct, getRouteData }) {
     duplicate.length ? null
       : (storage.push(addedProduct),
       localStorage.setItem('addedProducts', JSON.stringify(storage)),
-      storage.length > 2 ? dispatch({ type: 'next' }) : null
+      storage.length > 4 ? dispatch({ type: 'next' }) : null
       );
     setOutfits(JSON.parse(localStorage.getItem('addedProducts')));
   };
 
   return (
     <div>
-      <h2>YOUR CLOSET</h2>
+      <h1>YOUR CLOSET</h1>
       <div className="relatedProducts">
 
         {state.start === 0 ? null : (
@@ -70,8 +71,9 @@ function outfit({ currentProduct, getRouteData }) {
 
         {outfits.length ? outfits.slice(state.start, state.next).map((product) => (
           <OutfitCard
-            product={product}
             key={product.id}
+            product={product}
+            currentStyle={currentStyle}
             dispatch={dispatch}
             setOutfits={setOutfits}
             getRouteData={getRouteData}
@@ -79,7 +81,7 @@ function outfit({ currentProduct, getRouteData }) {
           />
         )) : null}
 
-        {(state.next === outfits.length || outfits.length < 2) ? null : (
+        {(state.next === outfits.length || outfits.length < 4) ? null : (
           <h2 className="product-arrows" onClick={() => { dispatch({ type: 'next' }); }}>►</h2>)}
       </div>
     </div>

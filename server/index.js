@@ -1,7 +1,9 @@
 /* eslint-disable */
+
 const express = require('express');
 const axios = require('axios');
 const config = require('../config.js');
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -127,7 +129,7 @@ app.post('/cart', (req, res) => {
 })
 
 // All Get Routes
-app.use('/', (req, res) => {
+app.use('/products', (req, res) => {
   const params = '' || req.originalUrl;
   const options = {
     method: 'get',
@@ -145,7 +147,35 @@ app.use('/', (req, res) => {
     });
 });
 
+app.use('/reviews', (req, res) => {
+  const params = '' || req.originalUrl;
+  const options = {
+    method: 'get',
+    url: `${config.url}${params}`,
+    headers: {
+      Authorization: config.token,
+    },
+  };
+  axios(options)
+    .then((data) => {
+      res.send(data.data);
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`App listening on port ${port}`);
 });
+
+module.exports = app;
