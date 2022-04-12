@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function NewReview(props) {
-  const { grd } = props;
+  const { grd, pid } = props;
   const [reviewstate, setreviewstate] = useState(false);
   const [bodyparams, setbodyparams] = useState({});
   const [metadata, setmetadata] = useState({});
@@ -15,7 +15,7 @@ function NewReview(props) {
     setreviewstate(true);
   };
   useEffect(() => {
-    grd('reviews', '', '', '', '65635', 'meta')
+    grd('reviews', '', '', '', pid, 'meta')
       .then((data) => {
         setmetadata(data.data);
         let bodyparamscopy = bodyparams;
@@ -32,7 +32,11 @@ function NewReview(props) {
       .catch((err) => {
         console.log('Error retrieving reviews: ', err);
       });
-  }, []);
+      // cleanup task here
+      return () => {
+        setmetadata({});
+      };
+  }, [pid]);
   const ratingHelper = (rating) => {
     setnewrating(rating);
   };

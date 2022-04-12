@@ -153,6 +153,7 @@ function ReviewList(props) {
                   {review.photos.map((photo) => (
                     <img
                       src={`${photo.url}`}
+                      key={`${photo.url}`}
                       value={photo.url}
                       style={{ zIndex: '5', display: 'inline-block', border: '1px solid', marginLeft: '10px' }}
                       className="zoom"

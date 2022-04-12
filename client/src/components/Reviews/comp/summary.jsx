@@ -18,7 +18,6 @@ function Summary(props) {
   const { pid, grd } = props;
 
   useEffect(() => {
-    console.log('pid', pid);
     grd('reviews', '', '3000', '', pid, '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
         let [sum, total, one, two, three, four, five, recommend] = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -50,7 +49,7 @@ function Summary(props) {
         set2count(two);
         set1count(one);
         setrecommend(recommend);
-        grd('reviews', '', '', '', '65635', 'meta')
+        grd('reviews', '', '', '', pid, 'meta') //('reviews', '', '3000', '', pid, '')
           .then((data) => {
             setwidth(data.data.characteristics.Width.value);
             setsize(data.data.characteristics.Size.value);
@@ -64,11 +63,11 @@ function Summary(props) {
       .catch((err) => {
         console.log('Error retrieving reviews: ', err);
       });
-  }, []);
+  }, [pid]);
 
   useEffect(() => {
     Summary.averageRating = avg;
-  }, [avg]);
+  }, [avg, pid]);
 
   let cssProps = {};
   cssProps['--rating'] = avg;
