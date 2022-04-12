@@ -11,8 +11,10 @@ function Cart({ style, skus }) {
   const [sku, setSku] = useState({});
   const [skuId, setSkuId] = useState('');
   const [quantity, setQuantity] = useState('1');
+  const [filled, setFilled] = useState(false);
 
   useEffect(() => {
+    size.length > 0 ? setFilled(true) : setFilled(false);
     for (let sku in style.skus) {
       if (style.skus[sku].size === size) {
         setSku(style.skus[sku]);
@@ -22,8 +24,20 @@ function Cart({ style, skus }) {
     }
   }, [size])
 
+  useEffect(() => {
+    if (filled) {
+      const toShake = document.querySelector(".cart-dropdowns");
+      toShake.classList.remove("shake");
+    }
+  }, [filled])
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!filled) {
+      const toShake = document.querySelector(".cart-dropdowns");
+      toShake.classList.add("shake");
+      return;
+    }
     for (let i = 0; i < Number(quantity); i++) {
       axios.post('/cart', { sku_id: Number(skuId) })
         .then((res) => console.log('success posting'))

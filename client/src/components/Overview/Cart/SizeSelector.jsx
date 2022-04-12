@@ -13,7 +13,7 @@ function SizeSelector({ skus, size, setSize }) {
     )
     : (
       <div className="size-selector">
-        <select className="size-dropdown" required value={size} onChange={(e) => setSize(e.target.value)}>
+        <select className="size-dropdown" value={size} onChange={(e) => setSize(e.target.value)}>
           <option value="" selected>Select Size</option>
           {skus.map((sku, i) => <option value={sku.size} key={i}>{sku.size}</option>)}
         </select>

@@ -105,6 +105,13 @@ p {
   height: 67px;
 }
 
+
+.style-unselected:hover {
+  width: 60px;
+  height: 67px;
+  border-bottom: 3px double lightgray;
+}
+
 .style-selected {
   width: 60px;
   height: 67px;
@@ -173,7 +180,7 @@ p {
 
 .gallery-thumbnail-container {
   /* width: 60px; */
-  width:70px;
+  width: 70px;
   height: 70px;
   padding: 5px;
   display: flex;
@@ -235,8 +242,8 @@ p {
   top: 15px;
   right: 15px;
 }
-/*
-.product-description {
+
+/* .product-description {
   margin-top:100px;
 } */
 
@@ -254,6 +261,28 @@ p {
   font-family: 'Bebas Neue', cursive;
   /* font-family: 'PT Serif', serif; */
   font-size: 20px;
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 .quantity-dropdown {

@@ -2387,7 +2387,14 @@ function Cart(_ref) {
       quantity = _useState8[0],
       setQuantity = _useState8[1];
 
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      filled = _useState10[0],
+      setFilled = _useState10[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    size.length > 0 ? setFilled(true) : setFilled(false);
+
     for (var _sku in style.skus) {
       if (style.skus[_sku].size === size) {
         setSku(style.skus[_sku]);
@@ -2396,9 +2403,21 @@ function Cart(_ref) {
       }
     }
   }, [size]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (filled) {
+      var toShake = document.querySelector(".cart-dropdowns");
+      toShake.classList.remove("shake");
+    }
+  }, [filled]);
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+
+    if (!filled) {
+      var toShake = document.querySelector(".cart-dropdowns");
+      toShake.classList.add("shake");
+      return;
+    }
 
     for (var i = 0; i < Number(quantity); i++) {
       axios__WEBPACK_IMPORTED_MODULE_3___default().post('/cart', {
@@ -2550,7 +2569,6 @@ function SizeSelector(_ref) {
     className: "size-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     className: "size-dropdown",
-    required: true,
     value: size,
     onChange: function onChange(e) {
       return setSize(e.target.value);
