@@ -2238,9 +2238,9 @@ function App() {
     //     widget,
     //     time: moment().format(),
     //   };
-    // axios.post('/interactions', body);
-    // too many post requests on click will crash the app
-    // probably need to store in windowLocal storage
+    //   axios.post('/interactions', body);
+    //   // too many post requests on click will crash the app
+    //   // probably need to store in windowLocal storage
     // };
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -3307,7 +3307,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function ComparisonModal(_ref) {
   var featuredProduct = _ref.featuredProduct,
       product = _ref.product,
-      setModal = _ref.setModal;
+      setModal = _ref.setModal,
+      stopScroll = _ref.stopScroll;
   var container = [];
   var features = [].concat(_toConsumableArray(featuredProduct.features), _toConsumableArray(product.features)).filter(function (feature) {
     if (!container.includes(feature.value)) {
@@ -3319,6 +3320,7 @@ function ComparisonModal(_ref) {
     className: "comparisonModal overlay",
     onClick: function onClick() {
       setModal(false);
+      stopScroll();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "modalContentLeft"
@@ -3696,15 +3698,19 @@ function ProductsCard(_ref) {
       avgReview = _useState8[0],
       setReview = _useState8[1];
 
+  var backupPhoto = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var backupPhoto = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
     getRouteData('products', 1, 5, '', product.id, 'styles').then(function (data) {
       data.data.results[0].photos[0].thumbnail_url ? setPhoto(data.data.results[0].photos[0].thumbnail_url) : setPhoto(backupPhoto);
       setSale(data.data.results[0].sale_price);
     })["catch"](function (err) {
       console.log(err);
     });
-  }, []);
+    return function () {
+      setSale(null);
+      setPhoto([]);
+    };
+  }, [product]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('reviews', '', '', '', product.id, 'meta').then(function (reviews) {
       if (Object.keys(reviews.data.ratings).length) {
@@ -3721,7 +3727,10 @@ function ProductsCard(_ref) {
     })["catch"](function (err) {
       console.log(err);
     });
-  }, []);
+    return function () {
+      setReview(null);
+    };
+  }, [product]);
 
   var sendToGallery = function sendToGallery(sentProduct) {
     // sends product to gallery for display on click
@@ -3729,18 +3738,24 @@ function ProductsCard(_ref) {
     window.scrollTo(0, 0);
   };
 
+  var stopScroll = function stopScroll() {
+    showModal ? document.body.classList.remove('stop-scroll') : document.body.classList.add('stop-scroll');
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "product-card-container"
   }, showModal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     featuredProduct: featuredProduct,
     product: product,
-    setModal: setModal
+    setModal: setModal,
+    stopScroll: stopScroll
   }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overlay"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "cardIcon overlay",
     onClick: function onClick() {
       setModal(!showModal);
+      stopScroll();
     }
   }, "\u2605"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "productCard ",
