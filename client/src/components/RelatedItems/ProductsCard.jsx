@@ -13,9 +13,9 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
   const [showModal, setModal] = useState(false);
   const [sale, setSale] = useState(null);
   const [avgReview, setReview] = useState(null);
+  const backupPhoto = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
 
   useEffect(() => {
-    const backupPhoto = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
     getRouteData('products', 1, 5, '', product.id, 'styles')
       .then((data) => {
         data.data.results[0].photos[0].thumbnail_url ? (
@@ -26,7 +26,11 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    return () => {
+      setSale(null);
+      setPhoto([]);
+    };
+  }, [product]);
 
   useEffect(() => {
     getRouteData('reviews', '', '', '', product.id, 'meta')
@@ -44,7 +48,8 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    return () => { setReview(null); };
+  }, [product]);
 
   const sendToGallery = (sentProduct) => {
     // sends product to gallery for display on click
@@ -52,13 +57,23 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
     window.scrollTo(0, 0);
   };
 
+  const stopScroll = () => {
+    showModal ? document.body.classList.remove('stop-scroll')
+      : document.body.classList.add('stop-scroll');
+  };
+
   return (
     <div className="product-card-container">
       {showModal ? (
-        <ComparisonModal featuredProduct={featuredProduct} product={product} setModal={setModal} />
+        <ComparisonModal
+          featuredProduct={featuredProduct}
+          product={product}
+          setModal={setModal}
+          stopScroll={stopScroll}
+        />
       ) : null}
       <div className="overlay">
-        <h2 className="cardIcon overlay" onClick={() => { setModal(!showModal); }}>★</h2>
+        <h2 className="cardIcon overlay" onClick={() => { setModal(!showModal); stopScroll(); }}>★</h2>
         <div className="productCard " onClick={() => { sendToGallery(product); }}>
           <img className="thumbnail" src={photo} alt="stock clothing item" />
           <div className="product-card-contents">

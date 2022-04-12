@@ -1,9 +1,6 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -2241,9 +2238,9 @@ function App() {
     //     widget,
     //     time: moment().format(),
     //   };
-    // axios.post('/interactions', body);
-    // too many post requests on click will crash the app
-    // probably need to store in windowLocal storage
+    //   axios.post('/interactions', body);
+    //   // too many post requests on click will crash the app
+    //   // probably need to store in windowLocal storage
     // };
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -3310,7 +3307,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function ComparisonModal(_ref) {
   var featuredProduct = _ref.featuredProduct,
       product = _ref.product,
-      setModal = _ref.setModal;
+      setModal = _ref.setModal,
+      stopScroll = _ref.stopScroll;
   var container = [];
   var features = [].concat(_toConsumableArray(featuredProduct.features), _toConsumableArray(product.features)).filter(function (feature) {
     if (!container.includes(feature.value)) {
@@ -3322,6 +3320,7 @@ function ComparisonModal(_ref) {
     className: "comparisonModal overlay",
     onClick: function onClick() {
       setModal(false);
+      stopScroll();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "modalContentLeft"
@@ -3699,15 +3698,19 @@ function ProductsCard(_ref) {
       avgReview = _useState8[0],
       setReview = _useState8[1];
 
+  var backupPhoto = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var backupPhoto = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
     getRouteData('products', 1, 5, '', product.id, 'styles').then(function (data) {
       data.data.results[0].photos[0].thumbnail_url ? setPhoto(data.data.results[0].photos[0].thumbnail_url) : setPhoto(backupPhoto);
       setSale(data.data.results[0].sale_price);
     })["catch"](function (err) {
       console.log(err);
     });
-  }, []);
+    return function () {
+      setSale(null);
+      setPhoto([]);
+    };
+  }, [product]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getRouteData('reviews', '', '', '', product.id, 'meta').then(function (reviews) {
       if (Object.keys(reviews.data.ratings).length) {
@@ -3724,7 +3727,10 @@ function ProductsCard(_ref) {
     })["catch"](function (err) {
       console.log(err);
     });
-  }, []);
+    return function () {
+      setReview(null);
+    };
+  }, [product]);
 
   var sendToGallery = function sendToGallery(sentProduct) {
     // sends product to gallery for display on click
@@ -3732,18 +3738,24 @@ function ProductsCard(_ref) {
     window.scrollTo(0, 0);
   };
 
+  var stopScroll = function stopScroll() {
+    showModal ? document.body.classList.remove('stop-scroll') : document.body.classList.add('stop-scroll');
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "product-card-container"
   }, showModal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
     featuredProduct: featuredProduct,
     product: product,
-    setModal: setModal
+    setModal: setModal,
+    stopScroll: stopScroll
   }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overlay"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "cardIcon overlay",
     onClick: function onClick() {
       setModal(!showModal);
+      stopScroll();
     }
   }, "\u2605"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "productCard ",
@@ -27200,13 +27212,13 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
->>>>>>> 39569f08c833fca8996cb59e3af1989a2c74f53e
 /***/ "./node_modules/object-assign/index.js":
 /*!*********************************************!*\
   !*** ./node_modules/object-assign/index.js ***!
   \*********************************************/
 /***/ ((module) => {
 
+"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
@@ -27307,6 +27319,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 /** @license React v17.0.2
  * react-dom.development.js
  *
@@ -53574,6 +53587,7 @@ exports.version = ReactVersion;
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 function checkDCE() {
@@ -55027,6 +55041,7 @@ function renderMatches(matches) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 /** @license React v17.0.2
  * react.development.js
  *
@@ -57370,6 +57385,7 @@ exports.version = ReactVersion;
   \*************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 if (false) {} else {
@@ -57385,6 +57401,7 @@ if (false) {} else {
   \*********************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 /** @license React v0.20.2
  * scheduler-tracing.development.js
  *
@@ -57742,6 +57759,7 @@ exports.unstable_wrap = unstable_wrap;
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 /** @license React v0.20.2
  * scheduler.development.js
  *
@@ -58398,6 +58416,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 if (false) {} else {
@@ -58413,6 +58432,7 @@ if (false) {} else {
   \*******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 if (false) {} else {
@@ -58467,19 +58487,51 @@ function _extends() {
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -58491,31 +58543,33 @@ function _extends() {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nmd = (module) => {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!******************************!*\
   !*** ./client/src/index.jsx ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-<<<<<<< HEAD
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/App/MainApp.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-=======
 /* harmony import */ var _components_App_MainApp_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App/MainApp.jsx */ "./client/src/components/App/MainApp.jsx");
->>>>>>> 39569f08c833fca8996cb59e3af1989a2c74f53e
 /* eslint-disable import/extensions */
 
  // import App from './components/App/App.jsx';
 
 
-<<<<<<< HEAD
-react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/App/MainApp.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null), document.getElementById('root'));
-=======
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_App_MainApp_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('root'));
->>>>>>> 39569f08c833fca8996cb59e3af1989a2c74f53e
 })();
 
 /******/ })()

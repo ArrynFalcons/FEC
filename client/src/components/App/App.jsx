@@ -15,8 +15,8 @@ const getRouteData = require('./Helpers.js').default;
 function App() {
   const [productId, setProductId] = useState(65635);
   const [currentStyle, setCurrentStyle] = useState(null);
+  const params = useParams();
 
-  const params = useParams()
   // sends User Click info to data scientists
   useEffect(() => {
     // window.onclick = (event) => {
@@ -33,9 +33,9 @@ function App() {
     //     widget,
     //     time: moment().format(),
     //   };
-      // axios.post('/interactions', body);
-      // too many post requests on click will crash the app
-      // probably need to store in windowLocal storage
+    //   axios.post('/interactions', body);
+    //   // too many post requests on click will crash the app
+    //   // probably need to store in windowLocal storage
     // };
   }, []);
 
