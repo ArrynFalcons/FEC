@@ -1,7 +1,7 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 
-function SizeSelector({ skus, size, setSize }) {
+const SizeSelector = forwardRef(({ skus, size, setSize }, ref) => {
 
   return skus.length === 0
     ? (
@@ -17,8 +17,11 @@ function SizeSelector({ skus, size, setSize }) {
           <option value="" selected>Select Size</option>
           {skus.map((sku, i) => <option value={sku.size} key={i}>{sku.size}</option>)}
         </select>
+        <div className="select-size-message" hidden ref={ref}>
+            Please select a size.
+        </div>
       </div>
     )
 
-}
+});
 export default SizeSelector;

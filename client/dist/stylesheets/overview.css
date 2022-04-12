@@ -261,6 +261,7 @@ p {
   font-family: 'Bebas Neue', cursive;
   /* font-family: 'PT Serif', serif; */
   font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .shake {
@@ -303,6 +304,11 @@ p {
   background-color: #333333;
   color: white;
   font-size: 30px;
+}
+
+.select-size-message {
+  color: #ee0000;
+  font-size: 14px;
 }
 
 /* Stars */

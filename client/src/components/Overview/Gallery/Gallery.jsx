@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Arrows from './Arrows.jsx';
 import Thumbnails from './Thumbnails.jsx';
 
@@ -9,6 +9,9 @@ function Gallery({ style, isExpandedView, setExpandedView }) {
   const [index, setIndex] = useState(0);
   const [page, setPage] = useState(0);
   const [isZoomedView, setZoomedView] = useState(false);
+  const zoomed = useRef(null);
+  const gallery = useRef(null);
+  const expanded = useRef(null);
 
   useEffect(() => {
     const imageArr = [];
@@ -19,32 +22,28 @@ function Gallery({ style, isExpandedView, setExpandedView }) {
   }, [style])
 
   const handleMouseMove = (e) => {
-    const view = document.querySelector('.zoomed-view');
-    view.style.backgroundPositionX = -e.nativeEvent.offsetX + 'px';
-    view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
+    zoomed.current.style.backgroundPositionX = -e.nativeEvent.offsetX + 'px';
+    zoomed.current.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
   }
 
   const styleExpanded = () => {
-    const overview = document.querySelector('.gallery');
-    overview.style.gridArea = '1 / 1 / 2 / 3';
+    gallery.current.style.gridArea = '1 / 1 / 2 / 3';
   }
 
   const styleCollapsed = () => {
-    const overview = document.querySelector('.gallery');
-    overview.style.gridArea = '1 / 1 / 2 / 2';
+    gallery.current.style.gridArea = '1 / 1 / 2 / 2';
   }
 
   const handleHover = (e) => {
-    const view = document.querySelector('.expanded-view');
-    view.style.backgroundPositionX = -e.nativeEvent.offsetX * 0.4 + 'px';
-    view.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
+    expanded.current.style.backgroundPositionX = -e.nativeEvent.offsetX * 0.4 + 'px';
+    expanded.current.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
   }
 
   if (isExpandedView) {
     return (
-      <div className="gallery">
+      <div className="gallery" ref={gallery}>
         {styleExpanded()}
-        <div className="expanded-view"
+        <div className="expanded-view" ref={expanded}
           style={{
             backgroundImage: `url(${images[index].url})`,
             backgroundRepeat: 'no-repeat',
@@ -69,7 +68,7 @@ function Gallery({ style, isExpandedView, setExpandedView }) {
   } else if (images.length > 0 && isZoomedView === false) {
     // props.setImageUrl(images[index].url);
     return (
-      <div className="gallery">
+      <div className="gallery" ref={gallery}>
         <Thumbnails index={index} setIndex={setIndex} images={images} setZoomedView={setZoomedView} page={page} setPage={setPage}/>
         <div className="carousel-container" onClick={() => setZoomedView(!isZoomedView)}>
           {<img className="gallery-image carousel" src={images[index].url} key={index} width="765px" height="600px"/>}
@@ -81,10 +80,10 @@ function Gallery({ style, isExpandedView, setExpandedView }) {
     )
   } else if (images.length > 0 && isZoomedView === true) {
     return (
-      <div className="gallery">
+      <div className="gallery" ref={gallery}>
         <Thumbnails index={index} setIndex={setIndex} images={images} setZoomedView={setZoomedView} page={page} setPage={setPage}/>
         <div className="carousel-container" onClick={() => setZoomedView(!isZoomedView)} onMouseMove={(e) => handleMouseMove(e)}>
-          <div className="zoomed-view"
+          <div className="zoomed-view" ref={zoomed}
             style={{
               backgroundImage: `url(${images[index].url})`,
               backgroundRepeat: 'no-repeat',

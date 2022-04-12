@@ -1,7 +1,7 @@
 /* eslint-disable*/
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 // import { getRouteData } from './Helpers.js';
@@ -23,6 +23,7 @@ function App() {
   }, []);
 
   const [productId, setProductId] = useState('65635');
+  // const reviews = useRef(null);
   // const [avgRating, setAvgRating] = useState(0);
 
   // sends User Click info to data scientists
