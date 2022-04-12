@@ -4,26 +4,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-// import { getRouteData } from './Helpers.js';
 import Overview from '../Overview/Overview.jsx';
 // import Questions from '../Questions/Questions.jsx';
 import RelatedItems from '../RelatedItems/RelatedItems.jsx';
 import Reviews from '../Reviews/Reviews.jsx';
-// import Summary from '../Reviews/comp/summary.jsx';
+import { useParams } from 'react-router-dom';
+
 const getRouteData = require('./Helpers.js').default;
 
 function App() {
-  // have product id and view in state
-  // move this outside of app
-
-  useEffect(() => {
-    // need to get access to product id in url
-    // set it into state
-  }, []);
-
-  const [productId, setProductId] = useState('65635');
+  const [productId, setProductId] = useState(65635);
   const [currentStyle, setCurrentStyle] = useState(null);
 
+  const params = useParams()
   // sends User Click info to data scientists
   useEffect(() => {
     window.onclick = (event) => {
@@ -44,7 +37,11 @@ function App() {
       // too many post requests on click will crash the app
       // probably need to store in windowLocal storage
     };
-  });
+  }, []);
+
+  useEffect(() => {
+    Object.keys(params).length ? setProductId(params.Id) : null
+  }, []);
 
   return (
     <div className="container" title="container">
