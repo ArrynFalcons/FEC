@@ -4859,6 +4859,7 @@ function Summary(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     grd('reviews', '', '3000', '', pid, '') // (route, page, count, sort, Id, endParam)
     .then(function (data) {
+      console.log('data', data);
       var sum = 0,
           total = 0,
           one = 0,
@@ -4908,8 +4909,12 @@ function Summary(props) {
       set2count(two);
       set1count(one);
       setrecommend(recommend);
+      console.log('sum', sum);
+      console.log('total', total);
+      console.log('avg', sum / total);
       grd('reviews', '', '', '', pid, 'meta') //('reviews', '', '3000', '', pid, '')
       .then(function (data) {
+        console.log('meta', data.data);
         setwidth(data.data.characteristics.Width.value);
         setsize(data.data.characteristics.Size.value);
         setcomfort(data.data.characteristics.Comfort.value);

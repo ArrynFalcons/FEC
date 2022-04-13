@@ -1,9 +1,19 @@
 # FEC
 Front End Capstone
 Authored by Shloka Reddy, Thinh Ngo Phan, and Joel Hench.
-Welcome to our project!
-Please read this file before opening.
+Welcome to our project! Please read this file before opening.
 
+## Overview
+A JavaScript student project to showcase front end skills using tools including React and
+Node.js, as well as developer tools like Webpack and Babel.
+
+## Table of Contents
+1. Description
+1. Installation
+1. Usage
+1. Contact
+
+## Description
 This project represents the Front End Capstone series of the Hack Reactor
 Software Engineering Immersive bootcamp program. With a vision to create a dynamic web app
 that would faciliate e-commerce in a novel way, Shloka, Thinh, and Joel prepared this app
@@ -16,42 +26,25 @@ styles. Users can shop with confidence knowing the app gives them reliable feedb
 inform their purchase decision.
 
 ## Installation Steps
+1. Download a local copy of this repository.
+1. If you're already using Node.js v16.14.0, great! Our project uses this version.
+  - If you dont have this version, we recommend using nvm (node version manager). It makes switching
+  to Node.js v16.14.0 much easier.
+    - Follow this link for steps on installing nvm. https://github.com/nvm-sh/nvm/blob/master/README.md
+    - In the terminal, run `nvm install 16.14.0` to install Node.
+    - In the terminal, run `npm install -g npm` to install npm (node package manager).
+    - For more details, follow this link. https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+1. In the terminal, run `npm install` to set up our dependencies.
+1. Run the script `react-dev` ("npm run react-dev" in terminal) to start up webpack.
+1. Run the script `server-dev` ("npm run server-dev" in terminal) to start up the server.
+1. If all goes well, visit localhost:3000 to visit the Home page!
 
-1. Fork this repo and clone it.
-1.
+## Usage
+This project would be useful in the context of a proposal. It could be an upgrade, modification, or
+revamp of an existing webpage. It could also be a sample design provided to client businesses looking
+to hire web developers to provide a home page for their business.
 
-## Guidelines
-
-You must manage your time effectively to complete this assessment. This assessment will be evaluated as if it was a coding challenge given to you as part of a job application process. Not only will the functionality of your code be important, but also, the professionalism with which you write it. Consider the style and organization of your code. Make frequent commits with informative and consistent commit messages. Be professional and informative with your comments.
-
-Each directory contains a prompt with work for you to complete, with instructions defined in their own README.
-
-## Available resources
-
-The ultimate goal of this assessment is to give you an opportunity to demonstrate your abilities as an engineer. Avoid anything that will obscure our ability and your ability to see your best efforts at work will undermine that goal.
-
-* You **may not** use a scaffolding tool (e.g. Yeoman) or starter repos unless specifically allowed in a prompt's README
-* You **may not** use any resources created at Hack Reactor by yourself, other students, or staff members
-  * e.g. lectures, sprints, MVP, past assessments, side projects, notes, mentor assignments, etc.
-* You **may** only use online resources specifically allowed in a prompt's README
-* You **may not** copy and paste from available online resources
-
-## Submitting Your Work
-
-Your work will be submitted with the `submit.sh` script located in the root directory of this repo. At 3:30 (or beforehand if you finish early):
-
-1. Make a final commit
-1. Stop recording your screen and save your video file locally as `firstname-lastname-yyyymmdd`
-    - NOTE: While the video is saving, proceed with the next steps.
-1. Collect a USB flash drive from your proctor, if using a pairing station, request assistance setting up the flash drive.
-1. Fill out the "How to start this app" section in the problem's `README.md` file if it's not done already
-1. Fill out the `closing_comments.txt` file.
-1. Commit the changes to `closing_comments.txt` and `README.md`.
-    - NOTE: This commit should only contain changes to these two files - no other changes are allowed
-1. Run the script `bash submit.sh` to submit your code.
-    - NOTE: You don't have to wait for your video to stop saving before running this script.
-1. Copy your local screen recording video to the USB flash drive your proctor provided.
-1. When the screen recording video has finished copying to the flash drive, return it to a proctor.
-
-
-
+## Contact
+Shloka Reddy - https://www.linkedin.com/in/shloka-reddy-995b19222/
+Thinh Ngo Phan - https://www.linkedin.com/in/ngophanthinh/
+Joel Hench - https://www.linkedin.com/in/joel-hench-23460a87/
