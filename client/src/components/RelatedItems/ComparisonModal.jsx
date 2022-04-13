@@ -15,17 +15,16 @@ function ComparisonModal({ featuredProduct, product, setModal, stopScroll }) {
   });
 
   return (
-    <div className="comparisonModal overlay"
-      onClick={ () => {
+    <div className="comparisonModal overlay" onClick={ () => {
         setModal(false);
         stopScroll();
       }
     }>
       <pre>
-        <span className="modalContentLeft">{`${featuredProduct.name}`}</span>
-        <span className="modalContentRight">{`${product.name}`}</span>
+        <h4 className="modalContentLeft">{`${featuredProduct.name}`}</h4>
+        <h4 className="modalContentRight">{`${product.name}`}</h4>
       </pre>
-      <pre>characteristics</pre>
+      <h5>characteristics</h5>
       <div className="features">
         {features.map((feature) => (
           <pre key={feature.feature}>

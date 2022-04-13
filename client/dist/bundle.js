@@ -3322,11 +3322,11 @@ function ComparisonModal(_ref) {
       setModal(false);
       stopScroll();
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
     className: "modalContentLeft"
-  }, "".concat(featuredProduct.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, "".concat(featuredProduct.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
     className: "modalContentRight"
-  }, "".concat(product.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", null, "characteristics"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "".concat(product.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "characteristics"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "features"
   }, features.map(function (feature) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("pre", {
@@ -3732,14 +3732,20 @@ function ProductsCard(_ref) {
     };
   }, [product]);
 
+  var stopScroll = function stopScroll() {
+    showModal ? document.body.classList.remove('stop-scroll') : document.body.classList.add('stop-scroll');
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    window.onclick = function (e) {
+      showModal ? (setModal(false), stopScroll()) : null;
+    };
+  }, [showModal]);
+
   var sendToGallery = function sendToGallery(sentProduct) {
     // sends product to gallery for display on click
     setProductId(sentProduct.id);
     window.scrollTo(0, 0);
-  };
-
-  var stopScroll = function stopScroll() {
-    showModal ? document.body.classList.remove('stop-scroll') : document.body.classList.add('stop-scroll');
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
