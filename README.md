@@ -4,8 +4,8 @@ Authored by Shloka Reddy, Thinh Ngo Phan, and Joel Hench.
 Welcome to our project! Please read this file before opening.
 
 ## Overview
-A JavaScript student project to showcase front end skills using tools including React and
-Node.js, as well as developer tools like Webpack and Babel.
+A JavaScript student project to showcase front end skills using tools including React and Node.js, 
+as well as developer tools like Webpack and Babel.
 
 ## Table of Contents
 1. Description
