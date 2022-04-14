@@ -60,9 +60,9 @@ function ReviewList(props) {
         console.log('Error retrieving reviews: ', err);
       });
   }, [pid]);
-  const liststyle = { listStyle: 'none', width: '800px' };
-  const sortstyle1 = { position: 'absolute', left: '700px' };
-  const sortstyle2 = { position: 'absolute', left: '630px' };
+  const liststyle = { listStyle: 'none', width: '710px', padding: '0px' };
+  const sortstyle1 = { position: 'absolute', left: '600px' };
+  const sortstyle2 = { position: 'absolute', left: '550px' };
   const floatstyle = { float: 'left' };
   const absoluteleft = { position: 'absolute', left: '100px' };
   const bigfont = { fontSize: '20px' };
@@ -104,7 +104,7 @@ function ReviewList(props) {
     fontSize: '16px',
   };
   const buttonStyleR = {
-    marginLeft: '550px',
+    marginLeft: '475px',
     marginBottom: '5px',
     backgroundColor: '#A9A9A9', /* Green */
     border: 'none',
@@ -118,19 +118,18 @@ function ReviewList(props) {
   return (
     <div className="review-list" title="reviewlist">
       <div style={sortstyle2}>Sort By:</div>
-      <label>.</label>
       <select style={sortstyle1} id="reviewlist" onChange={(e) => { pagination(1, 1000, `${e.target.value}`); }}>
         <option value="relevant">Relevant</option>
         <option value="newest">Newest</option>
         <option value="helpful">Helpful</option>
       </select>
 
-      <ul style={liststyle}>
+      <ul className="review-map" style={liststyle}>
         {reviews.map((review) => {
           const cssProps = {};
           cssProps['--rating'] = review.rating;
           cssProps.position = 'absolute';
-          cssProps.left = '550px';
+          cssProps.left = '500px';
           return (
             <li className="tile" key={`${review.review_id}`}>
               <div className="margin10">
