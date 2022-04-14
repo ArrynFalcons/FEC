@@ -6,17 +6,15 @@ import axios from 'axios';
 
 function Cart({ style, skus }) {
 
-  // const {skus} = props;
   const [size, setSize] = useState('');
   const [sku, setSku] = useState({});
   const [skuId, setSkuId] = useState('');
   const [quantity, setQuantity] = useState('1');
   const [filled, setFilled] = useState(false);
-  // const [defaultQty, setResetQty] = useState(false);
+
   const toShake = useRef(null);
   const message = useRef(null);
   const cartAdd = useRef(null);
-  // const qtyToDefault = useRef(null);
 
   useEffect(() => {
     size.length > 0 ? setFilled(true) : setFilled(false);
@@ -36,6 +34,8 @@ function Cart({ style, skus }) {
     }
   }, [filled])
 
+  //reset function
+  //add to bag button change function
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!filled) {

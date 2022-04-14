@@ -2248,8 +2248,7 @@ function App() {
     };
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "container",
-    title: "container"
+    className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
     className: "nav-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2367,7 +2366,6 @@ function Cart(_ref) {
   var style = _ref.style,
       skus = _ref.skus;
 
-  // const {skus} = props;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       size = _useState2[0],
@@ -2391,13 +2389,11 @@ function Cart(_ref) {
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
       filled = _useState10[0],
-      setFilled = _useState10[1]; // const [defaultQty, setResetQty] = useState(false);
-
+      setFilled = _useState10[1];
 
   var toShake = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var message = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var cartAdd = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); // const qtyToDefault = useRef(null);
-
+  var cartAdd = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     size.length > 0 ? setFilled(true) : setFilled(false);
 
@@ -2414,7 +2410,8 @@ function Cart(_ref) {
       toShake.current.classList.remove("shake");
       message.current.hidden = true;
     }
-  }, [filled]);
+  }, [filled]); //reset function
+  //add to bag button change function
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -2720,7 +2717,7 @@ function Arrows(_ref) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "arrows carousel"
+    className: "arrows"
   }, index === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "prev",
     onClick: function onClick(e) {
@@ -2820,8 +2817,8 @@ function Gallery(_ref) {
   }, [style]);
 
   var handleMouseMove = function handleMouseMove(e) {
-    zoomed.current.style.backgroundPositionX = -e.nativeEvent.offsetX + 'px';
-    zoomed.current.style.backgroundPositionY = -e.nativeEvent.offsetY + 'px';
+    zoomed.current.style.backgroundPositionX = 180 - e.nativeEvent.offsetX + 'px';
+    zoomed.current.style.backgroundPositionY = 130 - e.nativeEvent.offsetY + 'px';
   };
 
   var styleExpanded = function styleExpanded() {
@@ -2848,7 +2845,8 @@ function Gallery(_ref) {
         backgroundImage: "url(".concat(images[index].url, ")"),
         backgroundRepeat: 'no-repeat',
         width: '100%',
-        height: 600
+        height: 600,
+        backgroundSize: 'cover'
       },
       onMouseMove: function onMouseMove(e) {
         return handleHover(e);
@@ -2867,7 +2865,6 @@ function Gallery(_ref) {
       }
     }, "\u2715")));
   } else if (images.length > 0 && isZoomedView === false) {
-    // props.setImageUrl(images[index].url);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "gallery",
       ref: gallery
@@ -2879,7 +2876,7 @@ function Gallery(_ref) {
       page: page,
       setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "carousel-container",
+      className: "carousel-container default",
       onClick: function onClick() {
         return setZoomedView(!isZoomedView);
       }
@@ -2901,7 +2898,7 @@ function Gallery(_ref) {
       onClick: function onClick() {
         return setExpandedView(true);
       }
-    }, "\u2750")));
+    }, "\u2922")));
   } else if (images.length > 0 && isZoomedView === true) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "gallery",
@@ -2914,7 +2911,7 @@ function Gallery(_ref) {
       page: page,
       setPage: setPage
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "carousel-container",
+      className: "carousel-container zoomed",
       onClick: function onClick() {
         return setZoomedView(!isZoomedView);
       },
@@ -2926,9 +2923,11 @@ function Gallery(_ref) {
       ref: zoomed,
       style: {
         backgroundImage: "url(".concat(images[index].url, ")"),
+        transform: 'scale(2)',
         backgroundRepeat: 'no-repeat',
         width: 765,
-        height: 600
+        height: 600,
+        backgroundSize: 'cover'
       }
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Arrows_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       index: index,
@@ -2942,7 +2941,7 @@ function Gallery(_ref) {
       onClick: function onClick() {
         return setExpandedView(true);
       }
-    }, "\u2750")));
+    }, "\u2922")));
   } else {
     return null;
   }
@@ -2987,7 +2986,6 @@ var Thumbnails = function Thumbnails(_ref) {
       page = _ref.page,
       setPage = _ref.setPage;
 
-  // const [page, setPage] = useState(0);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       thumbnails = _useState2[0],
@@ -3021,7 +3019,7 @@ var Thumbnails = function Thumbnails(_ref) {
       className: index === page * 6 + i ? "gallery-thumbnail-container selected" : "gallery-thumbnail-container",
       key: i
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      className: "gallery-image",
+      className: "thumbnail-image",
       src: image.thumbnail_url,
       width: "60px",
       height: "60px",
@@ -3112,14 +3110,10 @@ function Overview(_ref) {
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
       avgReview = _useState10[0],
-      setAvgReview = _useState10[1]; //test id 65722
-  //default id 65635
-  //65632
-
+      setAvgReview = _useState10[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    getRouteData('reviews', '', '', '', productId, 'meta') // .then(res => console.log(res))
-    .then(function (reviews) {
+    getRouteData('reviews', '', '', '', productId, 'meta').then(function (reviews) {
       if (Object.keys(reviews.data.ratings).length) {
         var total = 0;
         var totalReviews = 0;
@@ -3159,8 +3153,7 @@ function Overview(_ref) {
     }
 
     return skus;
-  }; //conditional rendering for loading
-
+  };
 
   return isExpandedView ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overview"
@@ -3274,7 +3267,8 @@ function Styles(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "styles"
-  }, style.sale_price ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+  }, style.sale_price ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "style-price",
     style: {
       color: "red"
     }
@@ -3282,11 +3276,15 @@ function Styles(_ref) {
     style: {
       color: "gray"
     }
-  }, "$", style.original_price), "$", style.sale_price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+  }, "$", style.original_price), " $", style.sale_price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "style-price"
-  }, "$", style.original_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  }, "$", style.original_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "style-name"
-  }, "STYLE ", "<", " ", style.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    className: "style-name-label"
+  }, "STYLE ", "<"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    className: "style-name-name"
+  }, style.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "style-thumbnails"
   }, styles.map(function (style, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

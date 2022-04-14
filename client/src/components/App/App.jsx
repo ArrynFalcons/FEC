@@ -49,7 +49,7 @@ function App() {
   });
 
   return (
-    <div className="container" title="container">
+    <div className="container">
       <nav className="nav-container">
         <div className="nav">
           <h1 className="logo">Falco</h1>

@@ -13,13 +13,8 @@ function Overview({ productId, getRouteData }) {
   const [isExpandedView, setExpandedView] = useState(false);
   const [avgReview, setAvgReview ] = useState(0);
 
-  //test id 65722
-  //default id 65635
-  //65632
-
   useEffect(() => {
     getRouteData('reviews', '', '', '', productId, 'meta')
-      // .then(res => console.log(res))
       .then((reviews) => {
         if (Object.keys(reviews.data.ratings).length) {
           let total = 0;
@@ -58,7 +53,6 @@ function Overview({ productId, getRouteData }) {
     return skus;
   }
 
-  //conditional rendering for loading
   return isExpandedView
     ? (
       <div className="overview">

@@ -1,5 +1,7 @@
 /* Overview */
 
+
+
 .overview {
   display: grid;
   grid-template-rows: 3fr 1fr;
@@ -67,8 +69,14 @@ p {
   font-size: 18px;
 }
 
-.feature:before {
+.feature::before {
   content: '❟ ';
+}
+
+.product-category {
+  letter-spacing: 3px;
+  color: #333333;
+  /* font-weight: lighter; */
 }
 
 /* Styles */
@@ -91,14 +99,34 @@ p {
 .style-price {
   border-bottom: 3px solid #EFEFEF;
   padding-bottom: 20px;
+  color: #333333;
+  /* font-weight: lighter; */
 }
 
 .style-name {
+  display: flex;
+  flex-direction: row;
   padding-top: 20px;
-  /* border-top: 1px solid black;
-  margin-top: 25px; */
   padding-bottom: 15px;
 }
+
+.style-name-name {
+  /* padding-top: 20px; */
+  /* border-top: 1px solid black;
+  margin-top: 25px; */
+  /* padding-bottom: 15px; */
+  margin-left: 2%;
+  color: #333333;
+  /* letter-spacing: 2px; */
+  font-weight: lighter;
+}
+
+/* .style-name::before {
+  content: "STYLE < ";
+  color: black;
+  font-weight: heavier;
+  /* opacity: 80%; */
+} */
 
 .style-unselected {
   width: 60px;
@@ -133,23 +161,35 @@ p {
   /* margin: 10px; */
   /* display: flex;
   justify-content: space-between; */
+  background-color: rgba(239, 239, 239, 1);
+  /* background-color: #333333; */
+  overflow: hidden;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  cursor: zoom-in;
+}
+
+/* .default {
+
+} */
+
+.zoomed {
+  cursor: zoom-out;
 }
 
 .carousel {
   position: absolute;
   width: 765px;
   height: 600px;
-  top: 0px;
-  left: 0px;
+  /* top: 0px;
+  left: 0px; */
   /* display: flex;
   justify-content: flex-end; */
 }
 
-.carousel:hover {
-  cursor: zoom-in;
-}
-
 .arrows {
+  position: absolute;
   z-index: 2;
   padding: 15px;
   width: 765px;
@@ -157,11 +197,15 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* backdrop-filter: blur(15px); */
+  /* top: 50%; */
+  /* left: 50%; */
 }
 
 .prev {
   height: 50px;
   width: 60px;
+  /* backdrop-filter: blur(15px); */
 }
 
 .next {
@@ -194,6 +238,10 @@ p {
   /* border-bottom: 5px solid black; */
 }
 
+.gallery-image {
+  object-fit: contain;
+}
+
 .selected {
   border: 1px solid black;
   /* border-bottom: 5px solid black; */
@@ -221,9 +269,15 @@ p {
   position: absolute;
   width: 60px;
   height: 50px;
-  bottom: 15px;
-  right: 15px;
+  bottom: 0px;
+  right: 10px;
   z-index: 3;
+  font-size: 30px;
+  /* background-color: rgba(239, 239, 239, 0.5); */
+  background-color: transparent;
+  border: none;
+  /* color: white; */
+  /* color: #333333; */
 }
 
 .expanded-view {
@@ -267,7 +321,7 @@ p {
 .shake {
   animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
   transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
   perspective: 1000px;
 }
 

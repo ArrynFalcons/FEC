@@ -18,9 +18,12 @@ function Styles({ styles, style, setStyle }) {
   return (
     <div className="styles">
       {style.sale_price
-        ? <p style={{color: "red"}}><s style={{color: "gray"}}>${style.original_price}</s>${style.sale_price}</p>
+        ? <h2 className="style-price" style={{color: "red"}}><s style={{color: "gray"}}>${style.original_price}</s> ${style.sale_price}</h2>
         : <h2 className="style-price">${style.original_price}</h2>}
-      <h3 className="style-name">STYLE {"<"} {style.name}</h3>
+      <div className="style-name">
+        <h3 className="style-name-label">STYLE {"<"}</h3>
+        <h3 className="style-name-name">{style.name}</h3>
+      </div>
       <div className="style-thumbnails">
         {styles.map((style, i) =>
           <div className="style-thumbnail-container" key={style.style_id}>
