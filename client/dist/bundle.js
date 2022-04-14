@@ -3125,6 +3125,7 @@ function Overview(_ref) {
     getRouteData('products', '', '', '', productId, 'styles').then(function (res) {
       setStyles(res.data.results);
       setStyle(res.data.results[0]);
+      setCurrentStyle(res.data.results[0]);
     })["catch"](function (err) {
       return console.log(err);
     });

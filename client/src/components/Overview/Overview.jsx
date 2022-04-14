@@ -33,6 +33,7 @@ function Overview({ productId, getRouteData, setCurrentStyle }) {
       .then((res) => {
         setStyles(res.data.results);
         setStyle(res.data.results[0]);
+        setCurrentStyle(res.data.results[0]);
       })
       .catch((err) => console.log(err));
   }, [productId]);

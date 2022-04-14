@@ -34,7 +34,7 @@ function RelatedProductsList({ products, currentProduct, getRouteData, setProduc
 
   return (
     <div>
-      <h2>COMPLETE THE LOOK</h2>
+      <h1>COMPLETE THE LOOK</h1>
       <div className="relatedProducts">
         {state.start === 0 ? null : (
           <h2 className="product-arrows" onClick={() => { dispatch({ type: 'previous' }); }}>◀︎</h2>)}
