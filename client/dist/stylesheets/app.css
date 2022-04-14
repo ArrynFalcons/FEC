@@ -81,7 +81,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* stars demo */
 :root {
-  --star-size: 40px;
+  --star-size: 30px;
   --star-color: #fff;
   --star-background: rgb(0, 0, 0);
 }

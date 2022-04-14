@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const Thumbnails = ({ index, setIndex, images, setZoomedView, page, setPage }) => {
 
-  // const [page, setPage] = useState(0);
   const [thumbnails, setThumbnails] = useState([]);
 
   useEffect(() => {
@@ -26,7 +25,7 @@ const Thumbnails = ({ index, setIndex, images, setZoomedView, page, setPage }) =
           <div className={index === (page * 6) + i
             ? "gallery-thumbnail-container selected"
             : "gallery-thumbnail-container"} key={i}>
-            <img className="gallery-image" src={image.thumbnail_url} width="60px" height="60px" onClick={() => {
+            <img className="thumbnail-image" src={image.thumbnail_url} width="60px" height="60px" onClick={() => {
               setIndex((page * 6) + i);
               setZoomedView(false);
             }}/>

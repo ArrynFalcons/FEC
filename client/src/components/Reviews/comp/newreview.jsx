@@ -108,8 +108,8 @@ function NewReview(props) {
  cssProps['position'] = 'absolute';
  cssProps['left'] = '0px';
  cssProps['top'] = '17px';
- let cssFloaters = { float:'left', width: '42px', 'zIndex': '2'};
- let cssFloaters1 = { float:'left', width: '45px', marginLeft: '15px', 'zIndex': '2'};
+ let cssFloaters = { float:'left', width: '32px', 'zIndex': '2', fontSize: '12px'};
+ let cssFloaters1 = { float:'left', width: '32px', marginLeft: '15px', 'zIndex': '2', fontSize: '12px'};
  let buttonStyleYes = {
   marginLeft: '5px',
   backgroundColor: yes, /* Green */
