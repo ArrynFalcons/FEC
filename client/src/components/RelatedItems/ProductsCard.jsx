@@ -51,15 +51,21 @@ function ProductsCard({ product, featuredProduct, getRouteData, setProductId }) 
     return () => { setReview(null); };
   }, [product]);
 
+  const stopScroll = () => {
+    showModal ? document.body.classList.remove('stop-scroll')
+      : document.body.classList.add('stop-scroll');
+  };
+
+  useEffect(() => {
+    (window.onclick = (e) => {
+      showModal ? (setModal(false), stopScroll()) : null;
+    });
+  }, [showModal]);
+
   const sendToGallery = (sentProduct) => {
     // sends product to gallery for display on click
     setProductId(sentProduct.id);
     window.scrollTo(0, 0);
-  };
-
-  const stopScroll = () => {
-    showModal ? document.body.classList.remove('stop-scroll')
-      : document.body.classList.add('stop-scroll');
   };
 
   return (
