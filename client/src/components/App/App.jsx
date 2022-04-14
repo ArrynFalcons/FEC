@@ -39,8 +39,6 @@ function App() {
     // };
   }, []);
 
-  const [productId, setProductId] = useState('65635');
-
   // sends User Click info to data scientists
   useEffect(() => {
     Object.keys(params).length ? setProductId(params.Id) : null
