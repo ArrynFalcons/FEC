@@ -124,7 +124,7 @@ app.post('/cart', (req, res) => {
     data: req.body
   }
   axios(options)
-    .then((res) => res.sendStatus(201))
+    .then(() => res.sendStatus(201))
     .catch((err) => res.sendStatus(500));
 })
 

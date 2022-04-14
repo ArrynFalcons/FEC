@@ -1,7 +1,7 @@
 /* eslint-disable*/
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import Overview from '../Overview/Overview.jsx';
@@ -39,12 +39,13 @@ function App() {
     // };
   }, []);
 
+  // sends User Click info to data scientists
   useEffect(() => {
     Object.keys(params).length ? setProductId(params.Id) : null
   }, []);
 
   return (
-    <div className="container" title="container">
+    <div className="container">
       <nav className="nav-container">
         <div className="nav">
           <h1 className="logo">Falco</h1>

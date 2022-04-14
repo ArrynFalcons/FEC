@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
-function QuantitySelector({ sku, size, setQuantity }) {
+const QuantitySelector = ({ sku, size, setQuantity }) => {
 
   const [quantities, setQuantities] = useState([]);
 

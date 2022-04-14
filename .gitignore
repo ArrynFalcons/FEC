@@ -66,7 +66,11 @@ client/dist/bundle.js.map
 # config.js
 config.js
 
+<<<<<<< HEAD
 # AWS pem
+=======
+# aws pem file
+>>>>>>> main
 Documents
 Documents.pub
 FALCO.pem

@@ -22,7 +22,7 @@ function Arrows({ index, setIndex, length, page, setPage, setZoomedView }) {
   }
 
   return (
-    <div className="arrows carousel">
+    <div className="arrows">
       {index === 0
         ? <button className="prev" onClick={(e) => handlePrev(e)} disabled>&larr;</button>
         : <button className="prev" onClick={(e) => handlePrev(e)}>&larr;</button>
