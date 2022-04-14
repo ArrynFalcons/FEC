@@ -20,7 +20,6 @@ function Summary(props) {
   useEffect(() => {
     grd('reviews', '', '3000', '', pid, '') // (route, page, count, sort, Id, endParam)
       .then((data) => {
-        console.log('data', data);
         let [sum, total, one, two, three, four, five, recommend] = [0, 0, 0, 0, 0, 0, 0, 0];
         data.data.results.forEach((obj) => {
           switch (obj.rating) {
@@ -50,12 +49,8 @@ function Summary(props) {
         set2count(two);
         set1count(one);
         setrecommend(recommend);
-        console.log('sum', sum);
-        console.log('total', total);
-        console.log('avg', sum / total);
         grd('reviews', '', '', '', pid, 'meta') //('reviews', '', '3000', '', pid, '')
           .then((data) => {
-            console.log('meta', data.data);
             setwidth(data.data.characteristics.Width.value);
             setsize(data.data.characteristics.Size.value);
             setcomfort(data.data.characteristics.Comfort.value);
