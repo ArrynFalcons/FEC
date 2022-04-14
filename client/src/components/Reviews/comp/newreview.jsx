@@ -249,7 +249,6 @@ let buttonStyleSubmit = {
           style={buttonStyleSubmit}
           onClick={() => {
             switchColor('submit');
-            console.log('Body params are being sent to server!', bodyparams)
             axios.post('/reviews', bodyparams)
               .then((response) => {
                 console.log(response);
