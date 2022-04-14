@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App.jsx';
+// import App from './components/App/App.jsx';
+import MainApp from './components/App/MainApp.jsx';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<MainApp />, document.getElementById('root'));

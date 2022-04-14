@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 
-function ComparisonModal({ featuredProduct, product, setModal }) {
+function ComparisonModal({ featuredProduct, product, setModal, stopScroll }) {
   const container = [];
   const features = [...featuredProduct.features, ...product.features].filter((feature) => {
     if (!container.includes(feature.value)) {
@@ -15,7 +15,12 @@ function ComparisonModal({ featuredProduct, product, setModal }) {
   });
 
   return (
-    <div className="comparisonModal overlay" onClick={ () => {setModal(false)}}>
+    <div className="comparisonModal overlay"
+      onClick={ () => {
+        setModal(false);
+        stopScroll();
+      }
+    }>
       <pre>
         <span className="modalContentLeft">{`${featuredProduct.name}`}</span>
         <span className="modalContentRight">{`${product.name}`}</span>

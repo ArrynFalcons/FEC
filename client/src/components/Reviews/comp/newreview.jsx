@@ -3,16 +3,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function NewReview(props) {
-  const { grd } = props;
+  const { grd, pid } = props;
   const [reviewstate, setreviewstate] = useState(false);
   const [bodyparams, setbodyparams] = useState({});
   const [metadata, setmetadata] = useState({});
-  const [newrating, setnewrating] = useState(1);
+  const [newrating, setnewrating] = useState(0);
+  const [yes, setYes] = useState('#A9A9A9');
+  const [no, setNo] = useState('#A9A9A9');
+  const [submit, setSubmit] = useState('#A9A9A9');
   const openReviewBox = () => {
     setreviewstate(true);
   };
   useEffect(() => {
-    grd('reviews', '', '', '', '65635', 'meta')
+    grd('reviews', '', '', '', pid, 'meta')
       .then((data) => {
         setmetadata(data.data);
         let bodyparamscopy = bodyparams;
@@ -29,9 +32,24 @@ function NewReview(props) {
       .catch((err) => {
         console.log('Error retrieving reviews: ', err);
       });
-  }, []);
+      // cleanup task here
+      return () => {
+        setmetadata({});
+      };
+  }, [pid]);
   const ratingHelper = (rating) => {
     setnewrating(rating);
+  };
+  const switchColor = (button) => {
+    if (button === 'Yes') {
+      setYes('#4CAF50');
+      setNo('#A9A9A9');
+    } else if (button === 'No') {
+      setYes('#A9A9A9');
+      setNo('#4CAF50');
+    } else {
+      setSubmit('#4CAF50');
+    };
   };
   useEffect(() => {
     let bodyparamscopy = bodyparams;
@@ -86,12 +104,45 @@ function NewReview(props) {
   */
  let cssProps = {};
  cssProps['--rating'] = newrating;
-//  cssProps['z-index'] = 10;
- let cssFloaters = { float:'left', width: '42px' };
- let cssFloaters1 = { float:'left', width: '45px', marginLeft: '15px' };
+ cssProps['zIndex'] = '1';
+ cssProps['position'] = 'absolute';
+ cssProps['left'] = '0px';
+ cssProps['top'] = '17px';
+ let cssFloaters = { float:'left', width: '42px', 'zIndex': '2'};
+ let cssFloaters1 = { float:'left', width: '45px', marginLeft: '15px', 'zIndex': '2'};
+ let buttonStyleYes = {
+  marginLeft: '5px',
+  backgroundColor: yes, /* Green */
+  border: 'none',
+  color: 'white',
+  padding: '5px 5px',
+  textAlign: 'center',
+  textDecoration: 'none',
+  display: 'inline-block',
+  fontSize: '16px'}
+let buttonStyleNo = {
+  marginLeft: '5px',
+  backgroundColor: no, /* Green */
+  border: 'none',
+  color: 'white',
+  padding: '5px 5px',
+  textAlign: 'center',
+  textDecoration: 'none',
+  display: 'inline-block',
+  fontSize: '16px'}
+let buttonStyleSubmit = {
+  marginLeft: '5px',
+  backgroundColor: submit, /* Green */
+  border: 'none',
+  color: 'white',
+  padding: '5px 5px',
+  textAlign: 'center',
+  textDecoration: 'none',
+  display: 'inline-block',
+  fontSize: '16px'}
 
   return (
-    <div>
+    <div style={{left: '10px'}}>
       <h1>Leave a New Review</h1>
       <br />
       <input
@@ -106,6 +157,7 @@ function NewReview(props) {
       />
       <input
         type="text"
+        style={{marginLeft: '5px'}}
         onChange={(e) => {
           let bodyparamscopy = bodyparams;
           bodyparamscopy.email = `${e.target.value}`;
@@ -132,11 +184,14 @@ function NewReview(props) {
         }}>5</div>
           <div className="Stars" style={cssProps} ></div>
       </div>
-      <div>
+      <br/>
+      <div style={{marginBottom: '5px'}}>
         Do you recommend this product?
         <button
           type="submit"
+          style={buttonStyleYes}
           onClick={() => {
+            switchColor('Yes');
             let bodyparamscopy = bodyparams;
             bodyparamscopy.recommend = true;
             setbodyparams(bodyparamscopy);
@@ -146,7 +201,9 @@ function NewReview(props) {
         </button>
         <button
           type="submit"
+          style={buttonStyleNo}
           onClick={() => {
+            switchColor('No');
             let bodyparamscopy = bodyparams;
             bodyparamscopy.recommend = false;
             setbodyparams(bodyparamscopy);
@@ -185,21 +242,26 @@ function NewReview(props) {
         }}
         placeholder="Add comma separated URLs to include images"
       />
-      <button
-        type="submit"
-        onClick={() => {
-          console.log('Body params are being sent to server!', bodyparams)
-          axios.post('/reviews', bodyparams)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }}
-      >
-        Submit
-      </button>
+      <br/>
+      <div style={{position: 'absolute', left: '620px'}}>
+        <button
+          type="submit"
+          style={buttonStyleSubmit}
+          onClick={() => {
+            switchColor('submit');
+            console.log('Body params are being sent to server!', bodyparams)
+            axios.post('/reviews', bodyparams)
+              .then((response) => {
+                console.log(response);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }}
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 }
