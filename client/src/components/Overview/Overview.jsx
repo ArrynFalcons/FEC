@@ -74,7 +74,7 @@ function Overview({ productId, getRouteData }) {
             </div>
           </div>
           <h1 className="product-title">{product.name}</h1>
-          <Styles styles={styles} style={style} setStyle={setStyle}/>
+          <Styles styles={styles} style={style} setStyle={setStyle} setCurrentStyle={setCurrentStyle}/>
           <Cart style={style} skus={getSkus(style)}/>
         </div>
         <Description product={product}/>

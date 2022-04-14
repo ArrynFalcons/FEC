@@ -6,40 +6,47 @@ import RelatedProductsList from './RelatedProductsList.jsx';
 import Outfit from './Outfit.jsx';
 
 // const getRouteData = (route, page, count, sort, Id, endParam)
-function RelatedItems({ getRouteData, productId, setProductId }) {
+function RelatedItems({ getRouteData, productId, setProductId, currentStyle }) {
   const [products, setProducts] = useState([]);
-  const [featured, setFeatured] = useState(65635);
-  const [currentProduct, setCurrentProduct] = useState(productId);
+  const [currentProduct, setCurrentProduct] = useState(65635);
 
   useEffect(() => {
-    getRouteData('products', 1, 10, '', 65635, 'related')
+    setCurrentProduct(productId);
+  }, [productId]);
+
+  useEffect(() => {
+    getRouteData('products', 1, 10, '', currentProduct, 'related')
       .then((data) => {
-        // slice off duplicate
-        const container = data.data.slice(1).map((relatedId) => getRouteData('products', 1, 10, '', relatedId, '').then((res) => res.data));
+        const checkDuplicates = [];
+        data.data.forEach((id) => {
+          if (!checkDuplicates.includes(id) && id !== productId) {
+            checkDuplicates.push(id);
+          }
+        });
+        const container = checkDuplicates.map((relatedId) => getRouteData('products', 1, 10, '', relatedId, '').then((res) => res.data));
         Promise.all(container)
           .then((related) => setProducts(related));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  useEffect(() => {
-    setCurrentProduct(productId);
-  }, [productId]);
+  }, [currentProduct]);
 
   return (
     <>
       <RelatedProductsList
         products={products}
-        featured={featured}
+        currentProduct={currentProduct}
         setProductId={setProductId}
         getRouteData={getRouteData}
       />
-      <Outfit
-        currentProduct={currentProduct}
-        getRouteData={getRouteData}
-      />
+      <div style={{ paddingTop: '25px' }}>
+        <Outfit
+          currentProduct={currentProduct}
+          currentStyle={currentStyle}
+          getRouteData={getRouteData}
+        />
+      </div>
     </>
   );
 }

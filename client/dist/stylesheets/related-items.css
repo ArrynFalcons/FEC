@@ -3,7 +3,7 @@
   position: relative;
   flex-direction: row;
   margin: 10px;
-  gap: 10px;
+  gap: 25px;
   width: auto;
 }
 
@@ -13,10 +13,24 @@
   flex-direction: column;
   border: 2px solid;
   border-color: gray;
-  padding: 5px;
   height: 300px;
   width: 200px;
   cursor: pointer;
+}
+
+.product-card-contents {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding-left: 5px;
+}
+
+.card-contents {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  font-size: small;
+  padding-left: 5px;
 }
 
 .staticCard {
@@ -59,12 +73,18 @@
 
 .comparisonModal {
   display: flex;
-  position: absolute;
+  position: fixed;
   flex-direction: column;
+  border-style: double;
+  border-width: medium;
+  top:50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   height: 250px;
-  width: auto;
+  width: 400px;
   text-align: center;
-  background-color: beige;
+  background-color: #F8F8F8;
   padding: 10px;
   gap: 15px;
   z-index: 2;
@@ -107,4 +127,32 @@
   align-items: center;
   cursor: pointer;
   opacity: 25%;
+}
+
+.product-stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  --star-size: 10px;
+  --star-color: lightGray;
+  --star-background: rgb(0, 0, 0);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+.product-stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stop-scroll {
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
 }
