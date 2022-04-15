@@ -6,7 +6,9 @@ import RelatedProductsList from './RelatedProductsList.jsx';
 import Outfit from './Outfit.jsx';
 
 // const getRouteData = (route, page, count, sort, Id, endParam)
-function RelatedItems({ getRouteData, productId, setProductId, currentStyle }) {
+function RelatedItems({
+  getRouteData, productId, setProductId, currentStyle,
+}) {
   const [products, setProducts] = useState([]);
   const [currentProduct, setCurrentProduct] = useState(65635);
 

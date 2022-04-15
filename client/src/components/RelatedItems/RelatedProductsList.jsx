@@ -16,7 +16,9 @@ function reducer(state, action) {
       throw new Error();
   }
 }
-function RelatedProductsList({ products, currentProduct, getRouteData, setProductId }) {
+function RelatedProductsList({
+  products, currentProduct, getRouteData, setProductId,
+}) {
   const [state, dispatch] = useReducer(reducer, { start: 0, next: 5 });
   const [featuredProduct, setFeaturedProduct] = useState([]);
 

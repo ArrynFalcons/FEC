@@ -7,7 +7,9 @@
 import React, { useState, useEffect } from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
 
-function OutfitCard({ product, setOutfits, getRouteData, dispatch, start, currentStyle }) {
+function OutfitCard({
+  product, setOutfits, getRouteData, dispatch, start, currentStyle,
+}) {
   const [photo, setPhoto] = useState([]);
   const [sale, setSale] = useState(null);
   const [avgReview, setReview] = useState(null);
@@ -42,6 +44,11 @@ function OutfitCard({ product, setOutfits, getRouteData, dispatch, start, curren
 
   const deleteFromLocalStorage = (deletedProduct) => {
     const updatedStorage = JSON.parse(localStorage.getItem('addedProducts')).filter((item) => {
+      if (item.style) {
+        if (item.style.style_id !== deletedProduct.style.style_id) {
+          return item;
+        }
+      }
       if (item.id !== deletedProduct.id) {
         return item;
       }
