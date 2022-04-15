@@ -3122,7 +3122,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Overview(_ref) {
   var productId = _ref.productId,
       getRouteData = _ref.getRouteData,
-      setCurrentStyle = _ref.setCurrentStyle;
+      setCurrentStyle = _ref.setCurrentStyle,
+      setIsLoading = _ref.setIsLoading;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),

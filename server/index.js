@@ -9,6 +9,23 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+app.use(compression());
+app.use(express.static(`${__dirname}/../client/dist`));
+app.use(express.json());
+
+// Post route for cart
+app.post('/cart', (req, res) => {
+  const options = {
+    method: 'post',
+    url: `${config.url}/cart`,
+    headers: {Authorization: config.token},
+    data: req.body
+  }
+  axios(options)
+    .then(() => res.sendStatus(201))
+    .catch((err) => res.sendStatus(500));
+})
+
 const headers = {
   Authorization: config.token,
   'Accept-Encoding': 'gzip',
@@ -17,10 +34,6 @@ const headers = {
   'Accept-Encoding': 'br',
   'Content-Encoding': 'br',
 }
-
-app.use(compression());
-app.use(express.static(`${__dirname}/../client/dist`));
-app.use(express.json());
 
 //Put Route for Helpful Review
 app.post('/helpfulreview', (req, res) => {
@@ -116,19 +129,6 @@ app.get('/cart', (req, res) => {
       //res.status(200).send(res.data)
     })
     .catch((err) => res.sendStatus(400));
-})
-
-// Post route for cart
-app.post('/cart', (req, res) => {
-  const options = {
-    method: 'post',
-    url: `${config.url}/cart`,
-    headers,
-    data: req.body
-  }
-  axios(options)
-    .then(() => res.sendStatus(201))
-    .catch((err) => res.sendStatus(500));
 })
 
 // All Get Routes
