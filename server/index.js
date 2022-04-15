@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+const compression = require('compression');
 const express = require('express');
 const axios = require('axios');
 const config = require('../config.js');
@@ -8,6 +9,16 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+const headers = {
+  Authorization: config.token,
+  'Accept-Encoding': 'gzip',
+  'Accept-Encoding': 'compress',
+  'Accept-Encoding': 'deflate',
+  'Accept-Encoding': 'br',
+  'Content-Encoding': 'br',
+}
+
+app.use(compression());
 app.use(express.static(`${__dirname}/../client/dist`));
 app.use(express.json());
 
@@ -15,9 +26,7 @@ app.use(express.json());
 app.post('/helpfulreview', (req, res) => {
   console.log('Forwarding request to blackbox: ', req.body);
   const options = {
-    headers: {
-      Authorization: config.token,
-    },
+    headers,
   };
   axios.put(`${config.url}/reviews/${req.body.id}/helpful`, req.body, options)
     .then((data) => {
@@ -35,9 +44,7 @@ app.post('/helpfulreview', (req, res) => {
 app.post('/reportreview', (req, res) => {
   console.log('Forwarding request to blackbox: ', req.body);
   const options = {
-    headers: {
-      Authorization: config.token,
-    },
+    headers,
   };
   axios.put(`${config.url}/reviews/${req.body.id}/report`, req.body, options)
     .then((data) => {
@@ -65,9 +72,7 @@ const markAsHelpful = (id) => {
 app.post('/reviews', (req, res) => {
   console.log('Forwarding request to blackbox: ', req.body);
   const options = {
-    headers: {
-      Authorization: config.token,
-    },
+    headers,
   };
   axios.post(`${config.url}/reviews`, req.body, options)
     .then((data) => {
@@ -84,9 +89,7 @@ app.post('/reviews', (req, res) => {
 // Post route for client click interactions
 app.post('/interactions', (req, res) => {
   let options = {
-    headers: {
-      Authorization: config.token,
-    },
+    headers,
   };
   axios.post(`${config.url}/interactions`, req.body, options)
     .then((response) => {
@@ -103,7 +106,7 @@ app.get('/cart', (req, res) => {
   const options = {
     method: 'get',
     url: `${config.url}/cart`,
-    headers: {Authorization: config.token}
+    headers,
   }
   axios(options)
     .then((res) => {
@@ -120,7 +123,7 @@ app.post('/cart', (req, res) => {
   const options = {
     method: 'post',
     url: `${config.url}/cart`,
-    headers: {Authorization: config.token},
+    headers,
     data: req.body
   }
   axios(options)
@@ -134,9 +137,7 @@ app.use('/products', (req, res) => {
   const options = {
     method: 'get',
     url: `${config.url}${params}`,
-    headers: {
-      Authorization: config.token,
-    },
+    headers,
   };
   axios(options)
     .then((data) => {
@@ -152,9 +153,7 @@ app.use('/reviews', (req, res) => {
   const options = {
     method: 'get',
     url: `${config.url}${params}`,
-    headers: {
-      Authorization: config.token,
-    },
+    headers,
   };
   axios(options)
     .then((data) => {

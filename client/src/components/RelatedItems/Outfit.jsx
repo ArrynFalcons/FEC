@@ -44,9 +44,14 @@ function outfit({ currentProduct, getRouteData, currentStyle }) {
     }
     const storage = JSON.parse(localStorage.getItem('addedProducts'));
     const duplicate = storage.filter((product) => {
-      if (product.id === addedProduct.id) {
-        return addedProduct;
+      if (product.style) {
+        if (product.style.style_id === currentStyle.style_id) {
+          return addedProduct;
+        }
       }
+      // if (product.id === addedProduct.id) {
+      //   return addedProduct;
+      // }
     });
     duplicate.length ? null
       : (storage.push(addedProduct),
@@ -71,7 +76,7 @@ function outfit({ currentProduct, getRouteData, currentStyle }) {
 
         {outfits.length ? outfits.slice(state.start, state.next).map((product) => (
           <OutfitCard
-            key={product.id}
+            key={product.style ? product.style.style_id : product.id}
             product={product}
             currentStyle={currentStyle}
             dispatch={dispatch}

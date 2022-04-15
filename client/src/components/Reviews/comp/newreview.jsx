@@ -142,10 +142,11 @@ let buttonStyleSubmit = {
   fontSize: '16px'}
 
   return (
-    <div style={{left: '10px'}}>
+    <div className="new-review-container" style={{left: '10px'}}>
       <h1>Leave a New Review</h1>
       <br />
       <input
+        className="new-review-elements"
         type="text"
         onChange={(e) => {
           setnewrating
@@ -156,6 +157,7 @@ let buttonStyleSubmit = {
         placeholder="Name"
       />
       <input
+        className="new-review-elements"
         type="text"
         style={{marginLeft: '5px'}}
         onChange={(e) => {
@@ -165,7 +167,9 @@ let buttonStyleSubmit = {
         }}
         placeholder="Email"
       />
-      <div style={{width: '300px'}}>
+      <div
+        className="new-review-elements"
+        style={{width: '300px'}}>
         <div>Please rate out of 5 stars:</div>
         <div className="1star" style={cssFloaters1} onMouseOver={(e) => {
           ratingHelper(1);
@@ -185,7 +189,8 @@ let buttonStyleSubmit = {
           <div className="Stars" style={cssProps} ></div>
       </div>
       <br/>
-      <div style={{marginBottom: '5px'}}>
+      <div
+        className="new-review-elements">
         Do you recommend this product?
         <button
           type="submit"
@@ -233,6 +238,7 @@ let buttonStyleSubmit = {
         placeholder="Write your review here"
       />
       <textarea
+        className="new-review-elements"
         rows="2"
         cols="80"
         onChange={(e) => {
@@ -243,13 +249,14 @@ let buttonStyleSubmit = {
         placeholder="Add comma separated URLs to include images"
       />
       <br/>
-      <div style={{position: 'absolute', left: '620px'}}>
+      <div
+        className="new-review-elements"
+        style={{position: 'absolute', left: '620px'}}>
         <button
           type="submit"
           style={buttonStyleSubmit}
           onClick={() => {
             switchColor('submit');
-            console.log('Body params are being sent to server!', bodyparams)
             axios.post('/reviews', bodyparams)
               .then((response) => {
                 console.log(response);

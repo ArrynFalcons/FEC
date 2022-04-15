@@ -12,7 +12,7 @@
   position: relative;
   flex-direction: column;
   border: 2px solid;
-  border-color: gray;
+  border-color: black;
   height: 300px;
   width: 200px;
   cursor: pointer;
