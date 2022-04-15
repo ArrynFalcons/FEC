@@ -3529,9 +3529,14 @@ function outfit(_ref) {
 
     var storage = JSON.parse(localStorage.getItem('addedProducts'));
     var duplicate = storage.filter(function (product) {
-      if (product.id === addedProduct.id) {
-        return addedProduct;
-      }
+      if (product.style) {
+        if (product.style.style_id === currentStyle.style_id) {
+          return addedProduct;
+        }
+      } // if (product.id === addedProduct.id) {
+      //   return addedProduct;
+      // }
+
     });
     duplicate.length ? null : (storage.push(addedProduct), localStorage.setItem('addedProducts', JSON.stringify(storage)), storage.length > 4 ? dispatch({
       type: 'next'
@@ -3557,7 +3562,7 @@ function outfit(_ref) {
     }
   }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Add to Outfit")), outfits.length ? outfits.slice(state.start, state.next).map(function (product) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OutfitCard_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: product.id,
+      key: product.style ? product.style.style_id : product.id,
       product: product,
       currentStyle: currentStyle,
       dispatch: dispatch,
@@ -3667,6 +3672,12 @@ function OutfitCard(_ref) {
 
   var deleteFromLocalStorage = function deleteFromLocalStorage(deletedProduct) {
     var updatedStorage = JSON.parse(localStorage.getItem('addedProducts')).filter(function (item) {
+      if (item.style) {
+        if (item.style.style_id !== deletedProduct.style.style_id) {
+          return item;
+        }
+      }
+
       if (item.id !== deletedProduct.id) {
         return item;
       }
