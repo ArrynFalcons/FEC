@@ -6,7 +6,7 @@ import Features from './Description/Features.jsx';
 import Cart from './Cart/Cart.jsx';
 import Styles from './Styles/Styles.jsx';
 
-function Overview({ productId, getRouteData, setCurrentStyle }) {
+function Overview({ productId, getRouteData, setCurrentStyle, setIsLoading }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});

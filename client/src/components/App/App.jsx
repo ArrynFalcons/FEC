@@ -50,7 +50,6 @@ function App() {
         <div className="nav">
           <h1 className="logo">Falco</h1>
         </div>
-        {/* <h1 className="logo">Logo</h1> */}
       </nav>
       <Overview getRouteData={getRouteData} productId={productId} setCurrentStyle={setCurrentStyle}/>
       <div className="related-items">
