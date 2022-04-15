@@ -6,12 +6,14 @@
     <title>Online Store</title>
     <link rel="stylesheet" href="./stylesheets/app.css">
     <link rel="stylesheet" href="./stylesheets/overview.css">
-    <link rel="stylesheet" href="./stylesheets/related-items.css">
-    <link rel="stylesheet" href="./stylesheets/reviews.css">
+    <link rel="preload" href="./stylesheets/related-items.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="./stylesheets/related-items.css"></noscript>
+    <!-- <link rel="stylesheet" href="./stylesheets/related-items.css"> -->
+    <link rel="preload" href="./stylesheets/reviews.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="./stylesheets/reviews.css"></noscript>
+    <!-- <link rel="stylesheet" href="./stylesheets/reviews.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Serif&display=swap" rel="stylesheet">
-    <!-- <script src="https://kit.fontawesome.com/47f1e45d5a.js" crossorigin="anonymous"></script> -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Serif&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Serif&display=swap"></noscript>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Serif&display=swap" rel="stylesheet"> -->
   </head>
   <body>
     <div id="root"></div>
