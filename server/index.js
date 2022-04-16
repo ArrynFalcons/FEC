@@ -26,20 +26,11 @@ app.post('/cart', (req, res) => {
     .catch((err) => res.sendStatus(500));
 })
 
-const headers = {
-  Authorization: config.token,
-  'Accept-Encoding': 'gzip',
-  'Accept-Encoding': 'compress',
-  'Accept-Encoding': 'deflate',
-  'Accept-Encoding': 'br',
-  'Content-Encoding': 'br',
-}
-
 //Put Route for Helpful Review
 app.post('/helpfulreview', (req, res) => {
   console.log('Forwarding request to blackbox: ', req.body);
   const options = {
-    headers,
+    headers: {Authorization: config.token},
   };
   axios.put(`${config.url}/reviews/${req.body.id}/helpful`, req.body, options)
     .then((data) => {
@@ -57,7 +48,7 @@ app.post('/helpfulreview', (req, res) => {
 app.post('/reportreview', (req, res) => {
   console.log('Forwarding request to blackbox: ', req.body);
   const options = {
-    headers,
+    headers: {Authorization: config.token},
   };
   axios.put(`${config.url}/reviews/${req.body.id}/report`, req.body, options)
     .then((data) => {
@@ -85,7 +76,7 @@ const markAsHelpful = (id) => {
 app.post('/reviews', (req, res) => {
   console.log('Forwarding request to blackbox: ', req.body);
   const options = {
-    headers,
+    headers: {Authorization: config.token},
   };
   axios.post(`${config.url}/reviews`, req.body, options)
     .then((data) => {
@@ -98,6 +89,15 @@ app.post('/reviews', (req, res) => {
       res.status(404).send(err);
     });
 });
+
+const headers = {
+  Authorization: config.token,
+  'Accept-Encoding': 'gzip',
+  'Accept-Encoding': 'compress',
+  'Accept-Encoding': 'deflate',
+  'Accept-Encoding': 'br',
+  'Content-Encoding': 'br',
+}
 
 // Post route for client click interactions
 app.post('/interactions', (req, res) => {
