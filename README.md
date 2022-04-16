@@ -8,6 +8,7 @@ Welcome to our project! Please read this file before opening.
 ## Overview
 This is a JavaScript project to showcase front end skills using tools including React and Node.js, 
 as well as developer tools like Webpack and Babel.
+
 ![overviewgiphy](https://user-images.githubusercontent.com/97924110/163687415-92f6073e-bd9a-4b5e-92db-2d221e7223c5.gif)
 
 ## Table of Contents
